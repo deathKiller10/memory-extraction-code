@@ -1,14 +1,14 @@
 {
- "human_n": 129,
- "human_agreement": 0.8992248062015504,
- "human_kappa": 0.7986069412753694,
+ "human_n": 155,
+ "human_agreement": 0.896774193548387,
+ "human_kappa": 0.7940199335548171,
  "human_band": "substantial",
- "judge_vs_annotator1_kappa": 0.6322052807735218,
- "judge_vs_annotator1_agreement": 0.8217054263565892,
- "judge_vs_annotator2_kappa": 0.597841726618705,
- "judge_vs_annotator2_agreement": 0.7984496124031008,
- "judge_kappa_lo": 0.597841726618705,
- "judge_kappa_hi": 0.6322052807735218,
+ "judge_vs_annotator1_kappa": 0.5963880722385554,
+ "judge_vs_annotator1_agreement": 0.8,
+ "judge_vs_annotator2_kappa": 0.5571067025879664,
+ "judge_vs_annotator2_agreement": 0.7741935483870968,
+ "judge_kappa_lo": 0.5571067025879664,
+ "judge_kappa_hi": 0.5963880722385554,
  "joint_n": 60,
  "human_rate": 0.5,
  "judge_rate": 0.55,
@@ -28,14 +28,14 @@
   },
   "full_context": {
    "annotator1": {
-    "n": 25,
-    "human": 0.4,
-    "judge": 0.56
+    "n": 52,
+    "human": 0.38461538461538464,
+    "judge": 0.5769230769230769
    },
    "annotator2": {
-    "n": 22,
-    "human": 0.4090909090909091,
-    "judge": 0.5909090909090909
+    "n": 48,
+    "human": 0.3541666666666667,
+    "judge": 0.5833333333333334
    }
   },
   "system_llm": {

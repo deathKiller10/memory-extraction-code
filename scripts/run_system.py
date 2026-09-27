@@ -119,7 +119,7 @@ def banner(text: str) -> None:
 
 
 def dry_run(samples, config, strip: bool = False, select: str = "llm",
-            extract: str = "v1") -> None:
+            extract: str = "v1", out_path=None) -> None:
     banner("Dry run -- exact cost, not an estimate")
 
     import dataclasses
@@ -144,6 +144,26 @@ def dry_run(samples, config, strip: bool = False, select: str = "llm",
             if (row.get("extract") == extract
                     and bool(row.get("strip_trigger")) == bool(strip)):
                 done_items.add(row["sample_index"])
+    # Only items IN THIS RUN can have cached windows for it. Without this
+    # intersection a 200-item single-hop dry run counted the 401 Cognitive
+    # items as "already run" and printed -201 calls and -4,210 tokens. (27 Sep)
+    done_items &= {s.index for s in samples}
+
+    # Per-item calls (re-rank, judge, generate) are saved only for items
+    # already recorded in THIS configuration's results file -- the one the run
+    # resumes from. Another configuration's rows share the extraction cache,
+    # not the judging. (27 Sep)
+    recorded = set()
+    if out_path is not None and Path(out_path).exists():
+        try:
+            recorded = {r["sample_index"] for r in
+                        json.loads(Path(out_path).read_text(encoding="utf-8"))}
+        except (json.JSONDecodeError, OSError, KeyError, TypeError):
+            recorded = set()
+    recorded &= {s.index for s in samples}
+    if recorded:
+        print(f"\n  {len(recorded)} of these items are already recorded in "
+              f"{Path(out_path).name}; the run resumes after them.")
 
     cached_windows = 0
     if done_items:
@@ -179,7 +199,7 @@ def dry_run(samples, config, strip: bool = False, select: str = "llm",
     # `--extract events` run by 100 calls against an RPD of 1,000, which is the
     # difference between "one run fits today" and "it does not".
     new_windows = max(0, unique - cached_windows)
-    new_items = len(samples) - len(done_items)
+    new_items = len(samples) - len(recorded)
     rerank = new_items if select in ("llm", "hybrid") else 0
     groq = new_windows + rerank + new_items  # extraction + re-ranking + judging
     gemini = new_items                      # generation
@@ -277,16 +297,6 @@ def main() -> int:
     print(f"Loaded {len(data)} samples; evaluating {len(samples)} "
           f"{args.category} items (seed {args.seed}).")
 
-    if args.dry_run:
-        dry_run(samples, config, strip=args.strip_trigger, select=args.select,
-                extract=args.extract)
-        return 0
-
-    embedder = Embedder()
-    gen, jdg = generator(verbose=True), judge(verbose=True)
-    print(f"  generator: {gen.model}\n  judge:     {jdg.model}")
-
-    RESULTS_DIR.mkdir(exist_ok=True)
     if args.select == "carry":
         tag = f"carry{args.carry or 'all'}"
     else:
@@ -303,6 +313,19 @@ def main() -> int:
         # never share a results file with the Cognitive run.
         tag += "_" + args.category.replace(" ", "").replace("-", "")
     out = RESULTS_DIR / f"system_n{len(samples)}_seed{args.seed}_{tag}.json"
+
+    if args.dry_run:
+        dry_run(samples, config, strip=args.strip_trigger, select=args.select,
+                extract=args.extract, out_path=out)
+        print(f"\n  results file for this configuration: {out.name}")
+        return 0
+
+    RESULTS_DIR.mkdir(exist_ok=True)
+
+    embedder = Embedder()
+    gen, jdg = generator(verbose=True), judge(verbose=True)
+    print(f"  generator: {gen.model}\n  judge:     {jdg.model}")
+
 
     # Resume. A disconnected Colab runtime is the normal case, not the
     # exception, and the cached calls make a restart free -- but re-walking

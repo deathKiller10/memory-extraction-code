@@ -424,7 +424,9 @@ def main():
         if len(agree) >= 10:
             emit_pair("HumanPaired", agree, people[raters[0]])
             emit_pair("JudgePaired", agree, judge_all)
-            macro("HumanRaters", " and ".join(r.title() for r in raters))
+            # Never the raters' names: TMLR is double-blind and this macro
+            # was being pasted into the submission source. (27 Sep)
+            macro("HumanRaters", "two blind annotators")
             macro("HumanKappaN", len(shared))
         else:
             for name in ("HumanPairedN", "HumanPairedE", "HumanPairedB",

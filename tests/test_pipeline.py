@@ -1157,3 +1157,49 @@ def test_compare_runs_names_the_winning_file_not_a_letter():
     b = [True] * 20 + [True] * 5
     words = cr.named_verdict(mcnemar(a, b), "v1.json", "events.json")
     assert "events.json" in words and " B " not in words and "A better" not in words
+
+
+def test_dry_run_never_counts_other_runs_items_and_never_goes_negative(tmp_path):
+    """27 Sep: a 200-item single-hop dry run counted the 401 Cognitive items as
+    already done and printed -201 calls and -4,210 tokens."""
+    import io, contextlib, json as _json
+    from bapca.dataset import Sample
+    from bapca.pipeline import SystemConfig
+    rs = _load_run_system()
+    rs.RESULTS_DIR = tmp_path
+    other = [dict(sample_index=1000 + i, extract="events", strip_trigger=True)
+             for i in range(401)]
+    (tmp_path / "system_n401_seed42_llm3_d1_notrig_events.json").write_text(_json.dumps(other))
+    samples = [Sample(index=i, input_prompt="\n".join(f"A: line {i} {j}" for j in range(40)),
+                      trigger="A: line 39", evidence="A: line 3", category="single-hop")
+               for i in range(5)]
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        rs.dry_run(samples, SystemConfig(), strip=True, select="llm", extract="events",
+                   out_path=tmp_path / "system_n5_seed42_llm3_d1_notrig_events_singlehop.json")
+    text = buf.getvalue()
+    groq = next(l for l in text.splitlines() if "Groq   (" in l)
+    assert "re-rank 5" in groq and "judge 5" in groq
+    import re as _re
+    assert not _re.search(r"-\d", groq), groq
+    assert "already run" not in text
+
+
+def test_dry_run_counts_items_recorded_in_this_runs_own_file(tmp_path):
+    import io, contextlib, json as _json
+    from bapca.dataset import Sample
+    from bapca.pipeline import SystemConfig
+    rs = _load_run_system()
+    rs.RESULTS_DIR = tmp_path
+    out = tmp_path / "mine.json"
+    out.write_text(_json.dumps([dict(sample_index=i, extract="events", strip_trigger=True)
+                                for i in range(2)]))
+    samples = [Sample(index=i, input_prompt="\n".join(f"A: line {i} {j}" for j in range(40)),
+                      trigger="A: line 39", evidence="A: line 3", category="single-hop")
+               for i in range(5)]
+    buf = io.StringIO()
+    with contextlib.redirect_stdout(buf):
+        rs.dry_run(samples, SystemConfig(), strip=True, select="llm", extract="events",
+                   out_path=out)
+    groq = next(l for l in buf.getvalue().splitlines() if "Groq   (" in l)
+    assert "re-rank 3" in groq and "judge 3" in groq
