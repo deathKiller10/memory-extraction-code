@@ -1,0 +1,100 @@
+{
+ "human_n": 129,
+ "human_agreement": 0.8992248062015504,
+ "human_kappa": 0.7986069412753694,
+ "human_band": "substantial",
+ "judge_vs_annotator1_kappa": 0.6322052807735218,
+ "judge_vs_annotator1_agreement": 0.8217054263565892,
+ "judge_vs_annotator2_kappa": 0.597841726618705,
+ "judge_vs_annotator2_agreement": 0.7984496124031008,
+ "judge_kappa_lo": 0.597841726618705,
+ "judge_kappa_hi": 0.6322052807735218,
+ "joint_n": 60,
+ "human_rate": 0.5,
+ "judge_rate": 0.55,
+ "leniency": 0.050000000000000044,
+ "per_condition": {
+  "no_memory": {
+   "annotator1": {
+    "n": 24,
+    "human": 0.25,
+    "judge": 0.4583333333333333
+   },
+   "annotator2": {
+    "n": 24,
+    "human": 0.16666666666666666,
+    "judge": 0.4166666666666667
+   }
+  },
+  "full_context": {
+   "annotator1": {
+    "n": 25,
+    "human": 0.4,
+    "judge": 0.56
+   },
+   "annotator2": {
+    "n": 22,
+    "human": 0.4090909090909091,
+    "judge": 0.5909090909090909
+   }
+  },
+  "system_llm": {
+   "annotator1": {
+    "n": 40,
+    "human": 0.525,
+    "judge": 0.6
+   },
+   "annotator2": {
+    "n": 38,
+    "human": 0.47368421052631576,
+    "judge": 0.631578947368421
+   }
+  },
+  "oracle_cue": {
+   "annotator1": {
+    "n": 24,
+    "human": 0.7083333333333334,
+    "judge": 0.75
+   },
+   "annotator2": {
+    "n": 22,
+    "human": 0.7272727272727273,
+    "judge": 0.8181818181818182
+   }
+  },
+  "oracle_constraint": {
+   "annotator1": {
+    "n": 25,
+    "human": 0.8,
+    "judge": 0.8
+   },
+   "annotator2": {
+    "n": 25,
+    "human": 0.72,
+    "judge": 0.8
+   }
+  }
+ },
+ "ordering_ok": {
+  "annotator1": true,
+  "annotator2": false
+ },
+ "spread": {
+  "annotator1": {
+   "human": 0.55,
+   "judge": 0.34166666666666673
+  },
+  "annotator2": {
+   "human": 0.5606060606060607,
+   "judge": 0.40151515151515155
+  }
+ },
+ "E_annotator1_rate": 0.525,
+ "E_annotator1_n": 40,
+ "E_judge_rate_on_annotator1_items": 0.6,
+ "E_annotator1_p": 0.548828125,
+ "E_annotator2_rate": 0.47368421052631576,
+ "E_annotator2_n": 38,
+ "E_judge_rate_on_annotator2_items": 0.631578947368421,
+ "E_annotator2_p": 0.0703125
+}

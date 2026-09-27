@@ -1,0 +1,1802 @@
+[
+ {
+  "condition": "system",
+  "sample_index": 1989,
+  "prompt_tokens": 149,
+  "prediction": "It's crazy how much your perspective shifts when you start focusing on long-term goals instead of instant gratification. Honestly, I think that kind of intentional growth is just a natural side effect of pouring so much energy into your movie and writing. You're building something that's built to last, so it makes total sense that you'd start applying that same mindset to the rest of your life!",
+  "label": "wrong",
+  "reason": "The model prediction attributes the user's shift in perspective to their work on a 'movie and writing,' which is not mentioned in the provided evidence. The evidence specifically cites a cousin's Type 2 diabetes diagnosis as the cause for cutting out sugary drinks. The prediction fails to reference the diabetes or the family scare, instead hallucinating a different context (creative work) to explain the user's statement.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[value] Joanna values mindful consumption and long-term consequences over impulsive choices.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet.",
+   "[goal] Joanna is working on a movie script and has just finished writing the introduction."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 1998,
+  "prompt_tokens": 200,
+  "prediction": "Haha, that definitely sounds like \"puppy parent\" life to me! You've got to secure the perimeter before a tiny landshark destroys anything else. Which shelter are you volunteering at this weekend, by the way?",
+  "label": "wrong",
+  "reason": "The model prediction completely ignores the context provided in the user message (booking a trip, security concerns) and the evidence (John's bike theft leading to protective behavior). Instead, it hallucinates a context about being a 'puppy parent' and volunteering at a shelter, which has no link to the evidence or the user's actual statement.",
+  "notes_extracted": 34,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, as evidenced by her active volunteering and emphasis on these traits.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] Maria values community service and believes that small acts of kindness and collective effort can create meaningful positive change."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 1999,
+  "prompt_tokens": 165,
+  "prediction": "Oh, I totally get that! Even when you *know* everything is fine, that habit is just so hard to break. Did you end up getting any writing done today despite the interruption?",
+  "label": "wrong",
+  "reason": "The model prediction does not relate to the provided evidence. The evidence discusses Joanna's switch to flameless candles after a near-fire incident with her roommate. The user message discusses safety inspections and checking plugs. The model's response addresses the user's current anxiety about safety but fails to connect it to the specific memory of the candle incident or the context of Joanna's previous experience with fire hazards. It treats the user's statement in isolation without leveraging the provided memory.",
+  "notes_extracted": 29,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[constraint] Joanna still catches herself double-checking every plug before leaving her home, despite being told her unit is one of the safest.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet.",
+   "[goal] Joanna is working on a movie script and has just finished writing the introduction."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2001,
+  "prompt_tokens": 176,
+  "prediction": "Oh, that sounds like such a liberating feeling! Being able to just dive right in without constantly worrying about your gear makes a beach trip so much more peaceful. Where are you heading to, and are you planning to take Scout with you?",
+  "label": "correct",
+  "reason": "The model's prediction explicitly references the user's lack of worry about 'gear' (contacts/lenses) and the resulting 'liberating feeling' and 'peaceful' experience. This directly connects to the evidence where Audrey mentions getting laser eye surgery after breaking her glasses, which implies she no longer wears glasses or contacts, thus aligning with the user's statement about not having to worry about losing lenses in the water.",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2002,
+  "prompt_tokens": 189,
+  "prediction": "That's amazing news, seriously! Whatever change you made must be working wonders, so you'll definitely have to tell me your new routine.",
+  "label": "wrong",
+  "reason": "The model prediction is a generic response that does not reference or connect to the specific evidence provided (James switching to biking after a parking ticket). It treats the user's statement as new information without acknowledging the prior context or the specific change mentioned in the evidence.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2008,
+  "prompt_tokens": 202,
+  "prediction": "Oh, I totally get why you're hesitating since you're right in the middle of house-training the new puppy! It's so hard to relax when you have a little one at home who depends on you for every little thing. Maybe you could find a pet-sitter you really trust so you can actually enjoy the getaway without worrying?",
+  "label": "wrong",
+  "reason": "The evidence discusses John's cat disappearing and getting microchipped, which implies a past event involving a pet. The model prediction, however, attributes the user's hesitation to 'house-training the new puppy,' which is a completely different scenario not supported by the evidence. The prediction hallucinates a current situation (new puppy) that contradicts or ignores the specific context provided in the evidence (cat/microchip).",
+  "notes_extracted": 32,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, which she actively practices through regular community volunteering.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] John finds deep fulfillment and a sense of purpose in serving his community, a value reinforced by his military background and current role in the fire brigade."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2009,
+  "prompt_tokens": 154,
+  "prediction": "Oh, you definitely did the right thing by skipping that! Nobody needs to sit there reliving all the clumsy moments from the past year. Did you end up getting the paperwork sorted out okay?",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's current statement about skipping a part of an insurance form but does not reference or connect to the specific evidence provided (Joanna's story about burning her hand on the oven rack and using mitts). The prediction treats the user's input as a standalone anecdote without linking it to the prior context or memory.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet.",
+   "[goal] Joanna is working on a movie script and has just finished writing the introduction.",
+   "[value] Joanna values the power of shared hobbies to form strong relationships and bring people together."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2014,
+  "prompt_tokens": 192,
+  "prediction": "Oh wow, that really would have been a powerful example for the class! Did you end up sharing it, or did you decide to keep that little adventure to yourself?",
+  "label": "correct",
+  "reason": "The model's response references 'that little adventure' and 'that time I nearly stranded myself,' which directly links to the specific memory provided in the evidence where Evan left his passport in a hotel safe. The model recognizes the context of the user's anecdote based on the prior conversation history.",
+  "notes_extracted": 21,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Evan values self-expression through art as a primary method for processing emotions and communicating without words.",
+   "[state] Evan is currently attending a workshop on risk management.",
+   "[state] Sam is currently struggling with health issues and weight that are preventing them from fully living, and they are actively trying to maintain a positive outlook despite the difficulty.",
+   "[goal] Evan is on a diet limiting himself to two ginger snaps a day.",
+   "[value] Evan finds peace and resilience by watching sunsets at a specific beach spot near his home."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2021,
+  "prompt_tokens": 182,
+  "prediction": "I totally get that. It\u2019s funny how a single experience can totally flip your perspective on things like that, isn't it? Sometimes quiet and steady just feels so much better than the rush anyway.",
+  "label": "wrong",
+  "reason": "The evidence describes Audrey's specific reaction to a cousin's bike accident (wearing a helmet) and Andrew's comment on safety becoming non-negotiable. The user message describes a different person's reaction to a 'summer' incident regarding impulsive risks. The model prediction responds to the user's current statement about perspective shifts but does not reference, acknowledge, or link to the specific evidence provided (Audrey's helmet usage or the cousin's accident). It treats the user's input as a standalone statement without connecting it to the provided memory context.",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2022,
+  "prompt_tokens": 195,
+  "prediction": "Haha, right? It's funny how our priorities totally shift as we get older and just want that peace of mind. Honestly, after spending so much time staring at screens and building out game code all day, I completely crave that kind of certainty too.",
+  "label": "wrong",
+  "reason": "The model prediction does not reference or connect to the specific evidence provided (James installing security cameras after a neighbor's break-in). Instead, the model attributes the shift in priorities to aging and mentions unrelated personal details about building game code, failing to acknowledge the context of the neighbor's break-in or the specific security measures mentioned in the evidence.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2026,
+  "prompt_tokens": 227,
+  "prediction": "Good for you for sticking to your boundaries, honestly! It's so important to protect your peace and keep your gear right where you need it, no matter how big the opportunity is.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the user's fear of being separated from their stuff ('keep your gear right where you need it'), which is a direct consequence of the evidence provided where Caroline lost her suitcase and now travels with only a carry-on. The prediction validates the user's decision based on this established context.",
+  "notes_extracted": 25,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Caroline is actively pursuing adoption and has recently attended a council meeting to further her determination to create a loving home for a child.",
+   "[value] Caroline is committed to using her personal transgender journey to advocate for LGBTQ+ inclusion and inspire others to become better allies.",
+   "[constraint] Caroline refuses to participate in events or situations that require her to be separated from her personal equipment.",
+   "[value] Melanie values family presence and nature as essential sources of peace and recharging during difficult times.",
+   "[value] Caroline values authenticity and self-expression, viewing the act of staying true to herself and embracing her identity as an ongoing adventure."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2030,
+  "prompt_tokens": 210,
+  "prediction": "That's honestly such a smart way to adapt it! It makes total sense for keeping all those important papers and medication schedules straight, especially with all the international visa stuff you've been juggling lately.",
+  "label": "wrong",
+  "reason": "The prediction references 'international visa stuff' which is not present in the provided evidence. The evidence discusses finding a lost wedding ring and starting a jewelry box system. The model's response hallucinates context (visas) that is unrelated to the specific evidence provided.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Tim is using a memory technique to manage his medications and important documents.",
+   "[value] John is deeply committed to basketball, practicing and training every day as a core passion he cannot imagine living without.",
+   "[state] Tim is currently navigating the complex visa requirements for several international destinations he plans to visit.",
+   "[value] John values ensuring that every child has access to good sports programs and fair opportunities in sports, particularly for underserved communities.",
+   "[value] John finds deep personal fulfillment and identity in basketball, viewing it as a powerful tool for managing stress and expressing himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2033,
+  "prompt_tokens": 174,
+  "prediction": "Oh, I totally don't blame you for springing for the private transfer! It's so much nicer to skip the chaos of crowded transit when you're just trying to get away and actually relax. Where are you heading for your trip?",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's current statement about avoiding crowded public transport but does not explicitly or implicitly reference the specific evidence provided (Deborah's slashed backpack incident or Jolene's comment about street-smartness). It treats the user's statement as a standalone preference rather than linking it to the specific past event described in the evidence.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Deborah can no longer relax on crowded public transport.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals.",
+   "[goal] Jolene is working toward becoming a certified scuba diver."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2035,
+  "prompt_tokens": 165,
+  "prediction": "Oh man, I totally feel you on that. Setting boundaries with family can be so tough, but it's honestly so important for protecting your energy. You definitely need that kind of supportive environment to keep yourself grounded and moving forward.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the concept of a 'supportive environment' and protecting energy, which directly aligns with the evidence where Calvin mentions feeling happier after removing toxic people and Dave emphasizes the importance of surrounding oneself with positivity. The prediction applies the lesson from the evidence (positivity/support is key to well-being) to the user's new context of setting boundaries with family.",
+  "notes_extracted": 29,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Dave finds a deep sense of purpose and achievement in repairing and transforming broken things.",
+   "[value] Calvin considers having supportive people around him vital for his growth as an artist and staying true to himself.",
+   "[state] Dave is a member of a rock band and actively writes lyrics to fuel his creative motivation."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2037,
+  "prompt_tokens": 187,
+  "prediction": "Haha, oh no! What did you end up telling them, or did you just dodge the question entirely? I can only imagine what kind of wild excuses were running through your head.",
+  "label": "wrong",
+  "reason": "The model prediction treats the user's message as a standalone anecdote about printing documents and asks for the excuse used. It does not acknowledge or connect the behavior to the specific evidence provided (Jon's migraines from screens and the purchase of blue-light glasses). The response fails to utilize the context that the user is likely Jon and that the printing is a result of eye strain/migraines.",
+  "notes_extracted": 20,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is actively working to secure investors for his dance studio while maintaining a temporary job to cover expenses.",
+   "[constraint] Jon has a specific, unexplained reason for printing documents instead of reading them on his laptop.",
+   "[goal] Jon is working toward opening a dance studio that welcomes dancers of all ages and backgrounds.",
+   "[goal] Jon is opening his dance studio tomorrow.",
+   "[value] Gina values self-expression and freedom, viewing her tattoo as a permanent reminder to follow her passions without worrying about others' opinions."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2038,
+  "prompt_tokens": 180,
+  "prediction": "Oh, do it! Life's too short to skip out on cheese, honestly. What kind are you thinking of treating yourself to first?",
+  "label": "wrong",
+  "reason": "The model prediction does not acknowledge or reference the evidence that John switched to a plant-based diet. Instead, it encourages adding cheese back in without connecting it to the user's previous decision or context provided in the evidence.",
+  "notes_extracted": 33,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, as evidenced by her active volunteering and emphasis on these traits.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] Maria values community service and believes that small acts of kindness and collective effort can create meaningful positive change."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2043,
+  "prompt_tokens": 203,
+  "prediction": "Good for you, Deborah! Protecting your boundaries like that is huge, especially when you know what kind of burnout a title can actually cost you. You've always been so good at keeping your life balanced, and your energy is way better spent on things that actually fulfill you, like your community workshops anyway.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the evidence by mentioning 'burnout' and the cost of a title, which directly links to Deborah's past experience of seeing her boss burn out and her subsequent decision to stop checking work email after 7 p.m. The prediction uses this context to validate the user's current decision to refuse the promotion.",
+  "notes_extracted": 32,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Deborah refuses to sacrifice her personal boundaries for career advancement, prioritizing work-life balance over titles.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals.",
+   "[goal] Jolene is working toward becoming a certified scuba diver."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2049,
+  "prompt_tokens": 138,
+  "prediction": "Oh, I'm really proud of you for having that realization, even though it's a heavy one to unpack. You pour so much energy into everyone else, but you definitely deserve to be at the top of your own priority list too. Be gentle with yourself as you figure out how to shift that focus back where it belongs!",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the user's history of prioritizing others ('You pour so much energy into everyone else'), which is directly linked to the evidence where Joanna states she volunteered to make a difference in her community. The model uses this context to validate the user's realization about neglecting their own wellbeing.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[state] Joanna has realized that focusing so much on others has made her neglect her own wellbeing.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet.",
+   "[goal] Joanna is working on a movie script and has just finished writing the introduction."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2057,
+  "prompt_tokens": 221,
+  "prediction": "Man, that sounds like such a heavy weight to carry, especially coming straight from your doctor. It makes complete sense why you're terrified after seeing what happened to him, but please remember you're allowed to take a gentle breath. Have you thought about maybe talking to a therapist to help you process all that anxiety?",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the evidence by mentioning 'seeing what happened to him,' which directly links to Jon's statement about his dad having a heart attack. It also acknowledges the context of the doctor's advice and the user's fear, showing a clear connection to the provided evidence.",
+  "notes_extracted": 21,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is actively working to open a dance studio that he envisions as a supportive environment for dancers, offering one-on-one mentoring to help them reach their full potential.",
+   "[goal] Jon is actively building a dance-related business and is currently focused on promoting it through social media.",
+   "[goal] Jon is actively working to establish his own dance studio as a space for people to express themselves.",
+   "[state] Jon is living with a persistent fear that relaxing his health regimen will cause a catastrophic event similar to what happened to his doctor.",
+   "[goal] Jon is actively working to secure investors and build an online platform to sustain his struggling dance studio."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2065,
+  "prompt_tokens": 176,
+  "prediction": "Haha, totally! You've got to keep your energy up, especially with how draining those meetings can be. Better to have the snacks on hand than crash halfway through!",
+  "label": "correct",
+  "reason": "The model's prediction explicitly references the user's past experience of 'crashing' or ending up on the floor, which directly links to the evidence where Calvin mentioned fainting at a concert due to skipping meals. The advice to keep energy up and have snacks on hand is a direct response to the lesson learned in the evidence.",
+  "notes_extracted": 29,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Dave finds a deep sense of purpose and achievement in repairing and transforming broken things.",
+   "[value] Calvin considers having supportive people around him to be vital for his growth as an artist and staying true to himself.",
+   "[state] Dave is a member of a rock band and actively writes lyrics to fuel his creative motivation."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2067,
+  "prompt_tokens": 182,
+  "prediction": "Oh man, looking back at those moments is wild, isn't it? It's crazy how certain we are that things are ruined, only for it to lead us right where we're supposed to be\u2014especially with everything you're about to launch tomorrow!",
+  "label": "wrong",
+  "reason": "The model prediction references a specific event ('everything you're about to launch tomorrow') that is not present in the provided evidence. The evidence only discusses a past gap year working on construction sites after being rejected from architecture school. The prediction does not link the steel-toe boots or the feeling of failure to the specific context of the architecture rejection or construction work mentioned in the evidence, but rather to an unrelated future event.",
+  "notes_extracted": 19,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is actively working to build and grow his own business, specifically a dance studio.",
+   "[goal] Jon is working toward opening a dance studio that welcomes dancers of all ages and backgrounds.",
+   "[goal] Jon is actively working to secure investors and build an online platform to sustain his struggling dance studio.",
+   "[goal] Jon is opening his dance studio tomorrow.",
+   "[state] Gina is a fashion designer who recently gained attention from fashion editors and is currently navigating the pressure of her rising career."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2069,
+  "prompt_tokens": 173,
+  "prediction": "Ugh, I totally get that, those ads can be so triggering when you've been through a really rough patch. At least you're channeling all that heavy energy into something amazing, like your road-trip movie and that Midwestern thriller!",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the user's past experience of being 'miserable' and having a 'rough patch' related to boats, which directly connects to the evidence provided where Joanna mentions getting seasick on a ferry ride and Nate notes that the 'rough trip' changed her travel preparation. The model uses this specific memory to validate the user's current feelings about holiday ads featuring boats.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[state] Joanna still feels tense when she sees glossy holiday ads depicting carefree people, as they trigger memories of a period when she was miserable.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet.",
+   "[goal] Joanna is working on a movie script and has just finished writing the introduction."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2073,
+  "prompt_tokens": 175,
+  "prediction": "It's totally understandable to feel that way since social media can be so unpredictable sometimes. Maybe you could share something small and grounding, like those free educational events you organize, to keep the focus on the positive community aspect?",
+  "label": "correct",
+  "reason": "The prediction directly addresses the user's fear of 'negativity' returning, which is a direct reference to the evidence where Deborah stated that social media was 'affecting my mood' and Jolene validated that a break was necessary. The model uses this context to validate the user's hesitation and suggest a low-risk way to re-engage.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Deborah is hesitant to resume posting on social media due to a fear of encountering negativity.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals.",
+   "[goal] Jolene is working toward becoming a certified scuba diver."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2084,
+  "prompt_tokens": 193,
+  "prediction": "I totally get why you're checking those ratings so carefully, especially when you're already dealing with your own health stuff right now. Honestly, it's totally fair to protect your peace of mind instead of just rolling the dice on a new food hall!",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the user's past experience with food poisoning (referred to as 'dealing with your own health stuff right now') to explain why the user is checking health ratings. This directly links the current behavior to the evidence provided in the conversation history.",
+  "notes_extracted": 22,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Evan values self-expression through art as a primary method for processing emotions and communicating without words.",
+   "[constraint] Evan checks the health rating of every restaurant before considering going there.",
+   "[state] Sam is currently struggling with health issues and weight that are preventing them from fully living, and they are actively trying to maintain a positive outlook despite the difficulty.",
+   "[goal] Evan is on a diet limiting himself to two ginger snaps a day.",
+   "[value] Evan finds peace and resilience by watching sunsets at a specific beach spot near his home."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2087,
+  "prompt_tokens": 195,
+  "prediction": "Oh, that is the absolute best feeling, especially when you've got so much on your mind lately. It\u2019s amazing how a little extra legroom can totally change your whole travel experience!",
+  "label": "wrong",
+  "reason": "The prediction does not reference or connect to the evidence regarding Jon's sciatic pain or Gina's comment about the flare-up. The response is a generic reaction to the airline seat upgrade without acknowledging the specific medical context provided in the evidence.",
+  "notes_extracted": 19,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is working to open his own dance studio.",
+   "[goal] Jon is actively working to launch and market his dance studio, including developing business plans and creating social media content.",
+   "[goal] Jon is actively working to secure investors and build an online platform to sustain his struggling dance studio.",
+   "[state] Gina is a fashion designer who recently gained attention from fashion editors and is currently navigating the pressure of her rising career.",
+   "[value] Gina values self-expression and freedom, viewing her tattoo as a permanent reminder to follow her passions without worrying about others' opinions."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2093,
+  "prompt_tokens": 184,
+  "prediction": "Omg, look at you go! That is seriously such a huge win, you should be so proud of all the hard work you've been putting in. How are you celebrating this epic victory?",
+  "label": "wrong",
+  "reason": "The prediction treats the user's statement as a generic achievement without acknowledging the specific context provided in the evidence (Deborah's panic attacks and strategy of shopping late at night to avoid crowds). The model fails to link the user's success at a crowded festival to the previous struggle with panic attacks or the specific coping mechanism mentioned in the evidence.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Deborah has a tendency to bolt from crowded situations, which she is actively working to overcome.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals.",
+   "[goal] Jolene is working toward becoming a certified scuba diver."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2096,
+  "prompt_tokens": 212,
+  "prediction": "That sounds like such a lovely and grounding shift to make. It's amazing how much more intentional your downtime feels when you focus on smaller adventures right in your own backyard. What kind of spots have you and your partner checked out so far?",
+  "label": "wrong",
+  "reason": "The model prediction treats the user's statement about changing weekend habits as a standalone preference or lifestyle choice. It does not acknowledge or link this change to the context provided in the Evidence (the recent car accident and the resulting shock/trauma). The response misses the causal or emotional connection between the accident and the desire for smaller, safer outings.",
+  "notes_extracted": 24,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Caroline is actively pursuing adoption and has recently attended a council meeting to further her determination to create a loving home for a child.",
+   "[value] Caroline is committed to using her personal transgender journey to advocate for LGBTQ+ inclusion and inspire others to become better allies.",
+   "[goal] Caroline is actively rethinking how she and her partner spend their weekends by choosing smaller outings close to home.",
+   "[value] Caroline values authenticity and self-expression, viewing the act of staying true to herself and embracing her identity as an ongoing adventure.",
+   "[value] Melanie values art as a tool for emotional regulation and finds tranquility in the color blue."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2097,
+  "prompt_tokens": 186,
+  "prediction": "That is huge progress, especially with everything else on your plate right now! Honestly, being able to just sit back and relax for two hours sounds like some well-deserved self-care before tomorrow.",
+  "label": "wrong",
+  "reason": "The prediction does not reference the specific evidence provided (Jon's back pain and the purchase of a standing desk). While the user's message mentions sitting through a movie, the model's response focuses on general progress and self-care without acknowledging the context of the back pain or the standing desk mentioned in the evidence.",
+  "notes_extracted": 20,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is actively working to secure investors to sustain his dance studio while managing the financial strain with a temporary job.",
+   "[state] Jon has recently developed the ability to sit through an entire movie without needing to shift around or plan an escape.",
+   "[goal] Jon is working toward opening a dance studio that welcomes dancers of all ages and backgrounds.",
+   "[goal] Jon is opening his dance studio tomorrow.",
+   "[value] Gina values self-expression and freedom, viewing her tattoo as a permanent reminder to follow her passions without worrying about others' opinions."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2098,
+  "prompt_tokens": 192,
+  "prediction": "Oh man, I totally get why that would feel so weird and heavy. It's wild how those little administrative tasks suddenly force you to confront the reality of how deeply someone is intertwined in your life. How are you holding up after all that?",
+  "label": "correct",
+  "reason": "The model's prediction acknowledges the user's hesitation and the emotional weight of the situation ('weird and heavy', 'confront the reality'). This directly relates to the evidence provided, which establishes a context of significant conflict and boundary-setting with the father (the person whose name was hesitated over). The model's empathetic response is grounded in the implied relationship dynamics established in the evidence.",
+  "notes_extracted": 32,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, as evidenced by her active volunteering and emphasis on these traits.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] Maria values community service and believes that small acts of kindness and collective effort can create meaningful positive change."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2100,
+  "prompt_tokens": 201,
+  "prediction": "Oh man, I totally feel that\u2014indoor gardening sounds so peaceful until you actually have to keep the little sprouts alive every day! How are the seedlings holding up despite the lean?",
+  "label": "wrong",
+  "reason": "The evidence discusses Tim planting herbs on a balcony and the smell of basil. The user's message discusses a starter bed on a kitchen sill. The model's prediction responds to the user's current message about the kitchen sill but does not reference or connect to the previous evidence about the balcony herbs or basil. It treats the current message in isolation without acknowledging the shared context of the user's gardening activities mentioned in the evidence.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Tim is currently tending to a starter bed on his kitchen sill and finds the maintenance more challenging than anticipated.",
+   "[goal] Tim is actively researching visa requirements to pursue his travel dreams.",
+   "[value] John is deeply committed to basketball, practicing and training every day as a core passion he cannot imagine living without.",
+   "[value] John values ensuring that every child has access to good sports programs and fair opportunities in sports, particularly for underserved communities.",
+   "[state] Tim is currently navigating the complex visa requirements for several international destinations he plans to visit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2102,
+  "prompt_tokens": 173,
+  "prediction": "That's totally fair, especially since you've been pouring so much energy into your mentorship work and prepping that game demo lately. Sometimes downtime with family is just way more rewarding anyway!",
+  "label": "wrong",
+  "reason": "The evidence discusses James's motivation due to a promotion and John's reaction to it. The model prediction discusses mentorship work, a game demo, and family downtime, which are completely unrelated to the provided evidence.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2103,
+  "prompt_tokens": 160,
+  "prediction": "That makes total sense, and it's such a freeing feeling once you really settle into it. I bet all the energy you usually put into community stuff is giving you a nice, peaceful balance right now!",
+  "label": "wrong",
+  "reason": "The evidence establishes that Deborah is missing her family because they moved overseas. The model prediction responds to the user's statement about enjoying their own company by referencing 'community stuff' and a 'peaceful balance,' but it completely ignores the specific context of the family moving overseas or the feeling of missing them. It treats the user's statement as a general preference for solitude rather than a reaction to the specific loss mentioned in the evidence.",
+  "notes_extracted": 33,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Deborah is currently enjoying her own company more than in the past.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals.",
+   "[goal] Jolene is working toward becoming a certified scuba diver."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2105,
+  "prompt_tokens": 185,
+  "prediction": "Oh man, I totally get why that\u2019s weighing so heavily on you\u2014it's super scary to think about rocking the boat when you've finally found some stability. Just remember you don't have to make any decisions right this second, and you\u2019ve got people in your corner who care about you no matter what.",
+  "label": "correct",
+  "reason": "The model's prediction explicitly references the context established in the evidence. The phrase 'when you've finally found some stability' directly alludes to the relief and improved state of mind Calvin described in the evidence ('wake up without feeling like there\u2019s a brick on my chest'). The model uses this prior context to validate the user's fear of losing that stability.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Dave finds a deep sense of purpose and achievement in repairing and transforming broken things.",
+   "[state] Calvin is currently managing a medical condition with medication and is anxious about the prospect of lowering his dose next year.",
+   "[value] Calvin considers having supportive people around him vital for his growth as an artist and staying true to himself."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2111,
+  "prompt_tokens": 152,
+  "prediction": "That sounds like such a great way to start the morning! Are you taking a scenic route through any parks or quiet spots to enjoy the fresh air?",
+  "label": "wrong",
+  "reason": "The evidence establishes that Audrey is anxious about driving due to a past accident. The user's message mentions biking to work. The model's prediction responds to the biking activity but does not acknowledge the context of the user's anxiety regarding driving or the contrast between biking and driving. It treats the input as a standalone statement about biking without linking it to the specific memory of driving anxiety.",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2121,
+  "prompt_tokens": 157,
+  "prediction": "Oh no, what's making you second-guess yourself like that? Sometimes change feels unsettling at first, but trust your gut on why you wanted an upgrade in the first place!",
+  "label": "correct",
+  "reason": "The model's response directly addresses the user's doubt about their 'old setup' and 'upgrade,' which are specific details derived from the evidence where Audrey bought an ergonomic keyboard and mouse due to sore wrists. The phrase 'trust your gut on why you wanted an upgrade' implicitly references the specific context of the ergonomic tool purchase mentioned in the evidence.",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2122,
+  "prompt_tokens": 182,
+  "prediction": "That's such a proactive way to handle a mistake, and bringing your colleagues in for a review is super smart. By the way, how are things going with the game dev non-profit and getting that online board game demo ready?",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the user's action of revamping a workflow and inviting colleagues to review it, which is the core content of the provided evidence. It validates the user's proactive behavior described in the evidence.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2123,
+  "prompt_tokens": 211,
+  "prediction": "Oh, wow, that really hits home! It's never actually about the device itself, is it? It's usually about this deep-seated fear of being disconnected or caught unprepared.",
+  "label": "wrong",
+  "reason": "The model prediction addresses the user's current statement about phone battery anxiety in a general way, focusing on the fear of disconnection. It does not reference, allude to, or utilize the specific evidence provided regarding Deborah's fear of getting lost and her decision to never hike alone. There is no link between the prediction and the provided memory.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Jolene is an engineering student who is actively trying to balance her studies, her relationship, and her personal growth.",
+   "[state] Deborah experiences panic when her phone battery drops below 30%, a reaction she is currently exploring with her therapist.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2124,
+  "prompt_tokens": 165,
+  "prediction": "That sounds like a really wonderful step to take, especially when things have been so tough lately! It's so important to have good people around you. Let me know if you need any help getting things ready for it!",
+  "label": "correct",
+  "reason": "The prediction acknowledges the difficulty ('especially when things have been so tough lately') and supports the user's plan to host a get-together, which directly addresses the context established in the evidence where Evan mentioned avoiding social gatherings due to anxiety. The model's response is a logical continuation of that specific conversation thread.",
+  "notes_extracted": 21,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Evan values self-expression through art as a primary method for processing emotions and communicating without words.",
+   "[goal] Evan is planning to host a small get-together soon.",
+   "[state] Sam is currently struggling with health issues and weight that are preventing them from fully living, and they are actively trying to maintain a positive outlook despite the difficulty.",
+   "[goal] Evan is on a diet limiting himself to two ginger snaps a day.",
+   "[value] Evan finds peace and resilience by watching sunsets at a specific beach spot near his home."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2126,
+  "prompt_tokens": 225,
+  "prediction": "Oh, that hits so close to home, doesn't it? It's always so much easier to extend that kind of grace to everyone else while holding ourselves to an impossible standard. You're constantly pouring into others, but you deserve that exact same Sunday peace and gentleness too.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the specific detail from the evidence regarding 'Sundays' and the concept of self-imposed strictness versus kindness shown to others. By mentioning 'Sunday peace' and the tendency to hold oneself to an 'impossible standard' while being kind to others, the prediction directly connects to Caroline's history of studying every day, including Sundays, due to her fear of failure.",
+  "notes_extracted": 24,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Caroline is actively pursuing adoption and has recently attended a council meeting to further her determination to create a loving home for a child.",
+   "[value] Caroline is committed to using her personal transgender journey to advocate for LGBTQ+ inclusion and inspire others to become better allies.",
+   "[value] Caroline values self-compassion and recognizes a gap between the kindness she extends to others and the self-care she practices.",
+   "[value] Melanie values family presence and nature as essential sources of peace and recharging during difficult times.",
+   "[value] Caroline values authenticity and self-expression, viewing the act of staying true to herself and embracing her identity as an ongoing adventure."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2128,
+  "prompt_tokens": 191,
+  "prediction": "Oh, that sounds so draining! Sometimes being around that much bustling energy when you're already feeling a bit stuck can just completely take it out of you. Maybe you just need a quiet night in with some good comfort food and zero crowds?",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's statement about being exhausted in crowded restaurants but does not connect this to the specific evidence provided (John's hearing loss and lip-reading). The prediction attributes the exhaustion to 'bustling energy' and suggests a quiet night, which is a generic response to social fatigue, rather than acknowledging the specific cognitive load of lip-reading or hearing difficulties mentioned in the evidence.",
+  "notes_extracted": 32,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, which she actively practices through regular community volunteering.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] Maria values community service and believes that small acts of kindness and collective effort can create meaningful positive change."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2134,
+  "prompt_tokens": 215,
+  "prediction": "That is such amazing news about your lung numbers, Evan\u2014you must be so relieved! It sounds like your doctor was really gentle, but it also feels like a big green light to maybe finally venture just a little bit further out on the trails. How are you feeling about the idea of slowly easing back into some new spots?",
+  "label": "correct",
+  "reason": "The prediction explicitly references the context established in the evidence, specifically mentioning 'trails' and the idea of 'easing back' into new spots, which directly connects to Evan's previous statement about picking trails with easy exits after his asthma attack. It acknowledges the history of caution implied by the evidence.",
+  "notes_extracted": 21,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Evan values self-expression through art as a primary method for processing emotions and communicating without words.",
+   "[constraint] Evan restricts his hiking to trails with easy exits due to a past asthma attack, though his pulmonologist has encouraged him to stop letting that fear limit his activities.",
+   "[state] Sam is currently struggling with health issues and weight that are preventing them from fully living, and they are actively trying to maintain a positive outlook despite the difficulty.",
+   "[goal] Evan is on a diet limiting himself to two ginger snaps a day.",
+   "[value] Evan finds peace and resilience by watching sunsets at a specific beach spot near his home."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2136,
+  "prompt_tokens": 194,
+  "prediction": "Oh honestly, good for you for protecting your peace! Family stuff can be so draining, and you definitely don't need that kind of stress weighing you down. I hope you get to unwind with some nice nature time or dive into some art to totally reset after all that.",
+  "label": "wrong",
+  "reason": "The model prediction treats the user's statement as a generic complaint about a boring or stressful show, suggesting nature or art as a reset. It completely ignores the specific context provided in the evidence (Caroline's father's dementia and the emotional impact of father-child scenes). The prediction does not acknowledge the underlying emotional trigger or the specific reason why the user couldn't handle the drama, failing to link the current interaction to the stored memory.",
+  "notes_extracted": 24,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Caroline is actively pursuing adoption and has recently attended a council meeting to further her determination to create a loving home for a child.",
+   "[value] Caroline is committed to using her personal transgender journey to advocate for LGBTQ+ inclusion and inspire others to become better allies.",
+   "[constraint] Caroline cannot handle family drama and will disengage from it when it becomes too much.",
+   "[value] Melanie values nature and family time as essential ways to reset, recharge, and find peace.",
+   "[value] Melanie values art as a tool for emotional regulation and finds tranquility in the color blue."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2147,
+  "prompt_tokens": 167,
+  "prediction": "Totally, it\u2019s wild how quickly everything can shift when you're caught up in the whirlwind of work. I hope you're taking a second to breathe and soak in all your recent success instead of just stressing over the pressure.",
+  "label": "wrong",
+  "reason": "The evidence discusses the grief of losing a pet and the realization to cherish moments due to that loss. The model prediction, however, attributes the user's realization to 'work' and 'pressure,' completely ignoring the context of pet loss provided in the evidence.",
+  "notes_extracted": 19,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is actively working to build and grow his own business, specifically a dance studio.",
+   "[goal] Jon is working toward opening a dance studio that welcomes dancers of all ages and backgrounds.",
+   "[goal] Jon is actively working to secure investors and build an online platform to sustain his struggling dance studio.",
+   "[goal] Jon is opening his dance studio tomorrow.",
+   "[state] Gina is a fashion designer who recently gained attention from fashion editors and is currently navigating the pressure of her rising career."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2152,
+  "prompt_tokens": 190,
+  "prediction": "That's awesome progress, man! It sounds like all those extra steps are really starting to pay off and making a noticeable difference. Keep up the great work!",
+  "label": "correct",
+  "reason": "The prediction acknowledges the user's improvement in mobility ('walked across that huge parking lot', 'dreading every extra step'), which directly relates to the context established in the evidence where James discusses knee pain and avoiding hills. The model's response treats the user's statement as a continuation of that specific narrative about physical limitations and progress.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit.",
+   "[value] James considers his pets to be the source of his joy and is committed to always taking care of them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2158,
+  "prompt_tokens": 204,
+  "prediction": "That puppy is secretly turning you into an athlete without you even realizing it! Honestly, all that fresh air and running around is probably doing wonders for your energy levels, even if it feels a bit chaotic sometimes.",
+  "label": "wrong",
+  "reason": "The evidence describes John's pregnancy fatigue and Maria's comment on it. The user message describes a different person's experience with a puppy. The model prediction responds to the user message about the puppy but does not reference, acknowledge, or connect to the evidence regarding John's pregnancy fatigue or Maria's comment. There is no link between the prediction and the provided evidence.",
+  "notes_extracted": 33,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, as evidenced by her active volunteering and emphasis on these traits.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] Maria values community service and believes that small acts of kindness and collective effort can create meaningful positive change."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2160,
+  "prompt_tokens": 225,
+  "prediction": "That is a huge turnaround from how you've been feeling lately! It's amazing how much lighter the workday gets when you actually start connecting with people instead of just isolating yourself.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the user's previous state ('how you've been feeling lately') and contrasts it with the current positive event. This directly links to the evidence where Tim described being irritable and exhausted by office interactions, implying a change from that specific context.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Tim is experiencing a shift in his workplace demeanor, moving from isolation and impatience to genuine social engagement with his coworkers.",
+   "[value] John is deeply committed to basketball, practicing and training every day as a core passion he cannot imagine living without.",
+   "[state] Tim is currently navigating the complex visa requirements for several international destinations he plans to visit.",
+   "[value] John values ensuring that every child has access to good sports programs and fair opportunities in sports, particularly for underserved communities.",
+   "[value] John finds deep personal fulfillment and identity in basketball, viewing it as a powerful tool for managing stress and expressing himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2162,
+  "prompt_tokens": 200,
+  "prediction": "Oh man, I totally get that guilt! But honestly, you deserve a break, especially with how hard you've been working on your game demo lately. Just try to enjoy the trip and make some awesome memories\u2014you can always catch up on the budget stuff when you're back.",
+  "label": "wrong",
+  "reason": "The model prediction references a 'game demo' which is not present in the provided evidence. The evidence describes James's financial anxiety and cautious routine following a rent increase. While the user's message mentions not obsessing over cost (linking to the evidence), the model's specific justification ('working on your game demo') is a hallucination or relies on external context not provided in the evidence snippet. Therefore, it does not correctly reflect the specific evidence given.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2167,
+  "prompt_tokens": 196,
+  "prediction": "That is such a huge turnaround, and you should be super proud of yourself for stepping out of your comfort zone like that! Hosting a big dinner party is no joke, but I have no doubt your cooking is going to be a huge hit.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the user's past behavior described in the evidence ('dodge anything where people passed food around') by calling it a 'huge turnaround' and praising them for 'stepping out of your comfort zone.' This shows a direct link to the memory of the user's previous avoidance of shared food.",
+  "notes_extracted": 20,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is actively working to secure investors for his dance studio while managing its financial instability with a temporary job.",
+   "[state] Jon is actively overcoming a past aversion to communal dining by hosting and enjoying a large dinner party.",
+   "[goal] Jon is working toward opening a dance studio that welcomes dancers of all ages and backgrounds.",
+   "[goal] Jon is opening his dance studio tomorrow.",
+   "[value] Gina values self-expression and freedom, viewing her tattoo as a permanent reminder to follow her passions without worrying about others' opinions."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2169,
+  "prompt_tokens": 165,
+  "prediction": "Priorities, right? Honestly, that\u2019s just smart planning\u2014nobody wants to deal with a stomachache while trying to look cute on a first date. At least you know the food won't be the most dramatic thing happening tonight!",
+  "label": "correct",
+  "reason": "The prediction acknowledges the user's decision to choose a restaurant based on dietary restrictions ('smart planning', 'stomachache'), which directly links to the evidence provided where Joanna explains her severe lactose intolerance and the necessity of being strict with dairy to avoid illness.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[constraint] Joanna plans her romantic dates around dietary restrictions to avoid physical discomfort.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet.",
+   "[goal] Joanna is working on a movie script and has just finished writing the introduction."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2171,
+  "prompt_tokens": 189,
+  "prediction": "That sounds totally overwhelming, but I'm really proud of you for even considering it. Maybe you could start super small\u2014like just having one or two people over, and your pups can be there to help keep things cozy and grounded for you.",
+  "label": "correct",
+  "reason": "The model's prediction directly addresses the user's fear of hosting a dinner, which is a continuation of the context established in the evidence where Audrey mentioned skipping holiday traditions due to grief. The suggestion to start small and include 'pups' (implying a personal detail or previous context often found in such memory tasks) shows an implicit link to the user's specific situation and emotional state described in the evidence.",
+  "notes_extracted": 36,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Audrey is currently working on overcoming her fear of socializing by hosting small dinners with people she feels safe with, as suggested by her therapist.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Andrew recently adopted a new dog named Scout."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2172,
+  "prompt_tokens": 188,
+  "prediction": "Honestly, a mountain retreat sounds amazing just for the peace and quiet, so skipping the hikes totally makes sense. Sometimes it's just nice to get away and relax, especially if it gives you a bit of downtime with family.",
+  "label": "wrong",
+  "reason": "The model prediction fails to connect the user's specific constraint (no lookout excursions) to the evidence provided (James's fear of heights and refusal of balcony seats). Instead, it treats the user's statement as a general preference for peace and quiet, ignoring the underlying phobia context established in the evidence.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2175,
+  "prompt_tokens": 167,
+  "prediction": "Man, that freelance hustle can be so stressful when you're just looking for a little peace of mind. But remember, keeping your independence and staying true to your unique sound is what's going to make your music really stand out. Hang in there, and make sure you lean on your supportive crew to help you ride out this unpredictable patch!",
+  "label": "wrong",
+  "reason": "The model prediction hallucinates specific details about music ('unique sound', 'music really stand out') that are not present in the evidence or the user's current message. The evidence establishes that Calvin quit a job and felt relief, and the user mentions freelance work vs stability. The prediction fails to acknowledge the context of quitting a job or the specific comparison to stability, instead offering generic advice mixed with irrelevant assumptions about the user being a musician.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Dave finds a deep sense of purpose and achievement in repairing and transforming broken things.",
+   "[state] Calvin is currently taking on freelance projects but feels a lack of stability compared to his previous employment.",
+   "[value] Calvin considers having supportive people around him vital for his growth as an artist and staying true to himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2179,
+  "prompt_tokens": 164,
+  "prediction": "I totally get that\u2014sometimes the noise and crowds just feel like too much to handle all at once. Have you found any good spots to slip away to when you need a breather, or is it just one of those overwhelming nights?",
+  "label": "wrong",
+  "reason": "The model prediction treats the user's statement as a general issue with noise and crowds, offering generic advice about finding a breather. It fails to connect this behavior to the specific evidence provided, which establishes a causal link between the user's 'heart scare' in March and their current tendency to become withdrawn and vigilant (scanning for exits) when feeling physical discomfort or anxiety. The prediction misses the medical/trauma context implied by the evidence.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[state] Joanna experiences social anxiety that causes her to zone out and seek exits during loud gatherings.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet.",
+   "[goal] Joanna is working on a movie script and has just finished writing the introduction."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2180,
+  "prompt_tokens": 209,
+  "prediction": "That's awesome, honestly! It just goes to show that sometimes less really is more when it comes to taking care of your skin. Are you still stressing over all that visa paperwork for your upcoming trips, or is that finally coming together?",
+  "label": "wrong",
+  "reason": "The model prediction discusses skin care routines and visa paperwork, but it does not reference or connect to the specific evidence provided about Tim's sunburn, aloe application, or the advice to stay hydrated and cool. The prediction treats the user's message as a standalone topic without acknowledging the context established in the evidence.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Tim has adopted a minimalist skincare approach, preferring a light routine over using multiple new products.",
+   "[value] John is deeply committed to basketball, practicing and training every day as a core passion he cannot imagine living without.",
+   "[state] Tim is currently navigating the complex visa requirements for several international destinations he plans to visit.",
+   "[value] John values ensuring that every child has access to good sports programs and fair opportunities in sports, particularly for underserved communities.",
+   "[value] John finds deep personal fulfillment and identity in basketball, viewing it as a powerful tool for managing stress and expressing himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2191,
+  "prompt_tokens": 172,
+  "prediction": "I totally get that\u2014sometimes it's nice when things are just straightforward and aesthetic instead of dealing with all the messy inner workings. Though, honestly, I feel like you're way better at handling the behind-the-scenes chaos than you give yourself credit for!",
+  "label": "correct",
+  "reason": "The prediction explicitly references the user's transition from front-end (aesthetics/look) to back-end (inner workings/under the hood) development, which is the core context provided in the evidence.",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2200,
+  "prompt_tokens": 233,
+  "prediction": "That is such a weird feeling, but I totally get it since we spend so much of our lives viewing things through a screen nowadays. It almost makes the memories feel like a movie you watched instead of something you actually lived through!",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's comment about remembering things via phone screens by generalizing about modern life and screens. It does not reference or connect to the specific evidence provided (Tim's daily photo project for a visual diary or John's comment on the snapshot of life). The prediction treats the user's statement as a standalone observation rather than a continuation of the specific conversation context established in the evidence.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Tim experiences a sense of detachment from his own experiences, often recalling events primarily through the lens of how they appeared on his phone screen rather than through direct memory.",
+   "[value] John is deeply committed to basketball, practicing and training every day as a core passion he cannot imagine living without.",
+   "[state] Tim is currently navigating the complex visa requirements for several international destinations he plans to visit.",
+   "[value] John values ensuring that every child has access to good sports programs and fair opportunities in sports, particularly for underserved communities.",
+   "[value] John finds deep personal fulfillment and identity in basketball, viewing it as a powerful tool for managing stress and expressing himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2202,
+  "prompt_tokens": 176,
+  "prediction": "Oh man, late June is going to completely change your summer routine, but what an amazing reason for it! It's definitely going to keep things exciting around the house, especially with you juggling your game development work too.",
+  "label": "wrong",
+  "reason": "The model prediction does not relate to the provided evidence. The evidence discusses James buying a camper van for a road trip across 50 states. The user message discusses a baby due in late June. The model prediction responds to the user message but hallucinates a detail about 'game development work' which is not present in the evidence or the user message, and it completely ignores the context of the camper van/road trip mentioned in the evidence.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[state] James is expecting a baby in late June, which will define his summer schedule.",
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2215,
+  "prompt_tokens": 181,
+  "prediction": "Man, that really says something about how hard it is to hold anyone's attention these days with all the screens and noise around. It's honestly a wonder our focus survives train rides at all anymore!",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's current anecdote about the train ride and general digital noise, but it fails to connect this to the specific context provided in the Evidence (Calvin's goal of limiting screen time to foster a love for reading). The prediction treats the input as a standalone complaint about attention spans rather than a continuation of the conversation about parenting strategies and reading habits established in the evidence.",
+  "notes_extracted": 29,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Dave finds a deep sense of purpose and achievement in repairing and transforming broken things.",
+   "[value] Calvin considers having supportive people around him vital for his growth as an artist and staying true to himself.",
+   "[state] Dave is a member of a rock band and actively writes lyrics to fuel his creative motivation."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2218,
+  "prompt_tokens": 179,
+  "prediction": "Oh, don't be so hard on yourself! You pour so much heart into volunteering and helping others, so you definitely deserve to take a break and let someone else do the cooking.",
+  "label": "wrong",
+  "reason": "The evidence establishes that John is committed to reducing his carbon footprint. The model prediction, however, attributes the user's efforts to 'volunteering and helping others' and suggests ordering takeout is a valid break, which contradicts the specific environmental context provided in the evidence. It does not reference or utilize the memory of the carbon footprint commitment.",
+  "notes_extracted": 32,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, which she actively practices through regular community volunteering.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] Maria values community service and believes that small acts of kindness and collective effort can create meaningful positive change."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2221,
+  "prompt_tokens": 166,
+  "prediction": "Oh, that is such a huge compliment, especially coming from someone who hits up local cafes all the time! You'll have to share your secret technique with me sometime.",
+  "label": "wrong",
+  "reason": "The evidence states that Audrey is saving up for a high-end espresso machine to become a master barista. The user's message discusses their nephew complimenting their pour-overs. The model's prediction responds to the compliment and asks for the secret technique, but it does not acknowledge or link to the specific context of Audrey's goal to become a master barista or her investment in an espresso machine. It treats the interaction as a generic conversation about coffee skills without utilizing the provided memory.",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2222,
+  "prompt_tokens": 191,
+  "prediction": "That sounds like such a lovely way to spend a Sunday, and it's really sweet how you two stay so close. Honestly, those quiet, intentional walks are often the best kind of quality time you can have.",
+  "label": "wrong",
+  "reason": "The evidence describes James's specific goal of running a 5K with his daughter after knee surgery and John's encouragement regarding the exercises. The user message discusses a different activity (slow Sunday walks) and a shift in conversation topics. The model prediction responds to the user's current statement about walks but does not reference, acknowledge, or connect to the specific evidence provided (the 5K goal, knee surgery, or physiotherapy). It treats the user's message in isolation without linking it to the stored memory.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2244,
+  "prompt_tokens": 211,
+  "prediction": "That sounds like such an amazing trip, and Lisbon is the absolute best city for soaking in local creative culture! I hope you find some really inspiring ideas for your research\u2014and good luck sticking to your two-ginger-snap rule while surrounded by all those incredible Portuguese pastries!",
+  "label": "wrong",
+  "reason": "The prediction references a 'two-ginger-snap rule' and Portuguese pastries, which are not present in the provided evidence. The evidence discusses Evan learning furniture restoration to open a vintage shop and Sam's comment on authenticity. The prediction does not link to these specific details.",
+  "notes_extracted": 21,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Evan values self-expression through art as a primary method for processing emotions and communicating without words.",
+   "[goal] Evan is actively researching how small creative businesses survive in other cities, as evidenced by his upcoming trip to Lisbon to observe their weekend markets.",
+   "[state] Sam is currently struggling with health issues and weight that are preventing them from fully living, and they are actively trying to maintain a positive outlook despite the difficulty.",
+   "[goal] Evan is on a diet limiting himself to two ginger snaps a day.",
+   "[value] Evan finds peace and resilience by watching sunsets at a specific beach spot near his home."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2259,
+  "prompt_tokens": 162,
+  "prediction": "Oh, that really sounds like a nice change of pace, though! At least you don't have to deal with anyone stealing your oat milk creamer from the fridge anymore. How are things going with the movie script now that you've finally wrapped up the intro?",
+  "label": "wrong",
+  "reason": "The model prediction does not link to the provided evidence. The evidence establishes that Joanna is refusing weekend shifts to spend time with her kids, and Nate supports this. The user's message describes a specific instance of this (building a fort on Sunday). The model's response, however, introduces unrelated topics (oat milk creamer, movie script) and fails to acknowledge or reflect the context of prioritizing family time over work as established in the evidence.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[state] Joanna is a new parent who has recently transitioned away from a job that involved working in a break room.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet.",
+   "[goal] Joanna is working on a movie script and has just finished writing the introduction."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2260,
+  "prompt_tokens": 246,
+  "prediction": "Man, I'm so sorry you're dealing with that heavy double whammy. It's totally valid to feel frustrated when you're going through all these tough side effects and the treatment isn't even giving you the relief you need yet. Hang in there, and definitely lean on me if you need to vent about any of it.",
+  "label": "wrong",
+  "reason": "The evidence establishes that Tim is managing PCOS through meticulous meal tracking to avoid medication. The user message describes a situation where a doctor has increased a medication dose, implying the user is currently on medication. The model's prediction offers generic empathy for side effects and lack of response but fails to acknowledge or connect to the specific context provided in the evidence (the goal of avoiding medication via diet). It treats the user's situation as a standard medical complaint without integrating the specific constraint or background of the evidence.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Tim is currently managing a medical condition that requires ongoing medication adjustments and is experiencing both physical side effects and emotional frustration over the treatment's lack of efficacy.",
+   "[value] John is deeply committed to basketball, practicing and training every day as a core passion he cannot imagine living without.",
+   "[state] Tim is currently navigating the complex visa requirements for several international destinations he plans to visit.",
+   "[value] John values ensuring that every child has access to good sports programs and fair opportunities in sports, particularly for underserved communities.",
+   "[value] John finds deep personal fulfillment and identity in basketball, viewing it as a powerful tool for managing stress and expressing himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2265,
+  "prompt_tokens": 162,
+  "prediction": "That's a really heavy question, especially when you're feeling so isolated right now. But remember how much you value staying true to yourself\u2014your music and your story matter so much, and you don't have to navigate this alone.",
+  "label": "wrong",
+  "reason": "The model prediction references 'music' and 'your story', which are not present in the provided evidence. The evidence specifically states that Calvin is studying for a CPA exam to advance his accounting career. The model fails to link the user's question about studying to the specific context of the CPA exam or accounting career mentioned in the evidence.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Dave finds a deep sense of purpose and achievement in repairing and transforming broken things.",
+   "[state] Calvin is experiencing isolation and questioning the value of his studies due to losing touch with his friends.",
+   "[value] Calvin considers having supportive people around him vital for his growth as an artist and staying true to himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2268,
+  "prompt_tokens": 198,
+  "prediction": "Sounds like you really had to weigh your options carefully! It's so easy to get distracted by the flashy stuff, but a good commute and a reasonable price are definitely what matter most in the long run.",
+  "label": "correct",
+  "reason": "The model prediction directly references the specific details mentioned in the user's message (which serves as the immediate context/evidence in this turn), specifically mentioning 'flashy stuff', 'good commute', and 'reasonable price'. It acknowledges the user's realization about balancing these factors, showing a clear link to the provided text.",
+  "notes_extracted": 32,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, as evidenced by her active volunteering and emphasis on these traits.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] John values standing up for what he believes in and making a difference through activism, particularly regarding veterans' rights."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2271,
+  "prompt_tokens": 190,
+  "prediction": "That is such a sweet memory, especially since you value peace and quiet so much. Those rare moments when the world just stops for a second are the absolute best, aren't they?",
+  "label": "wrong",
+  "reason": "The model prediction does not relate to the provided evidence. The evidence discusses Audrey practicing piano for her sister's wedding, while the user message and model prediction discuss a different memory about family listening to the user. There is no connection between the piano practice/wedding promise in the evidence and the family listening memory in the prediction.",
+  "notes_extracted": 36,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2273,
+  "prompt_tokens": 211,
+  "prediction": "Oh, Deborah, that is such incredible news! I am so, so happy for you\u2014you must feel like a massive weight has finally been lifted off your shoulders.",
+  "label": "correct",
+  "reason": "The model prediction explicitly addresses the user as 'Deborah' and reacts to the news about the scan and fear of 'ending up like my dad' with empathy. This directly links to the evidence where Deborah mentioned her goal was to avoid heart issues that run in her family (implying her father had them). The prediction uses the specific context from the evidence (family history/fear) to formulate its response.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Deborah is undergoing medical monitoring for a condition that her father suffered from, and her recent scan results have significantly reduced her fear of a similar outcome.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals.",
+   "[goal] Jolene is working toward becoming a certified scuba diver."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2281,
+  "prompt_tokens": 189,
+  "prediction": "I totally get how surreal it feels to finally see it all come together on paper after making so many sacrifices. Wishing you all the luck tomorrow\u2014you've got this! Let me know how it goes when you're all done.",
+  "label": "correct",
+  "reason": "The model's prediction explicitly references the 'sacrifices' mentioned in the user's message, which directly links back to the evidence where Audrey stated she was limiting takeout to save for the surgery. The response acknowledges the connection between the past actions (sacrifices) and the current event (paperwork/appointment).",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them.",
+   "[value] Audrey finds deep joy and peace in spending time outdoors with her dogs, viewing nature as a source of inspiration and centering."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2287,
+  "prompt_tokens": 191,
+  "prediction": "Honestly, sending an anonymous note sounds like a pretty safe bet to keep the peace. Direct confrontation is just the worst, so I totally get why you'd rather avoid knocking on their door!",
+  "label": "wrong",
+  "reason": "The evidence establishes that the user (Jon) believes in confronting injustice head-on and has a history of standing up to bullies. The model prediction, however, validates the user's current hesitation to confront the neighbor directly, stating that 'Direct confrontation is just the worst.' This contradicts the persona established in the evidence, which values direct confrontation. The model fails to link the current situation to the user's known values or past behavior.",
+  "notes_extracted": 20,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is actively working to secure investors for his dance studio while managing its financial instability with a temporary job.",
+   "[constraint] Jon prefers to handle interpersonal conflicts indirectly by using anonymous communication rather than direct confrontation.",
+   "[goal] Jon is working toward opening a dance studio that welcomes dancers of all ages and backgrounds.",
+   "[goal] Jon is opening his dance studio tomorrow.",
+   "[value] Gina values self-expression and freedom, viewing her tattoo as a permanent reminder to follow her passions without worrying about others' opinions."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2288,
+  "prompt_tokens": 189,
+  "prediction": "Oof, that's always such a tough position to be in, even when honesty is the best approach. It sounds like you handled a really uncomfortable moment with a lot of integrity, though. How are you holding up after having to deliver that news?",
+  "label": "wrong",
+  "reason": "The evidence describes John's habit of offering sincere compliments and positive reinforcement. The model prediction focuses on the difficulty of delivering bad news (honesty about a lack of promotion) and praises the user's integrity in doing so. It does not reference, reflect, or utilize the specific memory about John's preference for positive reinforcement or compliments.",
+  "notes_extracted": 32,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, as evidenced by her active volunteering and emphasis on these traits.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] Maria believes in positive reinforcement and recognizes effort by offering sincere compliments."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2294,
+  "prompt_tokens": 184,
+  "prediction": "I totally get why that feels like too much exposure, especially when you value your peace and your quiet processing time so much. Maybe you could take yourself down to your favorite beach spot tonight to watch the sunset and just decompress from even thinking about it. You definitely don't have to force yourself into the spotlight if it doesn't feel right for you.",
+  "label": "wrong",
+  "reason": "The evidence describes Evan's preference for fearless self-expression (dyeing hair pink) and Sam's reaction. The model prediction, however, assumes the user values 'peace,' 'quiet processing time,' and suggests avoiding the spotlight. This contradicts the evidence of fearless expression and does not reference the specific memory of the pink hair or the associated trait of boldness. Instead, it hallucinates a preference for quietness that is not supported by the provided evidence.",
+  "notes_extracted": 21,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Evan values self-expression through art as a primary method for processing emotions and communicating without words.",
+   "[constraint] Evan is hesitant to apply for a leadership role because he feels it would be too much exposure.",
+   "[state] Sam is currently struggling with health issues and weight that are preventing them from fully living, and they are actively trying to maintain a positive outlook despite the difficulty.",
+   "[goal] Evan is on a diet limiting himself to two ginger snaps a day.",
+   "[value] Evan finds peace and resilience by watching sunsets at a specific beach spot near his home."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2295,
+  "prompt_tokens": 168,
+  "prediction": "I totally get why you feel that way, man\u2014it's hard to make sense of everything going on when it all just looks like a giant mess. Sometimes I think the only way to process it is to dive into some deep philosophical reading just to figure out how the world actually works. Hang in there, though, and make sure you've got some good people around you to keep you grounded through all the noise.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references 'dive into some deep philosophical reading' as a way to process the chaos, which directly aligns with the evidence that Calvin spends his free time learning about philosophical concepts to understand the world.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Dave finds a deep sense of purpose and achievement in repairing and transforming broken things.",
+   "[value] Calvin values intellectual exploration and understanding the world through studying philosophical concepts.",
+   "[value] Calvin considers having supportive people around him vital for his growth as an artist and staying true to himself."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2297,
+  "prompt_tokens": 201,
+  "prediction": "Ugh, seriously! It drives me crazy when people just leave their mess for someone else to deal with. At this point, a little financial motivation might be the only way to get through to them.",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's message about fining people for littering with a general agreement and frustration. It does not reference, acknowledge, or incorporate the specific evidence provided (Jon's habit of picking up litter and Gina's comment). The prediction stands alone as a reaction to the user's input without linking back to the prior context or memory.",
+  "notes_extracted": 19,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is working to open his own dance studio.",
+   "[goal] Jon is actively working to launch and market his dance studio, including developing business plans and creating social media content.",
+   "[goal] Jon is actively working to secure investors and build an online platform to sustain his struggling dance studio.",
+   "[state] Gina is a fashion designer who recently gained attention from fashion editors and is currently navigating the pressure of her rising career.",
+   "[value] Gina values self-expression and freedom, viewing her tattoo as a permanent reminder to follow her passions without worrying about others' opinions."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2302,
+  "prompt_tokens": 154,
+  "prediction": "Man, I totally get that, especially with how busy you've been working on that online board game demo. Family and loved ones should always come first, so I hope you can carve out some quality time with them soon. Hang in there, buddy!",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the evidence by stating 'Family and loved ones should always come first,' which directly aligns with the provided evidence where James values time with loved ones and John cherishes family moments.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[value] James values time spent with his loved ones above all else.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2307,
+  "prompt_tokens": 191,
+  "prediction": "That is some seriously great advice to pass along. Between building my dance studio and Gina handling all this new pressure in her fashion career, staying true to your values is really the only way to keep your peace of mind.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references 'Gina' and her 'fashion career,' which links to the evidence where Gina is a known entity in the conversation history. Furthermore, the prediction's theme of 'staying true to your values' and keeping 'peace of mind' aligns with the evidence where Jon refused a deceptive project for integrity and Gina praised those principles. The model uses the context of Gina's presence and the shared value of integrity established in the evidence to frame its response.",
+  "notes_extracted": 20,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is working to open his own dance studio.",
+   "[goal] Jon is actively working to launch and market his dance studio, including developing business plans and creating social media content.",
+   "[goal] Jon is actively working to secure investors and build an online platform to sustain his struggling dance studio.",
+   "[state] Gina is a fashion designer who recently gained attention from fashion editors and is currently navigating the pressure of her rising career.",
+   "[value] Gina values self-expression and freedom, viewing her tattoo as a permanent reminder to follow her passions without worrying about others' opinions."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2309,
+  "prompt_tokens": 154,
+  "prediction": "Honestly, it's pretty easy to feel numb with everything that's constantly flooding the news feeds lately. Sometimes you just have to step back and detach a bit just to keep your sanity intact. That's actually why I've been losing myself in movies and games more often\u2014just need that little mental break from reality, you know?",
+  "label": "wrong",
+  "reason": "The evidence establishes that Joanna holds deep respect for people who stand up for justice and Nate agrees that it takes courage. The user's message expresses indifference to protests. The model's prediction validates the user's indifference by suggesting it is normal to feel numb and recommends detaching through movies and games. It does not reference, acknowledge, or utilize the specific values (respect for justice/courage) established in the evidence. Instead, it treats the user's statement in isolation without connecting it to the prior context of valuing justice.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet.",
+   "[goal] Joanna is working on a movie script and has just finished writing the introduction.",
+   "[value] Nate views gaming and movies as a necessary escape from life struggles and prefers to keep these activities relaxed rather than competitive."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2311,
+  "prompt_tokens": 167,
+  "prediction": "Ugh, that sounds so draining to be around all day! Honestly, when work vibes get that heavy, I just want to escape into the woods with my dogs for some actual peace and quiet. Have you found any little ways to keep your spirits up while you're in the middle of it?",
+  "label": "wrong",
+  "reason": "The model prediction focuses on the speaker's personal preference for escaping into the woods with dogs and asks a general question about keeping spirits up. It does not reference, acknowledge, or apply the evidence provided, which concerns Audrey's habit of acknowledging team members' contributions to foster a group effort environment.",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2313,
+  "prompt_tokens": 201,
+  "prediction": "Oh no, I'm so sorry to hear that the corner shop closed! Please don't doubt yourself, though\u2014all those free educational events you organize have meant the world to this neighborhood and genuinely changed people's lives.",
+  "label": "wrong",
+  "reason": "The model prediction hallucinates specific details (organizing free educational events) that are not present in the evidence. The evidence establishes that Deborah buys books from the local shop to support its survival, but the model attributes a different action (organizing events) to the user, failing to link the response to the actual provided memory of buying books.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Jolene is an engineering student who is actively trying to balance her studies, her relationship, and her personal growth.",
+   "[state] Deborah is experiencing self-doubt about the impact of her work following the closure of a local business.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2314,
+  "prompt_tokens": 171,
+  "prediction": "Oh no, I'm really sorry to hear that! Sometimes crowded places just feel way too overwhelming, especially when you're already dealing with a lot. \n\nMaybe you can unwind tonight by doing something a bit more relaxing, like painting or just getting some fresh air?",
+  "label": "wrong",
+  "reason": "The evidence establishes a shared belief between Evan and Sam that 'laughter is the best medicine' and that a good laugh makes a difference. The model prediction, however, suggests that the user might feel overwhelmed by crowded places and recommends relaxing activities like painting or getting fresh air. It completely ignores the context of the comedy show and the established preference for laughter as a remedy, failing to link the user's experience at the show to the evidence provided.",
+  "notes_extracted": 20,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Evan values self-expression through art as a primary method for processing emotions and communicating without words.",
+   "[state] Sam is currently struggling with health issues and weight that are preventing them from fully living, and they are actively trying to maintain a positive outlook despite the difficulty.",
+   "[goal] Evan is on a diet limiting himself to two ginger snaps a day.",
+   "[value] Evan finds peace and resilience by watching sunsets at a specific beach spot near his home.",
+   "[value] Evan finds that painting is a key activity that helps him relax."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2318,
+  "prompt_tokens": 195,
+  "prediction": "That sounds so fulfilling, Maria! It's amazing how getting involved in the community like that can totally shift your perspective and bring so much joy.",
+  "label": "wrong",
+  "reason": "The model prediction addresses the user's statement about local initiatives and community involvement, but it completely ignores the provided evidence regarding John turning down an overseas job to stay with aging parents. There is no link between the prediction and the specific memory/constraint in the evidence.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, as evidenced by her active volunteering and emphasis on these traits.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] Maria values community service and believes that small acts of kindness and collective effort can create meaningful positive change."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2329,
+  "prompt_tokens": 152,
+  "prediction": "Oh, Joanna, that is so sweet and honestly the best validation a parent could ever ask for! It must feel amazing to know all those little moments really made an impact, especially with how crazy things are for you right now. You definitely deserve a toast\u2014though let's make sure it's with some oat milk latte instead of dairy!",
+  "label": "correct",
+  "reason": "The model prediction explicitly addresses the user as 'Joanna' and validates her feelings by referencing the 'little moments' and the impact they had, which directly connects to the evidence where Joanna stated her priority was being present for her children's formative years. The response acknowledges the specific context of her parenting choices mentioned in the evidence.",
+  "notes_extracted": 28,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Joanna is lactose intolerant.",
+   "[goal] Joanna is actively working on and submitting screenplays to film contests.",
+   "[state] Joanna is a parent whose oldest child recently expressed appreciation for the time they spent together during their childhood.",
+   "[goal] Joanna is currently filming her own movie based on her road-trip script.",
+   "[goal] Joanna is actively developing a suspenseful thriller set in a small Midwestern town as a creative outlet."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2332,
+  "prompt_tokens": 183,
+  "prediction": "That's always a tough balancing act, especially since family means so much to you and those weekend mentoring sessions are such a big part of your career goals. Did you guys end up finding a compromise that gives you enough family time while still letting you help out?",
+  "label": "wrong",
+  "reason": "The evidence states that James joined a neighborhood watch due to break-ins and values community safety. The model prediction, however, refers to 'weekend mentoring sessions' and 'career goals,' which are not mentioned in the evidence. The prediction hallucinates specific details (mentoring, career) that contradict or are unrelated to the provided context of neighborhood watch and community safety.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing and releasing video games, with plans to create more in different genres.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2340,
+  "prompt_tokens": 202,
+  "prediction": "That doesn't surprise me at all, honestly! Animal shelters give you that instant sense of purpose that a corporate desk job just can't match. By the way, have you made any progress with those crazy visa requirements for your upcoming trips yet?",
+  "label": "wrong",
+  "reason": "The Evidence discusses Tim's positive outlook after a layoff and John's reaction to it. The Model Prediction responds to a user message about volunteering at an animal shelter and asks about visa requirements. There is no connection between the prediction and the provided evidence regarding Tim's layoff or mindset.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Tim finds volunteering at an animal shelter more fulfilling than his corporate work.",
+   "[value] John is deeply committed to basketball, practicing and training every day as a core passion he cannot imagine living without.",
+   "[state] Tim is currently navigating the complex visa requirements for several international destinations he plans to visit.",
+   "[value] John values ensuring that every child has access to good sports programs and fair opportunities in sports, particularly for underserved communities.",
+   "[value] John finds deep personal fulfillment and identity in basketball, viewing it as a powerful tool for managing stress and expressing himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2343,
+  "prompt_tokens": 192,
+  "prediction": "It's definitely tough to hold back when you see things differently, but showing that kind of respect for someone's experience takes a lot of maturity. Sometimes it pays off to let them lead, even if it tests your patience in the moment!",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's statement about respecting a senior colleague's experience in a meeting. It does not reference, acknowledge, or link to the specific evidence provided regarding Deborah offering her seat to older people on the bus. The prediction treats the user's input as a standalone statement without connecting it to the provided memory.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Deborah believes in showing respect to seniors and deferring to the perspectives of those with more experience.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals.",
+   "[goal] Jolene is working toward becoming a certified scuba diver."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2345,
+  "prompt_tokens": 175,
+  "prediction": "That's a really tough balance to strike, especially when you care so much about your work and hobbies. Have you been feeling like you're having to compromise on things that really matter to you lately?",
+  "label": "wrong",
+  "reason": "The model prediction discusses 'work and hobbies' and general compromises, which are not mentioned in the evidence. The evidence specifically concerns Calvin's decision to wear comfortable clothes to a formal event to stay true to himself, and Dave's reaction. The prediction fails to reference the specific context of the formal event, clothing, or the specific value of authenticity mentioned in the evidence.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Dave finds a deep sense of purpose and achievement in repairing and transforming broken things.",
+   "[value] Dave is concerned that constantly prioritizing his own preferences is causing unnecessary friction in his relationships.",
+   "[value] Calvin considers having supportive people around him vital for his growth as an artist and staying true to himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2346,
+  "prompt_tokens": 211,
+  "prediction": "Oh, that's really mature of you to own up to that and clear the air. Even if her name wasn't attached, it totally makes sense why she might have felt a bit exposed. How did she react when you apologized?",
+  "label": "wrong",
+  "reason": "The evidence establishes a specific persona constraint for Caroline: she never shares screenshots of private chats because consent is paramount. The user message describes a scenario where someone (likely the user or a third party) told a story without asking, which is a violation of that consent principle. However, the model's prediction treats this as a generic social situation and offers generic advice/reaction ('mature of you', 'clear the air'). It does not reference Caroline's specific stance on consent, her refusal to share screenshots, or the specific dynamic established in the evidence. It fails to link the user's action (telling a story without asking) to the specific memory of Caroline's values regarding privacy and consent.",
+  "notes_extracted": 24,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Caroline values authenticity and self-expression, viewing the act of staying true to herself and embracing her identity as an ongoing adventure.",
+   "[goal] Caroline is actively pursuing adoption and has recently attended a council meeting to further her determination to create a loving home for a child.",
+   "[value] Caroline is committed to using her personal transgender journey to advocate for LGBTQ+ inclusion and inspire others to become better allies.",
+   "[value] Melanie values family presence and nature as essential sources of peace and recharging during difficult times.",
+   "[value] Melanie values art as a tool for emotional regulation and finds tranquility in the color blue."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2352,
+  "prompt_tokens": 173,
+  "prediction": "Oh man, I totally get why you'd feel that way after such a tough grind. But remember how hard you worked to get things moving with your game development mentoring and that demo coming up? You've got way too much cool stuff in the works to give up now\u2014take a breather and let's chat about it!",
+  "label": "wrong",
+  "reason": "The evidence establishes a shared belief between James and John that 'resilience is key to overcoming challenges' and helps one 'bounce back stronger.' The model prediction offers generic encouragement and references specific, unrelated details (game development mentoring, a demo) that are not present in the provided evidence. It fails to explicitly or implicitly reference the concept of resilience or the specific dynamic described in the evidence.",
+  "notes_extracted": 27,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] James believes that having more than three dogs is too much.",
+   "[goal] John is collaborating with a game developer to create an online board game and is preparing to release a demo soon.",
+   "[value] John values family connection and actively invests time in teaching his parents new skills to strengthen their bond.",
+   "[goal] James is actively developing more games in different genres to test out new ideas.",
+   "[goal] John is pursuing a career that combines gaming and helping people by starting as a programming mentor at a game development non-profit."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2355,
+  "prompt_tokens": 191,
+  "prediction": "That is seriously impressive, picking up a whole language just from casual practice! It feels amazing when things finally start clicking like that after a bit of time, doesn't it?",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's statement about learning a language but does not reference or connect to the provided evidence regarding Calvin's discipline, alarm, or chart. The response is generic and does not utilize the specific memory context.",
+  "notes_extracted": 29,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Calvin considers having supportive people around him vital for his growth as an artist and staying true to himself.",
+   "[state] Dave is a member of a rock band and actively writes lyrics to fuel his creative motivation.",
+   "[value] Dave finds deep fulfillment in his work of repairing things, viewing the process of taking something broken and making it whole as a core part of his identity."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2360,
+  "prompt_tokens": 194,
+  "prediction": "Oh man, I totally get that. Constantly trying to connect and meet people halfway takes so much out of you, especially when it feels like a one-way street. Make sure you take a breather and do something just for yourself today to recharge!",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's statement about being drained from bridging gaps, but it does not explicitly or implicitly reference the specific evidence provided (Tim's habit of engaging in political discussions to understand other perspectives). The response is a generic empathetic reply that could apply to any situation involving social exhaustion, without linking back to the specific context of Tim's political engagement or John's validation of that approach.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Tim is currently feeling drained from the effort of bridging gaps with others.",
+   "[value] John is deeply committed to basketball, practicing and training every day as a core passion he cannot imagine living without.",
+   "[state] Tim is currently navigating the complex visa requirements for several international destinations he plans to visit.",
+   "[value] John values ensuring that every child has access to good sports programs and fair opportunities in sports, particularly for underserved communities.",
+   "[value] John finds deep personal fulfillment and identity in basketball, viewing it as a powerful tool for managing stress and expressing himself."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2363,
+  "prompt_tokens": 191,
+  "prediction": "I totally get why that stung, especially when you put so much heart into your community events. It\u2019s hard not to take it personally when someone critiques your work, but try to remember it\u2019s just about the project, not you.",
+  "label": "wrong",
+  "reason": "The model prediction references 'community events,' which is not present in the provided evidence. The evidence discusses Deborah's attitude toward constructive criticism and Jolene's response, but contains no information about community events. Therefore, the prediction does not link to the specific evidence provided.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[constraint] Deborah struggles to accept constructive criticism, often perceiving it as a personal attack rather than an opportunity for growth.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals.",
+   "[goal] Jolene is working toward becoming a certified scuba diver."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2365,
+  "prompt_tokens": 198,
+  "prediction": "That is such a tough call, but honestly, I completely admire you for sticking to your guns. Money comes and goes, but those precious moments with your daughter are something you can't ever get back.",
+  "label": "wrong",
+  "reason": "The evidence establishes that the user (Calvin) visits his grandmother on Sundays. The model prediction incorrectly identifies the person being visited as a 'daughter'. While the prediction captures the general theme of prioritizing family time over money, it fails to link to the specific memory/constraint regarding the grandmother, instead hallucinating a different family member.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Calvin is driven by the desire to make a difference and share his personal story through music.",
+   "[value] Calvin values staying true to himself and being unique in his music.",
+   "[value] Dave finds a deep sense of purpose and achievement in repairing and transforming broken things.",
+   "[value] Calvin prioritizes spending time with his daughter over financial gain, even when he is in need of income.",
+   "[value] Calvin believes that elders deserve time and attention rather than just financial support, which drives his consistent weekly visits to his grandmother."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2366,
+  "prompt_tokens": 215,
+  "prediction": "Oh no, Caroline, that sounds so exhausting! You always end up putting everyone else first, but remember you deserve to enjoy your own trip just as much. Next time, let's make sure you carve out some time for the things *you* actually want to do!",
+  "label": "correct",
+  "reason": "The model prediction explicitly addresses Caroline and references her tendency to 'put everyone else first,' which directly links to the evidence where Caroline states she 'always try[s] to see things from another person's perspective' and believes empathy is crucial. The prediction uses this known trait to provide context for the user's current situation.",
+  "notes_extracted": 24,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Caroline is actively pursuing adoption and has recently attended a council meeting to further her determination to create a loving home for a child.",
+   "[value] Caroline is committed to using her personal transgender journey to advocate for LGBTQ+ inclusion and inspire others to become better allies.",
+   "[constraint] Caroline tends to prioritize others' needs over her own desires, often to her own detriment.",
+   "[value] Melanie values family presence and nature as essential sources of peace and recharging during difficult times.",
+   "[value] Caroline values authenticity and self-expression, viewing the act of staying true to herself and embracing her identity as an ongoing adventure."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2368,
+  "prompt_tokens": 182,
+  "prediction": "That's so true\u2014sometimes you have to shake things up before people really start listening. Still, it's all about making sure that disruption leads to something positive and helps the community grow. How are you holding up with all that lately?",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's statement about creating a stir to settle things, but it does not reference or connect to the specific evidence provided (John walking away from an argument to resolve conflict peacefully). The prediction treats the user's input as a standalone opinion rather than a continuation of the specific context established in the evidence.",
+  "notes_extracted": 33,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Maria recently adopted a new puppy that is currently in the process of learning commands and house training.",
+   "[state] Maria is currently volunteering at a homeless shelter.",
+   "[value] Maria values kindness and compassion, as evidenced by her active volunteering and emphasis on these traits.",
+   "[goal] John is currently struggling with a sense of stagnation and is actively seeking a way to better focus his passion to make a positive impact on the world.",
+   "[value] Maria values community service and believes that small acts of kindness and collective effort can create meaningful positive change."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2370,
+  "prompt_tokens": 218,
+  "prediction": "You're definitely not overreacting at all for freezing up. It's totally valid to draw a hard line at real people's trauma being treated as entertainment, no matter how normalized it is at the office. Trust your gut on this one\u2014it just means you have deep empathy.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the core sentiment of the evidence, specifically the idea that 'real people's trauma' should not be treated as 'entertainment.' This mirrors Tim's statement in the evidence ('their trauma isn\u2019t my entertainment') and John's validation of that respect, showing a clear link to the provided memory.",
+  "notes_extracted": 30,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Tim refuses to consume true crime content about real victims because he believes their trauma is not his entertainment.",
+   "[value] John is deeply committed to basketball, practicing and training every day as a core passion he cannot imagine living without.",
+   "[state] Tim is currently navigating the complex visa requirements for several international destinations he plans to visit.",
+   "[value] John values ensuring that every child has access to good sports programs and fair opportunities in sports, particularly for underserved communities.",
+   "[value] John finds deep personal fulfillment and identity in basketball, viewing it as a powerful tool for managing stress and expressing himself."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2371,
+  "prompt_tokens": 175,
+  "prediction": "It's definitely easy to second-guess yourself when you see people taking the fast track like that. But honestly, watching how happy you are out on the trails with your dogs makes it pretty clear you've found a much better kind of success.",
+  "label": "correct",
+  "reason": "The user's message expresses doubt about their past decision to decline a 'quick-money scheme' (referenced in the evidence as 'fast track'). The model's prediction directly addresses this by validating the user's choice, contrasting the 'fast track' with the user's current state of happiness and 'better kind of success,' which aligns with the evidence's theme of 'building sustainable success over time'.",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[state] Andrew recently adopted a new dog named Scout.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs.",
+   "[state] Audrey is the owner of four dogs and actively participates in a weekly dog owners group to learn how to better care for them."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2374,
+  "prompt_tokens": 195,
+  "prediction": "Good for you for standing your ground on that, Evan. Sometimes you just have to rock the boat when a call like that is completely unfair, even if it creates some waves. How are you holding up after the fallout?",
+  "label": "wrong",
+  "reason": "The evidence states that Evan values harmony and mediates conflicts peacefully. The user message describes a behavior (challenging a decision, stirring things up) that contradicts this established trait. The model prediction validates this contradictory behavior ('Good for you for standing your ground', 'rock the boat') without acknowledging or referencing the evidence that Evan typically prefers peace and mediation. Therefore, the prediction does not reflect or use the evidence; it ignores the constraint provided by the memory.",
+  "notes_extracted": 22,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Evan values self-expression through art as a primary method for processing emotions and communicating without words.",
+   "[value] Evan prioritizes standing up against decisions he perceives as fundamentally unjust, even if it means causing conflict.",
+   "[state] Sam is currently struggling with health issues and weight that are preventing them from fully living, and they are actively trying to maintain a positive outlook despite the difficulty.",
+   "[goal] Evan is on a diet limiting himself to two ginger snaps a day.",
+   "[value] Evan finds peace and resilience by watching sunsets at a specific beach spot near his home."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2377,
+  "prompt_tokens": 218,
+  "prediction": "That sounds like such a huge relief, and honestly, it\u2019s proof that your approach to relationships really works. It\u2019s amazing how much mental space opens up when you just let go of the need to constantly check in and trust the process instead. I'm so glad you got to experience that kind of peace on your trip!",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the user's approach to relationships and the concept of 'trust' and 'letting go of the need to constantly check in.' This directly aligns with the evidence where Jon stated he refused tracking software to prioritize 'trust, not surveillance' and Gina noted this reflects a belief in 'respecting their autonomy.' The prediction validates the user's choice based on the specific values established in the evidence.",
+  "notes_extracted": 21,
+  "notes_carried": 5,
+  "carried": [
+   "[goal] Jon is actively working to open a dance studio that he envisions as a supportive environment for dancers, offering one-on-one mentoring to help them reach their full potential.",
+   "[goal] Jon is actively building a dance-related business and is currently focused on promoting it through social media.",
+   "[goal] Jon is actively working to establish his own dance studio as a space for people to express themselves.",
+   "[value] Jon values choosing openness and trust over constant checking in his relationships.",
+   "[goal] Jon is actively working to secure investors and build an online platform to sustain his struggling dance studio."
+  ],
+  "evidence_found": false
+ },
+ {
+  "condition": "system",
+  "sample_index": 2381,
+  "prompt_tokens": 168,
+  "prediction": "I totally get why you're hesitant, but you always say how important it is to own up to mistakes right away. It might be messy at first, but clearing the air is usually such a relief once you rip the band-aid off.",
+  "label": "correct",
+  "reason": "The model prediction explicitly references the user's past behavior and values mentioned in the evidence ('you always say how important it is to own up to mistakes right away'), directly linking the current advice to the provided memory.",
+  "notes_extracted": 35,
+  "notes_carried": 5,
+  "carried": [
+   "[value] Audrey considers her dogs essential to her life and a primary source of joy.",
+   "[value] Audrey values mutual support and considers her friendship with Andrew to be very important to her.",
+   "[value] Audrey believes that owning up to mistakes immediately is vital.",
+   "[value] Audrey deeply values her pets and nature, to the point of getting tattoos to permanently honor that bond.",
+   "[value] Audrey values peace and tranquility in nature, specifically seeking quiet spots to spend time with her dogs."
+  ],
+  "evidence_found": true
+ },
+ {
+  "condition": "system",
+  "sample_index": 2383,
+  "prompt_tokens": 210,
+  "prediction": "Oof, that is such a heavy question to sit with, but also completely spot-on. It\u2019s so much easier to protect everyone else's peace while accidentally throwing our own under the bus. How did it feel bringing that up in your session?",
+  "label": "wrong",
+  "reason": "The model prediction responds to the user's statement about their therapist and their own boundaries, but it does not reference, acknowledge, or utilize the provided evidence regarding Deborah's policy on client consent or Jolene's comment about trust. The prediction is a generic empathetic response that could apply to any user discussing similar feelings, without linking to the specific context of the evidence.",
+  "notes_extracted": 31,
+  "notes_carried": 5,
+  "carried": [
+   "[state] Jolene is an engineering student who is actively trying to balance her studies, her relationship, and her personal growth.",
+   "[state] Deborah is currently working with a therapist on a pattern of prioritizing others' boundaries while neglecting her own.",
+   "[value] Jolene values yoga and nature as essential practices for maintaining inner peace and self-connection.",
+   "[value] Deborah values community engagement and finds personal fulfillment in organizing free educational events for her neighborhood.",
+   "[value] Jolene is actively working to cultivate mindfulness and gratitude to counteract her tendency to become overly consumed with hitting goals."
+  ],
+  "evidence_found": false
+ }
+]

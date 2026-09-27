@@ -1,0 +1,15 @@
+# Everything here is free. No paid API, no GPU required.
+
+numpy>=1.24
+sentence-transformers>=2.7      # all-MiniLM-L6-v2, ~80MB, runs on CPU
+openai>=1.40                    # used as a generic OpenAI-compatible client
+                                # (talks to Groq and Gemini, not to OpenAI)
+pytest>=7.4
+tqdm>=4.66
+
+# Deliberately NOT here:
+#   torch/peft/transformers for fine-tuning  -> Tier 5 (O-LoRA/FAPM) is out of
+#     scope; it needs multi-day GPU time we do not have.
+#   any vector database                      -> at a few hundred memories per
+#     conversation, an exact numpy scan is faster than an index and has nothing
+#     to explain away in the paper.

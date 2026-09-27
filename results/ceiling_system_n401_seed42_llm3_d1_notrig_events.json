@@ -1,0 +1,16 @@
+{
+ "run": "system_n401_seed42_llm3_d1_notrig_events.json",
+ "threshold": 0.5,
+ "items": 401,
+ "written": 341,
+ "chosen": 263,
+ "chosen_given_written": 0.7712609970674487,
+ "never_written": 60,
+ "n_written_and_chosen": 263,
+ "n_written_not_chosen": 78,
+ "score_written_and_chosen": 0.7984790874524715,
+ "score_written_not_chosen": 0.1282051282051282,
+ "score_never_written": 0.18333333333333332,
+ "budget_extraction_points": 14.962593516209477,
+ "budget_reranker_points": 19.45137157107232
+}
