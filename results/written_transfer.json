@@ -1,0 +1,51 @@
+{
+ "file_a": "extract_only_v1.json",
+ "file_b": "extract_only_events.json",
+ "prompt_a": [
+  "v1"
+ ],
+ "prompt_b": [
+  "events"
+ ],
+ "model_a": [
+  "qwen/qwen3.8-27b"
+ ],
+ "model_b": [
+  "qwen/qwen3.8-27b"
+ ],
+ "n": 1536,
+ "written_a": 786,
+ "written_b": 774,
+ "only_a": 150,
+ "only_b": 138,
+ "both": 636,
+ "p": 0.5169386991333723,
+ "threshold": 0.5,
+ "per_category": {
+  "common-sense": {
+   "n": 92,
+   "written_a": 43,
+   "written_b": 36
+  },
+  "multi-hop": {
+   "n": 282,
+   "written_a": 172,
+   "written_b": 160
+  },
+  "single-hop": {
+   "n": 841,
+   "written_a": 405,
+   "written_b": 409
+  },
+  "temporal": {
+   "n": 321,
+   "written_a": 166,
+   "written_b": 169
+  }
+ },
+ "sign_p": 1.0,
+ "conversations": 10,
+ "conv_won_a": 4,
+ "conv_won_b": 5,
+ "conv_ties": 1
+}

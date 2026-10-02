@@ -1,0 +1,36 @@
+{
+ "file_a": "system_n100_seed42_llm3_d1_notrig.json",
+ "file_b": "system_n100_seed42_llm3_d1_notrig_events.json",
+ "prompt_a": [
+  "?"
+ ],
+ "prompt_b": [
+  "events"
+ ],
+ "model_a": [
+  "?"
+ ],
+ "model_b": [
+  "?"
+ ],
+ "n": 100,
+ "written_a": 49,
+ "written_b": 86,
+ "only_a": 5,
+ "only_b": 42,
+ "both": 44,
+ "p": 2.4579776436439715e-08,
+ "threshold": 0.5,
+ "per_category": {
+  "Cognitive": {
+   "n": 100,
+   "written_a": 49,
+   "written_b": 86
+  }
+ },
+ "sign_p": 0.001953125,
+ "conversations": 10,
+ "conv_won_a": 0,
+ "conv_won_b": 10,
+ "conv_ties": 0
+}

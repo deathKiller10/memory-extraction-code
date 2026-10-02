@@ -63,6 +63,23 @@ python scripts/paper_numbers.py       # writes paper/numbers.tex
 `extraction_ceiling.py` loads a sentence-transformers embedder (CPU is fine);
 the others read only `results/`.
 
+## Does the extraction fix transfer beyond the Cognitive split?
+
+The corrected extraction prompt is compared with the original on every
+answerable question of the other four LoCoMo-Plus splits. Only extraction runs
+(no answering or judging); about 1.6 days of the Groq free tier per prompt.
+
+```
+python scripts/extract_only.py --extract events
+python scripts/extract_only.py --extract v1
+python scripts/written_compare.py results/extract_only_v1.json results/extract_only_events.json --export transfer
+python scripts/written_compare.py results/system_n100_seed42_llm3_d1_notrig.json \
+    results/system_n100_seed42_llm3_d1_notrig_events.json --export cognitive
+```
+
+The extraction outputs we measured are included in `results/`, so the two
+`written_compare.py` lines can be re-run without any API call.
+
 ## Tests
 
 ```

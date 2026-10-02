@@ -457,6 +457,47 @@ def main():
         for name in ("KappaHumanHuman", "KappaJudgeLo", "KappaJudgeHi", "KappaN"):
             todo(name, "run scripts/judge\\_agreement.py --export")
 
+    # ---- does the extraction fix transfer? (HANDOFF 16.7) -----------------
+    #
+    # Two exports from scripts/written_compare.py --export, made in Colab (they
+    # need the embedder). Same measure on both: a note within cosine 0.5 of the
+    # gold evidence. "cognitive" = the two n=100 runs behind \DeltaExtraction;
+    # "transfer" = extract_only.py over every answerable non-Cognitive question.
+    # Which side is the events prompt is read from the export's prompt names,
+    # never from file order (bug 17). (2 Oct)
+    for name, prefix in (("cognitive", "CogWritten"), ("transfer", "Transfer")):
+        path = RESULTS / ("written_%s.json" % name)
+        keys = ("N", "VOne", "Events", "Delta", "P", "Convs", "ConvVOne",
+                "ConvEvents", "ConvTies", "SignP")
+        if not path.exists():
+            for k in keys:
+                todo(prefix + k, "run written\\_compare.py --export %s in Colab" % name)
+            continue
+        e = json.loads(path.read_text(encoding="utf-8"))
+        print("  %s   (%s vs %s)" % (path, e["file_a"], e["file_b"]))
+        if e["prompt_b"] == ["events"] and e["prompt_a"] != ["events"]:
+            ev, v1 = "b", "a"
+        elif e["prompt_a"] == ["events"] and e["prompt_b"] != ["events"]:
+            ev, v1 = "a", "b"
+        else:
+            raise SystemExit("%s: cannot tell which side is the events prompt "
+                             "(prompts %s / %s)" % (path, e["prompt_a"], e["prompt_b"]))
+        if e["model_a"] != e["model_b"]:
+            raise SystemExit("%s: the two sides were extracted with different "
+                             "models %s / %s" % (path, e["model_a"], e["model_b"]))
+        n = e["n"]
+        r_ev, r_v1 = e["written_" + ev] / n, e["written_" + v1] / n
+        macro(prefix + "N", "{:,}".format(n))
+        macro(prefix + "VOne", pct(r_v1))
+        macro(prefix + "Events", pct(r_ev))
+        macro(prefix + "Delta", "%.1f" % (100 * r_ev - 100 * r_v1))
+        macro(prefix + "P", tex_pvalue(e["p"]))
+        macro(prefix + "Convs", e["conversations"])
+        macro(prefix + "ConvVOne", e["conv_won_" + v1])
+        macro(prefix + "ConvEvents", e["conv_won_" + ev])
+        macro(prefix + "ConvTies", e["conv_ties"])
+        macro(prefix + "SignP", tex_pvalue(e.get("sign_p", 1.0)))
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\nWrote %s  (%d macros)" % (OUT, len(lines)))
