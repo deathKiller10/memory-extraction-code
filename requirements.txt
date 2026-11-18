@@ -13,3 +13,6 @@ tqdm>=4.66
 #   any vector database                      -> at a few hundred memories per
 #     conversation, an exact numpy scan is faster than an index and has nothing
 #     to explain away in the paper.
+
+# Only for tests/test_grid.py: checks our BM25 against the reference implementation
+rank_bm25

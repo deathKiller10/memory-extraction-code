@@ -629,7 +629,10 @@ def test_every_selection_mode_gets_its_own_results_file():
 
 def test_hybrid_is_a_selectable_mode_in_the_driver():
     source = (pathlib.Path(__file__).parent.parent / "scripts" / "run_system.py").read_text()
-    assert '"carry", "similar", "llm", "hybrid"' in source
+    # The choices are now built from pipeline.SELECT_MODES (24 Oct grid).
+    from bapca.pipeline import SELECT_MODES
+    assert {"similar", "llm", "hybrid"} <= set(SELECT_MODES)
+    assert 'choices=["carry", *SELECT_MODES, "oracle_window"]' in source
 
 
 def test_run_system_names_files_by_selection_mode():

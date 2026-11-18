@@ -28,6 +28,7 @@ anything.
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 from dataclasses import dataclass
 from datetime import datetime, timedelta
@@ -324,6 +325,7 @@ class Note:
     text: str
     mem_type: MemoryType
     window_index: int
+    typed: bool = True      # False for facts / summary / raw (WRITE_POLICIES)
 
     @property
     def is_empty(self) -> bool:
@@ -332,6 +334,8 @@ class Note:
     def as_context_line(self) -> str:
         """Same rendering as a stored MemoryNode, so the re-ranker can take
         either an extracted Note or a node retrieved from the store."""
+        if not self.typed:
+            return self.text
         if self.mem_type.is_standing:
             return f"[{self.mem_type.value}] {self.text}"
         return self.text
@@ -378,6 +382,196 @@ def extract_notes(llm: LLM, windows: list[Window],
     return notes
 
 
+# --- The write-policy grid (24 Oct) -----------------------------------------
+#
+# Yuan, Su & Yao (arXiv 2603.02473) cross three write strategies with three
+# retrievers on LoCoMo and find the retriever dominates. To ask the same
+# question on the Cognitive split we reuse THEIR write strategies, with their
+# prompts copied from their released code (github.com/boqiny/memory-probe,
+# strategies/*.py, commit 9289a05; the paper is CC BY 4.0), next to ours:
+#
+#   v1, events  one typed note per window (ours; see EXTRACT_PROMPTS)
+#   facts       Yuan et al. C.1 "Extracted Facts" (Mem0 / A-MEM style): every
+#               fact in the window, as a list
+#   summary     Yuan et al. C.3 "Summarized Episodes" (MemGPT style): one
+#               paragraph per window
+#   raw         Yuan et al. "Basic RAG": the window itself, in 3-turn chunks,
+#               no LLM call at write time
+#
+# Deliberate differences from their setup, each stated in the paper:
+#   * the unit is our 12-turn content-defined window, not a LoCoMo session,
+#     because Cognitive items have no session dates to cut on;
+#   * facts skip their ADD/UPDATE/NOOP conflict-resolution call (one extra LLM
+#     call per fact; it deduplicates, it cannot write a fact that was missed);
+#     the store's own near-duplicate merge (store.write) still applies;
+#   * the extractor is our model (qwen on Groq), the same for every policy.
+
+FACTS_SYSTEM = ("You are a precise information extraction system. "
+                "Always respond with valid JSON.")
+FACTS_PROMPT = """You are a memory extraction agent. Given a conversation session between two people, extract ALL important facts, events, preferences, and details mentioned.
+
+For each fact, provide:
+- "fact": A concise, self-contained statement (should make sense without the original context)
+- "speakers": Which speaker(s) this fact is about
+- "type": One of [event, preference, relationship, plan, personal_detail, opinion]
+
+Conversation:
+{conversation}
+
+Return a JSON object with key "facts" containing a list of extracted facts.
+Example format:
+{{"facts": [{{"fact": "Alice adopted a golden retriever named Max in March", "speakers": ["Alice"], "type": "event"}}, ...]}}
+
+Extract every meaningful piece of information. Be thorough — missing a fact means it's lost forever."""
+
+SUMMARY_SYSTEM = ("You are a precise summarization system. "
+                  "Capture all important details.")
+SUMMARY_PROMPT = """You are a memory summarization agent. Summarize the following conversation session into a detailed but concise summary.
+
+Your summary MUST capture:
+1. All key events, updates, or changes in either speaker's life
+2. Any plans, commitments, or intentions mentioned
+3. Preferences, opinions, or emotional states expressed
+4. Temporal markers (dates, "last week", "tomorrow", etc.)
+5. Any references to previous conversations or shared history
+
+Write the summary as a coherent paragraph. Include speaker names. Do NOT omit details — every piece of information matters for future recall.
+
+Conversation session ({timestamp}):
+{conversation}
+
+Summary:"""
+# Their code passes the session date; Cognitive windows have none, and their
+# own fallback for a missing date is this string.
+SUMMARY_NO_DATE = "unknown date"
+RAW_CHUNK_TURNS = 3            # their BasicRAGStrategy default
+
+# Output budgets: THEIR default (llm_client.llm_call, max_tokens=2048), not
+# ours. Measured 27 Oct (scripts/measure_call_cost.py): at 700, 2 of 3 fact
+# lists stopped with finish_reason "length" -- truncated, so facts was being
+# run with a handicap their setup does not have. Summaries stopped by
+# themselves at 110-195 tokens; 2048 changes nothing there but the cache key,
+# and keeps both copied strategies on their own settings.
+FACTS_MAX_TOKENS = 2048
+SUMMARY_MAX_TOKENS = 2048
+WRITE_BUDGETS = {"facts": FACTS_MAX_TOKENS, "summary": SUMMARY_MAX_TOKENS}
+
+# How a facts window is extracted.
+#   v2 (6 Nov) split a window refused under Groq's 1,000-tokens-per-minute
+#   output cap (OTPM) into halves, then quarters, each again at 2048. On 7 Nov
+#   Groq refused even QUARTER windows at 2048 -- the refusal follows
+#   max_tokens, not the text -- so a window cost up to 7 refused requests, and
+#   quarter-window extraction wrote ~25% more facts (#2030: 975 vs ~780).
+#   v3 (8 Nov): the WHOLE window at 2048; if refused, the WHOLE window again at
+#   FACTS_CAPPED_BUDGET (936 -- every request at <= 967 has passed); only if
+#   that list comes back cut off (no closing ]}) is the window split in
+#   halves, each at 936, recursively to quarters. When a reply is complete the
+#   budget did not bind, so whole windows at 2048 and at 936 are equivalent.
+#   Counted per item in run_system rows. v2 rows with no split are identical
+#   under v3; run_grid drops the others (with a backup) so they are redone.
+FACTS_PROTOCOL = 3
+FACTS_CAPPED_BUDGET = 936
+FACTS_MAX_SPLIT_DEPTH = 2
+FACTS_STATS = {"split_windows": 0, "truncated_kept": 0, "capped_windows": 0}
+_FACTS_CLOSED = re.compile(r"\]\s*\}\s*(?:`{3})?\s*$")
+
+WRITE_POLICIES = ("events", "facts", "raw", "summary", "v1")
+
+_FACT_STRING = re.compile(r'"fact"\s*:\s*"((?:[^"\\]|\\.)*)"', re.DOTALL)
+
+
+def parse_facts(raw: str, window_index: int) -> list[Note]:
+    """
+    Every `"fact": "..."` string in the reply, in order.
+
+    Read with a regex rather than json.loads so a list truncated by the
+    output budget keeps the facts it completed. Only complete, quoted fact
+    strings are kept -- nothing is guessed from a partial one.
+    """
+    notes = []
+    for match in _FACT_STRING.finditer(raw or ""):
+        try:
+            text = json.loads('"' + match.group(1) + '"').strip()
+        except json.JSONDecodeError:
+            continue
+        if text:
+            notes.append(Note(text, MemoryType.STATE, window_index, typed=False))
+    return notes
+
+
+def parse_summary(raw: str, window_index: int) -> Optional[Note]:
+    text = " ".join((raw or "").split()).strip().strip('"').strip()
+    if not text or text.upper().startswith("NONE"):
+        return None
+    return Note(text, MemoryType.STATE, window_index, typed=False)
+
+
+def raw_chunks(window: Window, turns: int = RAW_CHUNK_TURNS) -> list[Note]:
+    lines = [l for l in window.text.splitlines() if l.strip()]
+    return [Note("\n".join(lines[i:i + turns]), MemoryType.STATE, window.index,
+                 typed=False)
+            for i in range(0, len(lines), turns)]
+
+
+def facts_reply_complete(raw: str) -> bool:
+    """True when the fact list was closed (ends with ]}), i.e. not cut off."""
+    return bool(_FACTS_CLOSED.search((raw or "").strip()))
+
+
+def extract_facts(llm: LLM, text: str, window_index: int, depth: int = 0) -> list[Note]:
+    """Facts from one window (or part of one), never silently truncated."""
+    from .llm import OutputCapExceeded
+
+    def ask(budget, mode):
+        return llm.complete(FACTS_PROMPT.format(conversation=text[:6000]),
+                            system=FACTS_SYSTEM, max_tokens=budget, on_output_cap=mode)
+
+    if depth == 0:
+        try:
+            raw = ask(FACTS_MAX_TOKENS, "raise")     # byte-identical to v1/v2: cache reused
+        except OutputCapExceeded:
+            FACTS_STATS["capped_windows"] += 1
+            raw = ask(FACTS_CAPPED_BUDGET, "shrink")
+    else:
+        raw = ask(FACTS_CAPPED_BUDGET, "shrink")
+    if facts_reply_complete(raw):
+        return parse_facts(raw, window_index)
+
+    lines = [l for l in text.splitlines() if l.strip()]
+    if depth >= FACTS_MAX_SPLIT_DEPTH or len(lines) < 2:
+        FACTS_STATS["truncated_kept"] += 1           # nothing left to split: keep what parsed
+        return parse_facts(raw, window_index)
+    if depth == 0:
+        FACTS_STATS["split_windows"] += 1
+    mid = len(lines) // 2
+    return (extract_facts(llm, "\n".join(lines[:mid]), window_index, depth + 1)
+            + extract_facts(llm, "\n".join(lines[mid:]), window_index, depth + 1))
+
+
+def write_notes(llm: Optional[LLM], windows: list[Window], policy: str) -> list[Note]:
+    """One entry point for every write policy in the grid."""
+    if policy in EXTRACT_PROMPTS:
+        return extract_notes(llm, windows, prompt=EXTRACT_PROMPTS[policy])
+    if policy == "raw":
+        return [n for w in windows for n in raw_chunks(w)]
+    if policy == "facts":
+        notes = []
+        for window in windows:
+            notes.extend(extract_facts(llm, window.text, window.index))
+        return notes
+    if policy == "summary":
+        notes = []
+        for window in windows:
+            raw = llm.complete(SUMMARY_PROMPT.format(conversation=window.text[:6000],
+                                                     timestamp=SUMMARY_NO_DATE),
+                               system=SUMMARY_SYSTEM, max_tokens=SUMMARY_MAX_TOKENS)
+            note = parse_summary(raw, window.index)
+            if note:
+                notes.append(note)
+        return notes
+    raise ValueError(f"unknown write policy {policy!r}; expected one of {WRITE_POLICIES}")
+
+
 # ---------------------------------------------------------------------------
 # The memory
 # ---------------------------------------------------------------------------
@@ -407,6 +601,13 @@ class SystemConfig:
     carry: int = 0                   # 0 = carry every surviving note
     prune_threshold: float = 0.05    # was 0.20, tuned for a different timescale
     retrieval: RetrievalConfig = None
+    # The store merges a new note into an existing one at cosine > 0.85
+    # (store.write, "pattern completion"). 3 Nov: for SUMMARIES that silently
+    # dropped the cue window's paragraph on 11/100 items -- long paragraphs
+    # about the same two friends embed alike. Yuan et al.'s summary strategy
+    # has no merge, so merge=False is the sensitivity check. Cosine never
+    # exceeds 1, so a threshold of 2.0 means "never merge".
+    merge: bool = True
 
     def __post_init__(self):
         if self.retrieval is None:
@@ -414,6 +615,7 @@ class SystemConfig:
                 standing_budget=self.carry if self.carry > 0 else 10_000,
                 standing_floor=0.0,
                 prune_threshold=self.prune_threshold,
+                dedup_threshold=0.85 if self.merge else 2.0,
             )
 
 
@@ -431,17 +633,21 @@ def build_store(notes: list[Note], embedder, config: SystemConfig) -> EpisodicSt
 
     latest = max(n.window_index for n in notes)
     start = datetime(2026, 1, 1)
+    # One batch: the cached vectors are read in parallel (8 Nov, Drive latency).
+    vectors = embedder.encode([n.text for n in notes])
 
-    for note in notes:
+    for note, vector in zip(notes, vectors):
         age_days = (latest - note.window_index) * config.days_per_window
-        store.write(
+        node = store.write(
             note.text,
-            embedder.encode_one(note.text),
+            vector,
             when=start - timedelta(days=age_days),
             weight=0.6,                     # uniform: we have no basis to rank
             mem_type=note.mem_type,         # them at write time, and pretending
             source_turn=note.window_index,  # otherwise would be a hidden oracle
         )
+        if not note.typed:
+            node.meta["untyped"] = True
     return store
 
 
@@ -637,6 +843,123 @@ def select_by_llm(llm: LLM, notes: list, sample: Sample, top_k: int = 3,
     return chosen
 
 
+# --- Yuan et al.'s two other retrievers (24 Oct) ------------------------------
+#
+# Both copied from github.com/boqiny/memory-probe (retrieval/*.py, 9289a05):
+#   bm25  BM25Okapi over `text.lower().split()` (rank_bm25 defaults:
+#         k1=1.5, b=0.75, epsilon=0.25), reimplemented here so the scores do
+#         not depend on a package version;
+#   pool  their Hybrid+Rerank: top k*3 from cosine and from BM25, merged in
+#         that order, deduplicated, then an LLM returns the top k IDs with
+#         THEIR prompt; candidates shown truncated to 200 characters as in
+#         theirs; a short answer is padded from the merged list, as in theirs.
+# Their k is 5; ours is 3 everywhere, so the grid uses 3.
+
+SELECT_MODES = ("bm25", "hybrid", "llm", "pool", "similar")
+POOL_MULTIPLIER = 3
+POOL_SYSTEM = "You are a precise relevance ranker. Return JSON only."
+POOL_PROMPT = """You are ranking memory entries by relevance to a question.
+
+Question: {question}
+
+Candidate memories:
+{candidates}
+
+Return the IDs of the top {k} most relevant memories, ranked from most to least relevant.
+Return JSON: {{"ranked_ids": ["id1", "id2", ...]}}
+
+Only return IDs that are actually relevant. If fewer than {k} are relevant, return fewer."""
+
+
+def bm25_scores(docs: list[str], query: str, k1: float = 1.5, b: float = 0.75,
+                epsilon: float = 0.25) -> list[float]:
+    """Okapi BM25 exactly as rank_bm25.BM25Okapi computes it."""
+    import math
+    corpus = [d.lower().split() for d in docs]
+    n = len(corpus)
+    if n == 0:
+        return []
+    avgdl = sum(len(d) for d in corpus) / n
+    df: dict = {}
+    for d in corpus:
+        for w in set(d):
+            df[w] = df.get(w, 0) + 1
+    idf, negative = {}, []
+    for w, f in df.items():
+        idf[w] = math.log(n - f + 0.5) - math.log(f + 0.5)
+        if idf[w] < 0:
+            negative.append(w)
+    floor = epsilon * (sum(idf.values()) / len(idf)) if idf else 0.0
+    for w in negative:
+        idf[w] = floor
+    scores = []
+    for d in corpus:
+        tf: dict = {}
+        for w in d:
+            tf[w] = tf.get(w, 0) + 1
+        dl = len(d)
+        total = 0.0
+        for q in query.lower().split():
+            f = tf.get(q, 0)
+            total += idf.get(q, 0.0) * (f * (k1 + 1) /
+                                         (f + k1 * (1 - b + b * dl / avgdl)))
+        scores.append(total)
+    return scores
+
+
+def bm25_rank(notes: list, query: str) -> list:
+    """Notes by BM25 score, highest first; ties keep store order (stable)."""
+    scores = bm25_scores([n.text for n in notes], query)
+    order = sorted(range(len(notes)), key=lambda i: -scores[i])
+    return [notes[i] for i in order]
+
+
+def select_pooled(llm: LLM, by_cosine: list, by_bm25: list, sample: Sample,
+                  top_k: int = 3) -> list:
+    width = top_k * POOL_MULTIPLIER
+    merged, seen = [], set()
+    for note in by_cosine[:width] + by_bm25[:width]:
+        if id(note) not in seen:
+            seen.add(id(note))
+            merged.append(note)
+    if len(merged) <= top_k:
+        return merged
+    listing = "\n".join(f"[ID: {i + 1}] {n.as_context_line()[:200]}"
+                        for i, n in enumerate(merged))
+    raw = llm.complete(POOL_PROMPT.format(question=sample.trigger,
+                                          candidates=listing, k=top_k),
+                       system=POOL_SYSTEM, max_tokens=160)
+    chosen, used = [], set()
+    for match in _NUMBERS.finditer(raw or ""):
+        i = int(match.group()) - 1
+        if 0 <= i < len(merged) and i not in used:
+            used.add(i)
+            chosen.append(merged[i])
+        if len(chosen) >= top_k:
+            break
+    for i, note in enumerate(merged):           # their padding rule
+        if len(chosen) >= top_k:
+            break
+        if i not in used:
+            used.add(i)
+            chosen.append(note)
+    return chosen
+
+
+def notes_from_window(notes: list, window_index: Optional[int]) -> list:
+    """
+    MEASUREMENT ONLY -- an oracle. Every note the write policy produced from
+    the window that holds the gold cue (located by locate_evidence_window,
+    which reads the gold evidence). Answering from exactly these notes prices
+    the WRITE stage with selection removed: if the cue was written, it is in
+    the prompt. Never used by the system.
+    """
+    if window_index is None:
+        return []
+    return [n for n in notes
+            if getattr(n, "source_turn", getattr(n, "window_index", None)) == window_index]
+
+
 def select_notes(store: EpisodicStore, sample: Sample, embedder, *,
                  mode: str = "carry", top_k: int = 3, llm: Optional[LLM] = None,
                  now: Optional[datetime] = None, rerank: str = "v1") -> list:
@@ -671,13 +994,20 @@ def select_notes(store: EpisodicStore, sample: Sample, embedder, *,
 
     if mode == "carry":
         return notes
-    if mode not in ("llm", "similar", "hybrid"):
+    if mode not in SELECT_MODES:
         raise ValueError(f"unknown selection mode {mode!r}")
 
     from .memory import cosine
     ranked = sorted(notes, key=lambda n: cosine(query, n.embedding), reverse=True)
     if mode == "similar":
         return ranked[:top_k]
+    if mode == "bm25":
+        return bm25_rank(notes, sample.trigger)[:top_k]
+    if mode == "pool":
+        if llm is None:
+            raise ValueError("mode='pool' needs an llm to do the re-ranking")
+        return select_pooled(llm, ranked, bm25_rank(notes, sample.trigger),
+                             sample, top_k)
 
     if llm is None:
         raise ValueError(f"mode={mode!r} needs an llm to do the re-ranking")

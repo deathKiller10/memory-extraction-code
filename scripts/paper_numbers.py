@@ -115,6 +115,66 @@ def load(filename):
             if r.get("label") in SCORED}
 
 
+# Table "interventions": each row against the row before it.
+INTERVENTION_CHAIN = (("Permissive", "Forced"), ("Forced", "Hybrid"),
+                      ("Hybrid", "NoTrig"), ("NoTrig", "Events"), ("Events", "Person"))
+
+
+def matched_delta(rows, before):
+    """Accuracy of `rows` minus `before`, in points, on the items both scored."""
+    common = set(rows) & set(before)
+    if not common:
+        return 0.0, 0
+    gain = sum((rows[k]["label"] == "correct") - (before[k]["label"] == "correct")
+               for k in common)
+    return 100.0 * gain / len(common), len(common)
+
+
+def signed(points):
+    """'+0.0', '-1.0', '+23.2' -- never '-0.0'."""
+    text = "%+.1f" % points
+    return "+0.0" if text == "-0.0" else text
+
+
+DESIGNED_ORDER = ("no_memory", "full_context", "system_llm", "oracle_cue",
+                  "oracle_constraint")
+
+
+def judge_shape(a):
+    """Judge leniency on the weakest and strongest condition, the spread of
+    scores across conditions, and the one ordering exception (18 Nov: the
+    draft said 'within a few points' and 'one adjacent pair tied'; the file
+    says 0 and 8 points, and the two oracles swapped for one annotator)."""
+    per = a.get("per_condition", {})
+    names = ("JudgeOverALo", "JudgeOverAHi", "JudgeOverDLo", "JudgeOverDHi",
+             "HumanSpreadLo", "HumanSpreadHi", "JudgeSpreadLo", "JudgeSpreadHi",
+             "OrderSwapCue", "OrderSwapConstraint")
+    if not all(c in per for c in DESIGNED_ORDER) or not a.get("spread"):
+        for name in names:
+            todo(name, "judge_agreement.json lacks per-condition rates")
+        return
+    for cond, label in (("no_memory", "A"), ("oracle_constraint", "D")):
+        over = [v["judge"] - v["human"] for v in per[cond].values()]
+        macro("JudgeOver%sLo" % label, pct(min(over)))
+        macro("JudgeOver%sHi" % label, pct(max(over)))
+    for who, key in (("Human", "human"), ("Judge", "judge")):
+        vals = [v[key] for v in a["spread"].values()]
+        macro(who + "SpreadLo", pct(min(vals)))
+        macro(who + "SpreadHi", pct(max(vals)))
+    swaps = []
+    for annotator in per["no_memory"]:
+        rates = [per[c][annotator]["human"] for c in DESIGNED_ORDER]
+        bad = [i for i in range(len(rates) - 1) if rates[i] > rates[i + 1]]
+        swaps += [(annotator, i, rates) for i in bad]
+    if len(swaps) == 1 and swaps[0][1] == 3:          # oracle cue above oracle note
+        rates = swaps[0][2]
+        macro("OrderSwapCue", pct(rates[3]))
+        macro("OrderSwapConstraint", pct(rates[4]))
+    else:
+        todo("OrderSwapCue", "ordering exception is not the single oracle swap")
+        todo("OrderSwapConstraint", "ordering exception is not the single oracle swap")
+
+
 def median(values):
     if not values:
         return 0.0
@@ -185,13 +245,49 @@ def main():
         macro(name + "POkNoCue",
               pct(sum(r["label"] == "correct" for r in without) / len(without)) if without else "0.0")
 
+    # The change each intervention made, against the row before it, on the
+    # items BOTH runs scored. Not a difference of the two Score macros: the
+    # NoTrig run has 99 scored items (#2374's judge reply is unparsed), and
+    # 65/100 - 41/99 overstated the extraction gain (23.6) against the
+    # matched 64/99 - 41/99 (23.2); likewise NoTrig vs Hybrid read -0.6 where
+    # the matched change is zero (18 Nov).
+    for prev, name in INTERVENTION_CHAIN:
+        if prev in loaded and name in loaded:
+            delta, common = matched_delta(loaded[name], loaded[prev])
+            macro(name + "Delta", signed(delta))
+            macro(name + "DeltaN", common)
+        else:
+            todo(name + "Delta", "needs the %s and %s runs" % (prev, name))
+            todo(name + "DeltaN", "needs the %s and %s runs" % (prev, name))
     # The size of the one intervention that worked: the writing stage.
     if "Events" in loaded and "NoTrig" in loaded:
-        e = sum(r["label"] == "correct" for r in loaded["Events"].values()) / len(loaded["Events"])
-        n = sum(r["label"] == "correct" for r in loaded["NoTrig"].values()) / len(loaded["NoTrig"])
-        macro("DeltaExtraction", "%.1f" % (100 * (e - n)))
+        delta, _ = matched_delta(loaded["Events"], loaded["NoTrig"])
+        macro("DeltaExtraction", "%.1f" % delta)
     else:
         todo("DeltaExtraction", "needs the notrig and events runs")
+
+    # Person-aware re-ranking (18 Nov): which notes it changed, and the items
+    # it won and lost. "74 of 100" in earlier drafts counted reorderings too;
+    # the set of carried notes changed on fewer items.
+    if "Events" in loaded and "Person" in loaded:
+        ev, pe = loaded["Events"], loaded["Person"]
+        common = set(ev) & set(pe)
+        macro("PersonSetChangedN", sum(set(ev[k].get("carried") or []) !=
+                                       set(pe[k].get("carried") or []) for k in common))
+        macro("PersonGainN", sum(pe[k]["label"] == "correct" and ev[k]["label"] == "wrong"
+                                 for k in common))
+        macro("PersonLossN", sum(pe[k]["label"] == "wrong" and ev[k]["label"] == "correct"
+                                 for k in common))
+    else:
+        for name in ("PersonSetChangedN", "PersonGainN", "PersonLossN"):
+            todo(name, "needs the events and person runs")
+
+    # Salience decay: items on which it pruned any note, headline run (18 Nov).
+    if "Full" in loaded:
+        macro("FullPrunedItems", sum(1 for r in loaded["Full"].values()
+                                     if r.get("notes_pruned")))
+    else:
+        todo("FullPrunedItems", "needs the full run")
 
     # The paired distractor test, on the items where the cue did NOT arrive.
     # This claim has been made and withdrawn twice on unpaired comparisons
@@ -330,6 +426,35 @@ def main():
                      "BudgetExtraction", "BudgetReranker"):
             todo(name, "run extraction_ceiling.py --export in Colab")
 
+    # ---- reconciling with LoCoMo-Plus's published scale (24 Oct) -----------
+    #
+    # LoCoMo-Plus (Li et al. 2026) Table 1 puts every system on the Cognitive
+    # split between 9.57 and 26.06 (best: gemini-2.5-pro, full context), with
+    # a judge that agrees with humans at kappa 0.80-0.82 (their Sec. 6.4).
+    # These four are THEIR published numbers, kept here so the prose types
+    # none of them. Ours come from scripts/reconcile_judge.py --export.
+    macro("LiCogMin", "9.57")
+    macro("LiCogMax", "26.06")
+    macro("LiKappaLo", "0.80")
+    macro("LiKappaHi", "0.82")
+    rec_file = Path("results/reconcile_judge.json")
+    if rec_file.exists():
+        rec = json.loads(rec_file.read_text(encoding="utf-8"))["conditions"]
+        def hat(cond):
+            return rec[cond]["human_hat_mean"]
+        b_ci = [a["ci"] for a in rec["full_context"]["annotators"].values()]
+        macro("HumanEqA", "%.1f" % (100 * hat("no_memory")))
+        macro("HumanEqB", "%.1f" % (100 * hat("full_context")))
+        macro("HumanEqE", "%.1f" % (100 * hat("system_llm")))
+        macro("HumanEqBLo", "%.0f" % (100 * min(c[0] for c in b_ci)))
+        macro("HumanEqBHi", "%.0f" % (100 * max(c[1] for c in b_ci)))
+        macro("HumanEqMargin", "%.1f" % (100 * (hat("system_llm") - hat("full_context"))))
+        macro("HumanEqBN", rec["full_context"]["n"])
+    else:
+        for name in ("HumanEqA", "HumanEqB", "HumanEqE", "HumanEqBLo",
+                     "HumanEqBHi", "HumanEqMargin", "HumanEqBN"):
+            todo(name, "run scripts/reconcile_judge.py --export")
+
     # ---- what the compression figure does NOT count -------------------------
     #
     # Reviewer objection we agree with: 178x compares the ANSWERING prompt only.
@@ -344,9 +469,17 @@ def main():
                       runner.read_text(encoding="utf-8"))
         if m:
             per_extraction = int(m.group(1).replace("_", ""))
-    if per_extraction and "Full" in loaded:
-        windows = int(median([r.get("notes_extracted", 0)
-                              for r in loaded["Full"].values()]))
+    # Bug 25 (24 Oct): this used the median of `notes_extracted` -- notes that
+    # survived after NONE replies were dropped -- but extraction is one call
+    # per WINDOW. The window count comes from scripts/extraction_cost.py,
+    # which counts them from the data exactly as run_system.py cuts them.
+    cost_file = Path("results/extraction_cost.json")
+    windows = None
+    if cost_file.exists():
+        cost = json.loads(cost_file.read_text(encoding="utf-8"))
+        if cost.get("n_items") == 401 and cost.get("strip_trigger"):
+            windows = int(cost["median_windows_per_item"])
+    if per_extraction and windows:
         macro("TokensPerExtraction", "{:,}".format(per_extraction))
         macro("WindowsPerItem", windows)
         macro("ExtractionTokensPerItem",
@@ -354,7 +487,8 @@ def main():
     else:
         for name in ("TokensPerExtraction", "WindowsPerItem",
                      "ExtractionTokensPerItem"):
-            todo(name, "needs scripts/run_system.py and the 401-item run")
+            todo(name, "needs scripts/run_system.py and "
+                       "results/extraction_cost.json (extraction_cost.py --export)")
 
     # ---- configuration, read from the code the experiments actually ran ----
     #
@@ -453,6 +587,7 @@ def main():
                 hs = [v["human"] for v in rows.values()]
                 macro("Human%sLo" % label, pct(min(hs)))
                 macro("Human%sHi" % label, pct(max(hs)))
+        judge_shape(a)
     else:
         for name in ("KappaHumanHuman", "KappaJudgeLo", "KappaJudgeHi", "KappaN"):
             todo(name, "run scripts/judge\\_agreement.py --export")
@@ -497,6 +632,133 @@ def main():
         macro(prefix + "ConvEvents", e["conv_won_" + ev])
         macro(prefix + "ConvTies", e["conv_ties"])
         macro(prefix + "SignP", tex_pvalue(e.get("sign_p", 1.0)))
+
+    # ---- the write-policy x selection grid (HANDOFF 20.3-20.19) -------------
+    #
+    # n=100 subset, seed 42. Rows: write policies (ours: VOne, Events; Yuan et
+    # al.'s: Facts, Summary, Raw). Columns: Cosine, BM (BM25), Hybrid (their
+    # Hybrid+Rerank), Ours (our LLM re-ranker over the whole store), Ceiling
+    # (oracle window: every note written from the cue's window). Baselines are
+    # the pilot's no-memory and full-context rows on the same 100 items.
+    GPOL = {"VOne": "", "Events": "_events", "Facts": "_facts",
+            "Summary": "_summary", "Raw": "_raw"}
+    GSEL = {"Cosine": "similar3", "BM": "bm253", "Hybrid": "pool3",
+            "Ours": "llm3", "Ceiling": "oracle_window3"}
+    pilot_path = RESULTS / "pilot_n100_seed42.json"
+    pilot_rows = (json.loads(pilot_path.read_text(encoding="utf-8"))
+                  if pilot_path.exists() else [])
+    def pilot_cond(cond):
+        return {r["sample_index"]: r["label"] == "correct" for r in pilot_rows
+                if r["condition"] == cond and r.get("label") in SCORED}
+    g_nomem, g_full = pilot_cond("no_memory"), pilot_cond("full_context")
+    g = {}
+    for pn, ps in GPOL.items():
+        for sn, ss in GSEL.items():
+            rows = load(f"system_n100_seed42_{ss}_d1_notrig{ps}.json")
+            if not rows:
+                if sn == "Ours" and pn in ("Facts", "Summary", "Raw"):
+                    continue          # not run: facts exceeds Groq's per-request cap
+                todo(f"Grid{pn}{sn}", "grid cell missing")
+                continue
+            g[(pn, sn)] = {i: r["label"] == "correct" for i, r in rows.items()}
+            macro(f"Grid{pn}{sn}", pct(sum(g[(pn, sn)].values()) / len(g[(pn, sn)])))
+            if sn == "Cosine":
+                macro(f"GridNotes{pn}", "%d" % median([r["notes_extracted"] for r in rows.values()]))
+    def paired(a, b):
+        ks = sorted(set(a) & set(b))
+        return mcnemar([a[k] for k in ks], [b[k] for k in ks])
+    have_base = bool(g_nomem) and bool(g_full)
+    if have_base:
+        macro("GridNoMem", pct(sum(g_nomem.values()) / len(g_nomem)))
+        macro("GridFull", pct(sum(g_full.values()) / len(g_full)))
+    else:
+        todo("GridNoMem", "needs results/pilot_n100_seed42.json")
+        todo("GridFull", "needs results/pilot_n100_seed42.json")
+    yuan = [(p, s) for p in ("Facts", "Summary", "Raw") for s in ("Cosine", "BM", "Hybrid")]
+    if have_base and all(c in g for c in yuan):
+        rates = [sum(g[c].values()) / len(g[c]) for c in yuan]
+        macro("GridYuanMin", pct(min(rates)))
+        macro("GridYuanMax", pct(max(rates)))
+        vs_nomem = [paired(g[c], g_nomem) for c in yuan]
+        vs_full = [paired(g[c], g_full) for c in yuan]
+        macro("GridYuanNoMemPMin", tex_pvalue(min(t.p_value for t in vs_nomem)))
+        macro("GridYuanBeatNoMem", "%d" % sum(t.p_value < 0.05 and t.only_a > t.only_b
+                                             for t in vs_nomem))
+        macro("GridYuanFullPMax", tex_pvalue(max(t.p_value for t in vs_full)))
+        macro("GridYuanWorseThanFull", "%d" % sum(t.p_value < 0.05 and t.only_b > t.only_a
+                                                 for t in vs_full))
+        write_ranges = [max(sum(g[(p, s)].values()) for p in ("Facts", "Summary", "Raw"))
+                        - min(sum(g[(p, s)].values()) for p in ("Facts", "Summary", "Raw"))
+                        for s in ("Cosine", "BM", "Hybrid")]
+        sel_ranges = [max(sum(g[(p, s)].values()) for s in ("Cosine", "BM", "Hybrid"))
+                      - min(sum(g[(p, s)].values()) for s in ("Cosine", "BM", "Hybrid"))
+                      for p in ("Facts", "Summary", "Raw")]
+        n_g = len(g[yuan[0]])
+        macro("GridYuanWriteRangeMax", pct(max(write_ranges) / n_g))
+        macro("GridYuanSelectRangeMax", pct(max(sel_ranges) / n_g))
+        ceil = [sum(g[(p, "Ceiling")].values()) / len(g[(p, "Ceiling")])
+                for p in ("Facts", "Summary", "Raw")]
+        macro("GridYuanCeilMin", pct(min(ceil)))
+        macro("GridYuanCeilMax", pct(max(ceil)))
+    else:
+        for name in ("GridYuanMin", "GridYuanMax", "GridYuanNoMemPMin", "GridYuanBeatNoMem",
+                     "GridYuanFullPMax", "GridYuanWorseThanFull", "GridYuanWriteRangeMax",
+                     "GridYuanSelectRangeMax", "GridYuanCeilMin", "GridYuanCeilMax"):
+            todo(name, "Yuan cells of the grid incomplete")
+    if have_base and ("Events", "Ours") in g:
+        for tag, base in (("NoMem", g_nomem), ("Full", g_full)):
+            t = paired(g[("Events", "Ours")], base)
+            macro(f"GridOurs{tag}P", tex_pvalue(t.p_value))
+            macro(f"GridOurs{tag}Win", "%d" % t.only_a)
+            macro(f"GridOurs{tag}Lose", "%d" % t.only_b)
+    for name, a, b in (("GridFactsEventsCeilP", ("Facts", "Ceiling"), ("Events", "Ceiling")),
+                       ("GridEventsFactsHybridP", ("Events", "Hybrid"), ("Facts", "Hybrid")),
+                       ("GridEventsOursCosineP", ("Events", "Ours"), ("Events", "Cosine")),
+                       ("GridEventsCosineBMP", ("Events", "Cosine"), ("Events", "BM"))):
+        if a in g and b in g:
+            macro(name, tex_pvalue(paired(g[a], g[b]).p_value))
+        else:
+            todo(name, "grid cells missing")
+    # Facts extraction under Groq's per-request output cap (rule v3): totals
+    # over the oracle-window cell, where each window is first extracted.
+    facts_rows = load("system_n100_seed42_oracle_window3_d1_notrig_facts.json")
+    if facts_rows:
+        rows = list(facts_rows.values())
+        macro("GridFactsCapped", "%d" % sum(r.get("facts_capped_windows") or 0 for r in rows))
+        macro("GridFactsSplit", "%d" % sum(r.get("facts_split_windows") or 0 for r in rows))
+        macro("GridFactsKeptCut", "%d" % sum(r.get("facts_truncated_kept") or 0 for r in rows))
+        macro("GridFactsBudget", "%d" % rows[0].get("write_budget", 0))
+    cost100 = RESULTS / "extraction_cost_n100.json"
+    if cost100.exists():
+        macro("GridWindows", "%d" % json.loads(cost100.read_text())["distinct_windows"])
+    else:
+        todo("GridWindows", "run extraction_cost.py --n 100 --export")
+    # Grid configuration, read from the code that ran it (not typed).
+    from bapca import pipeline as _pl, llm as _llm
+    import importlib.util as _ilu
+    _rg_spec = _ilu.spec_from_file_location(
+        "run_grid", Path(__file__).resolve().parent / "run_grid.py")
+    _rg = _ilu.module_from_spec(_rg_spec)
+    _rg_spec.loader.exec_module(_rg)
+    macro("GridTopK", "%d" % _rg.TOP_K)
+    macro("GridRawTurns", "%d" % _pl.RAW_CHUNK_TURNS)
+    macro("GridPoolWidth", "%d" % (_rg.TOP_K * _pl.POOL_MULTIPLIER))
+    macro("GridFactsCappedBudget", "%d" % _pl.FACTS_CAPPED_BUDGET)
+    macro("GridGroqOutputCap", "%d" % (_pl.FACTS_CAPPED_BUDGET + _llm.OTPM_MARGIN))
+    macro("GridPolicies", "%d" % len(_pl.WRITE_POLICIES))
+    from bapca.store import RetrievalConfig as _RC
+    macro("StoreMergeThreshold", "%.2f" % _RC().dedup_threshold)
+    # Yuan et al.'s top-k (their configs/settings.py, TOP_K = 5) -- a
+    # published constant, kept here so the prose types none of it.
+    macro("YuanTopK", "5")
+    # The store's near-duplicate merge, switched off for summaries.
+    for sn, ss in (("Ceiling", "oracle_window3"), ("Cosine", "similar3"), ("Hybrid", "pool3")):
+        rows = load(f"system_n100_seed42_{ss}_d1_notrig_summary_nomerge.json")
+        if rows:
+            macro(f"GridSummaryNoMerge{sn}",
+                  pct(sum(r["label"] == "correct" for r in rows.values()) / len(rows)))
+        else:
+            todo(f"GridSummaryNoMerge{sn}", "nomerge cell missing")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")

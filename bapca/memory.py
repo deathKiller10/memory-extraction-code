@@ -136,6 +136,11 @@ class MemoryNode:
 
     def as_context_line(self) -> str:
         """How this memory is rendered into the LLM prompt."""
+        # Write policies that do not type their output (facts, summaries, raw
+        # chunks; see pipeline.WRITE_POLICIES) are stored as STATE so they
+        # reach selection, but must not be shown with a tag they never had.
+        if self.meta.get("untyped"):
+            return self.text
         if self.mem_type.is_standing:
             return f"[{self.mem_type.value}] {self.text}"
         return self.text

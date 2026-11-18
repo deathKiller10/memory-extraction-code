@@ -133,6 +133,23 @@ THINK_BLOCK = re.compile(r"<think>.*?</think>\s*", re.DOTALL | re.IGNORECASE)
 
 # A 429 usually tells us exactly how long to wait. Guessing with exponential
 # backoff wasted five attempts on a 40-second window and then gave up.
+# 5 Nov 2026: Groq began refusing some single requests outright --
+#   "Request too large for model `qwen/qwen3.8-27b` ... on output tokens per
+#    minute (OTPM): Limit 1000, Requested 1544 ... reduce max_tokens"
+# Waiting cannot help (it is the request, not the minute), and treating it as
+# a rate limit also slowed every later call.
+#
+# 6 Nov, from the log of the first fix: Groq's "Requested" never exceeds our
+# max_tokens (1537 at 2048, 1447 at 1447, 1263 at 1263), and every retry at
+# <= 967 passed; stepping down by the stated overshoot needed up to 4 tries
+# and ran out on 3 items. So the default is ONE retry straight at
+# limit - margin. Callers whose output must not be cut short (facts lists) ask
+# for on_output_cap="raise" and handle it themselves (pipeline splits the
+# window instead of truncating it).
+_OTPM = re.compile(r"output tokens per minute \(otpm\)\s*:\s*limit\s*(\d+)\s*,\s*requested\s*(\d+)")
+OTPM_MARGIN = 64
+OTPM_MAX_SHRINKS = 1
+
 _RETRY_AFTER = re.compile(
     r"(?:retry in|retrydelay['\"]?\s*[:=]\s*['\"]?)\s*(\d+(?:\.\d+)?)\s*s",
     re.IGNORECASE)
@@ -150,6 +167,15 @@ class ModelUnavailable(RuntimeError):
 
 class PromptTooLarge(RuntimeError):
     """No amount of retrying will help: one call exceeds the per-minute budget."""
+
+
+class OutputCapExceeded(RuntimeError):
+    """Groq refused this request: its expected output exceeds the per-minute
+    output cap (OTPM). Raised only for complete(..., on_output_cap="raise")."""
+
+    def __init__(self, limit: int, requested: int, budget: int):
+        super().__init__(f"output cap {limit} < requested {requested} at max_tokens {budget}")
+        self.limit, self.requested, self.budget = limit, requested, budget
 
 
 class TransientProviderError(RuntimeError):
@@ -312,6 +338,8 @@ class LLM:
         self.throttle = Throttle(self.limits)
         self.calls_made = 0        # real network calls, i.e. quota actually spent
         self.tokens_sent = 0
+        self.budget_reductions = 0  # calls retried at a smaller max_tokens (OTPM, 5 Nov)
+        self.truncated_calls = 0    # calls that stopped on max_tokens (finish "length")
         self._reasoning_ok = True  # flips off if the provider rejects the params
         self.model = model or self.resolve_model()
         self.temperature = temperature
@@ -406,7 +434,10 @@ class LLM:
         system: Optional[str] = None,
         temperature: Optional[float] = None,
         max_tokens: int = 512,
+        on_output_cap: str = "shrink",
     ) -> str:
+        """on_output_cap: "shrink" retries a Groq OTPM refusal once at the cap;
+        "raise" raises OutputCapExceeded so the caller can split the input."""
         temp = self.temperature if temperature is None else temperature
         key = DiskCache.make_key(
             provider=self.provider.name, model=self.model, system=system,
@@ -421,13 +452,13 @@ class LLM:
             messages.append({"role": "system", "content": system})
         messages.append({"role": "user", "content": prompt})
 
-        text = self._call_with_backoff(messages, temp, max_tokens)
+        text = self._call_with_backoff(messages, temp, max_tokens, on_output_cap)
 
         # If the whole budget went on thinking, give it room once more, then
         # fail loudly. Caching an empty answer would corrupt every downstream
         # result while looking perfectly healthy in a table.
         if not text:
-            text = self._call_with_backoff(messages, temp, max_tokens * 4)
+            text = self._call_with_backoff(messages, temp, max_tokens * 4, on_output_cap)
         if not text:
             raise RuntimeError(
                 f"{self.model} produced no answer outside its reasoning trace, even at "
@@ -462,7 +493,8 @@ class LLM:
                 )
             raise
 
-    def _call_with_backoff(self, messages, temperature: float, max_tokens: int) -> str:
+    def _call_with_backoff(self, messages, temperature: float, max_tokens: int,
+                           on_output_cap: str = "shrink") -> str:
         """
         Pace first, then retry what is worth retrying.
 
@@ -475,16 +507,36 @@ class LLM:
         delay = 2.0
         last_error: Optional[Exception] = None
         attempt = 0
+        budget = max_tokens
+        shrinks = 0
 
-        for attempt in range(self.max_retries):
+        for attempt in range(self.max_retries + OTPM_MAX_SHRINKS):
             try:
-                response = self._create(messages, temperature, max_tokens)
+                response = self._create(messages, temperature, budget)
                 self.calls_made += 1
                 self.tokens_sent += payload_tokens
-                return strip_reasoning(response.choices[0].message.content or "")
+                choice = response.choices[0]
+                if getattr(choice, "finish_reason", None) == "length":
+                    self.truncated_calls = getattr(self, "truncated_calls", 0) + 1
+                return strip_reasoning(choice.message.content or "")
             except Exception as exc:  # noqa: BLE001 - providers raise varied types
                 last_error = exc
                 message = str(exc).lower()
+                otpm = _OTPM.search(message)
+                if otpm and "request too large" in message:
+                    limit, requested = int(otpm.group(1)), int(otpm.group(2))
+                    if on_output_cap == "raise":
+                        raise OutputCapExceeded(limit, requested, budget) from exc
+                    smaller = limit - OTPM_MARGIN
+                    if shrinks >= OTPM_MAX_SHRINKS or smaller >= budget:
+                        break
+                    shrinks += 1
+                    self.budget_reductions = getattr(self, "budget_reductions", 0) + 1
+                    if self.verbose:
+                        print(f"    output-per-minute cap {limit}: retrying with "
+                              f"max_tokens {budget} -> {smaller}")
+                    budget = smaller
+                    continue                       # no sleep, no rate-limit penalty
                 if any(token in message for token in
                        ("404", "not_found", "no longer available", "does not exist")):
                     raise ModelUnavailable(
@@ -493,7 +545,8 @@ class LLM:
                     ) from exc
                 retryable = any(token in message for token in
                                 ("rate", "429", "quota", "timeout", "503", "502", "overload"))
-                if not retryable or attempt == self.max_retries - 1:
+                # Shrink retries do not use up the ordinary retry budget.
+                if not retryable or attempt - shrinks >= self.max_retries - 1:
                     break
 
                 # Groq states it in prose: "on tokens per day (TPD): Limit
@@ -553,6 +606,8 @@ class LLM:
             "requests_today": self.throttle.day_count,
             "effective_rpm": self.throttle.effective_rpm,
             "rate_limit_hits": self.throttle.throttle_events,
+            "budget_reductions": getattr(self, "budget_reductions", 0),
+            "truncated_calls": getattr(self, "truncated_calls", 0),
             "rpd_limit": self.limits.rpd,
             **self.cache.stats(),
         }

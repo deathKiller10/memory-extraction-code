@@ -184,3 +184,65 @@ def test_stats_expose_disk_health(tmp_path):
     stats = cache.stats()
     assert stats["disk_ok"] is True
     assert stats["entries_on_disk"] >= 1
+
+
+# ---- 8 Nov: one Drive round trip per read, and parallel batch reads ----------
+
+def test_get_many_equals_get_in_a_loop(tmp_path):
+    from bapca.cache import DiskCache, clear_memo
+    cache = DiskCache("t", root=tmp_path)
+    keys = [DiskCache.make_key(i=i) for i in range(40)]
+    for i, k in enumerate(keys[:30]):
+        cache.put(k, {"v": i})
+    torn = cache._path(keys[30], create=True)
+    torn.write_text('{"value": ', encoding="utf-8")              # killed mid-write
+    clear_memo()
+    one = DiskCache("t", root=tmp_path)
+    loop = [one.get(k) for k in keys]
+    clear_memo()
+    many = DiskCache("t", root=tmp_path)
+    batch = many.get_many(keys)
+    assert batch == loop
+    assert batch[:30] == [{"v": i} for i in range(30)] and batch[30:] == [None] * 10
+    assert (many.hits, many.misses) == (one.hits, one.misses) == (30, 10)
+    again = many.get_many(keys)                                   # now from memory
+    assert again == batch and many.memo_hits == 30
+
+
+def test_a_read_creates_no_folders(tmp_path):
+    from bapca.cache import DiskCache, clear_memo
+    cache = DiskCache("t", root=tmp_path)
+    clear_memo()
+    assert cache.get(DiskCache.make_key(x=1)) is None
+    assert cache.get_many([DiskCache.make_key(x=2)]) == [None]
+    assert list((tmp_path / "t").iterdir()) == []                 # nothing made on read
+    cache.put(DiskCache.make_key(x=1), 5)
+    clear_memo()
+    assert cache.get(DiskCache.make_key(x=1)) == 5
+
+
+def test_embedder_reads_its_cache_in_one_batch_and_matches_a_fresh_encode(tmp_path, monkeypatch):
+    """The real Embedder path (model stubbed): fresh vectors are cached, and a
+    later batch read returns exactly them, in order, without the model."""
+    import numpy as np
+    from bapca import cache as cache_mod
+    from bapca.cache import clear_memo
+    from bapca.embeddings import Embedder
+    monkeypatch.setenv("BAPCA_CACHE_DIR", str(tmp_path))
+
+    class Model:
+        calls = 0
+        def encode(self, texts, **kw):
+            Model.calls += 1
+            return np.array([[float(len(t)), float(sum(map(ord, t)) % 97), 1.0] for t in texts])
+
+    emb = Embedder()
+    monkeypatch.setattr(emb, "_load", lambda: Model())
+    texts = ["alpha", "beta gamma", "alpha", "delta"]
+    first = emb.encode(texts)
+    assert Model.calls == 1
+    clear_memo()
+    again = Embedder()
+    monkeypatch.setattr(again, "_load", lambda: (_ for _ in ()).throw(AssertionError("model used")))
+    second = again.encode(texts)
+    assert np.allclose(first, second) and second.shape == (4, 3)

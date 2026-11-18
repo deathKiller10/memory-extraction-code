@@ -1,0 +1,145 @@
+{
+ "method": "calibrated: judge_rate*ppv + (1-judge_rate)*fo",
+ "conditions": {
+  "no_memory": {
+   "target_file": "results/pilot_n100_seed42.json",
+   "n": 100,
+   "judge": 0.37,
+   "annotators": {
+    "annotator1": {
+     "n_annotated": 24,
+     "ppv": 0.45454545454545453,
+     "fo": 0.07692307692307693,
+     "human_hat": 0.21664335664335665,
+     "ci": [
+      0.08167832167832167,
+      0.37777777777777777
+     ]
+    },
+    "annotator2": {
+     "n_annotated": 24,
+     "ppv": 0.4,
+     "fo": 0.0,
+     "human_hat": 0.148,
+     "ci": [
+      0.03636363636363637,
+      0.27749999999999997
+     ]
+    }
+   },
+   "human_hat_mean": 0.18232167832167834
+  },
+  "full_context": {
+   "target_file": "results/pilot_n401_seed42_full_context.json",
+   "n": 401,
+   "judge": 0.45885286783042395,
+   "annotators": {
+    "annotator1": {
+     "n_annotated": 52,
+     "ppv": 0.6,
+     "fo": 0.09090909090909091,
+     "human_hat": 0.3245069145318522,
+     "ci": [
+      0.2190031457304451,
+      0.4372722041051218
+     ]
+    },
+    "annotator2": {
+     "n_annotated": 48,
+     "ppv": 0.5357142857142857,
+     "fo": 0.1,
+     "human_hat": 0.29992874955468474,
+     "ci": [
+      0.1915211970074813,
+      0.41913365406809655
+     ]
+    }
+   },
+   "human_hat_mean": 0.3122178320432685
+  },
+  "system_llm": {
+   "target_file": "results/system_n401_seed42_llm3_d1_notrig_events.json",
+   "n": 401,
+   "judge": 0.5760598503740648,
+   "annotators": {
+    "annotator1": {
+     "n_annotated": 40,
+     "ppv": 0.7083333333333334,
+     "fo": 0.25,
+     "human_hat": 0.5140274314214464,
+     "ci": [
+      0.3732965565883272,
+      0.6495751217567367
+     ]
+    },
+    "annotator2": {
+     "n_annotated": 38,
+     "ppv": 0.7083333333333334,
+     "fo": 0.07142857142857142,
+     "human_hat": 0.43832383327395796,
+     "ci": [
+      0.31785015575539266,
+      0.5650728251834183
+     ]
+    }
+   },
+   "human_hat_mean": 0.47617563234770216
+  },
+  "oracle_cue": {
+   "target_file": "results/pilot_n100_seed42.json",
+   "n": 100,
+   "judge": 0.72,
+   "annotators": {
+    "annotator1": {
+     "n_annotated": 24,
+     "ppv": 0.9444444444444444,
+     "fo": 0.0,
+     "human_hat": 0.6799999999999999,
+     "ci": [
+      0.5571428571428572,
+      0.79
+     ]
+    },
+    "annotator2": {
+     "n_annotated": 22,
+     "ppv": 0.8888888888888888,
+     "fo": 0.0,
+     "human_hat": 0.6399999999999999,
+     "ci": [
+      0.5028571428571429,
+      0.77
+     ]
+    }
+   },
+   "human_hat_mean": 0.6599999999999999
+  },
+  "oracle_constraint": {
+   "target_file": "results/pilot_n100_seed42.json",
+   "n": 97,
+   "judge": 0.8762886597938144,
+   "annotators": {
+    "annotator1": {
+     "n_annotated": 25,
+     "ppv": 0.95,
+     "fo": 0.2,
+     "human_hat": 0.8572164948453608,
+     "ci": [
+      0.7300843486410497,
+      0.9505154639175257
+     ]
+    },
+    "annotator2": {
+     "n_annotated": 25,
+     "ppv": 0.85,
+     "fo": 0.2,
+     "human_hat": 0.7695876288659794,
+     "ci": [
+      0.6000803320390949,
+      0.9134020618556701
+     ]
+    }
+   },
+   "human_hat_mean": 0.8134020618556701
+  }
+ }
+}

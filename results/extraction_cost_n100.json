@@ -1,0 +1,10 @@
+{
+ "n_items": 100,
+ "seed": 42,
+ "window_turns": 12,
+ "strip_trigger": true,
+ "median_windows_per_item": 45.0,
+ "min_windows": 21,
+ "max_windows": 53,
+ "distinct_windows": 569
+}

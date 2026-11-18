@@ -37,11 +37,13 @@ from bapca.embeddings import Embedder
 from bapca.evaluation import ASSISTANT_SYSTEM, judge_response
 from bapca.llm import (DailyQuotaExhausted, PromptTooLarge,
                        TransientProviderError, generator, judge)
-from bapca.pipeline import (EXTRACT_PROMPTS, RERANK_PROMPTS, SystemConfig, build_store,
-                            estimate_unique_windows,
-                            extract_notes, hit_rate, locate_evidence_window,
+from bapca.pipeline import (EXTRACT_PROMPTS, FACTS_PROTOCOL, FACTS_STATS,
+                            RERANK_PROMPTS, SELECT_MODES,
+                            WRITE_BUDGETS, WRITE_POLICIES, SystemConfig, build_store,
+                            estimate_unique_windows, hit_rate,
+                            locate_evidence_window, notes_from_window,
                             render_prompt, segment, select_notes,
-                            strip_trigger)
+                            strip_trigger, write_notes)
 from bapca.stats import Proportion, mcnemar
 
 RESULTS_DIR = Path("results")
@@ -63,13 +65,29 @@ MEASURED_WINDOW_TOKENS = 529
 EXTRACTION_OVERHEAD = TOKENS_PER_EXTRACTION - MEASURED_WINDOW_TOKENS
 
 
-def tokens_per_extraction(window_texts) -> int:
+# The grid's new write policies. Measured 27 Oct with Groq's own usage
+# (scripts/measure_call_cost.py, 3 real windows each): summary 721 tokens a
+# call (completion 110-195); facts 1,255 a call at a 700-token cap that cut
+# 2 of 3 lists short, so uncapped (2,048) it is higher -- ~1,000 completion
+# is assumed below. Overhead = instructions + completion, on top of the
+# window. "raw" makes no call at all.
+POLICY_OVERHEAD = {"v1": EXTRACTION_OVERHEAD, "events": EXTRACTION_OVERHEAD,
+                   "facts": 1_260, "summary": 390, "raw": None}
+# Yuan et al.'s pooled re-rank shows up to 2 * 3k = 18 candidates cut to 200
+# characters (~50 tokens): ~900 in, plus instructions and the reply.
+POOL_RERANK_TOKENS = 1_100
+
+
+def tokens_per_extraction(window_texts, policy: str = "v1") -> int:
     """Estimated Groq tokens for one extraction call on windows like these."""
+    overhead = POLICY_OVERHEAD.get(policy, EXTRACTION_OVERHEAD)
+    if overhead is None:
+        return 0
     texts = list(window_texts)
     if not texts:
-        return TOKENS_PER_EXTRACTION
+        return overhead + MEASURED_WINDOW_TOKENS
     mean = sum(len(t) // 4 for t in texts) / len(texts)
-    return round(EXTRACTION_OVERHEAD + mean)
+    return round(overhead + mean)
 
 
 def resume_command(args) -> str:
@@ -97,6 +115,8 @@ def resume_command(args) -> str:
         flags += f" --extract {args.extract}"
     if args.rerank != "v1":
         flags += f" --rerank {args.rerank}"
+    if getattr(args, "no_merge", False):
+        flags += " --no-merge"
     if args.category != "Cognitive":
         flags += f" --category {args.category}"
     return f"!python scripts/run_system.py {flags}"
@@ -188,7 +208,8 @@ def dry_run(samples, config, strip: bool = False, select: str = "llm",
     # line below said 360. Two numbers, one label, disagreeing on the same
     # screen. Say the payable figure once, here, and let the breakdown agree.
     print(f"  already cached:     {cached_windows:,}")
-    print(f"  NEW windows to extract: {max(0, unique - cached_windows):,}"
+    payable = 0 if extract == "raw" else max(0, unique - cached_windows)
+    print(f"  NEW windows to extract: {payable:,}"
           "   <- what we actually pay for")
     print("\n  The ten base conversations repeat across items, and extraction is")
     print("  keyed by window text, so the repeats cost nothing.")
@@ -199,8 +220,11 @@ def dry_run(samples, config, strip: bool = False, select: str = "llm",
     # `--extract events` run by 100 calls against an RPD of 1,000, which is the
     # difference between "one run fits today" and "it does not".
     new_windows = max(0, unique - cached_windows)
+    if extract == "raw":
+        new_windows = 0          # raw chunks: no LLM call at write time
+        print("  write policy 'raw': 3-turn chunks, no extraction calls at all.")
     new_items = len(samples) - len(recorded)
-    rerank = new_items if select in ("llm", "hybrid") else 0
+    rerank = new_items if select in ("llm", "hybrid", "pool") else 0
     groq = new_windows + rerank + new_items  # extraction + re-ranking + judging
     gemini = new_items                      # generation
     print(f"\n  Groq   (extract {new_windows:,} + re-rank {rerank:,} + judge "
@@ -213,8 +237,17 @@ def dry_run(samples, config, strip: bool = False, select: str = "llm",
     # under-priced the day by 40% and hid the fact that the limit which
     # actually stops a run is TOKENS per day, not requests. Bug 16.
     per_call = tokens_per_extraction(
-        {w.text for src in sources for w in segment(src, config.window_turns)})
-    groq_tokens = new_windows * per_call + rerank * 600 + new_items * 900
+        {w.text for src in sources for w in segment(src, config.window_turns)},
+        policy=extract)
+    per_rerank = POOL_RERANK_TOKENS if select == "pool" else 600
+    if select in ("llm", "hybrid") and extract == "facts":
+        # The llm re-ranker lists EVERY note. 600 was measured on ~30 short
+        # notes; facts writes ~150 per item (~20 tokens each). Estimate. (25 Oct)
+        per_rerank = 3_500
+    groq_tokens = new_windows * per_call + rerank * per_rerank + new_items * 900
+    if extract in ("facts", "summary") or select == "pool":
+        print("\n  NOTE: the per-call figures for this policy/selector are estimates,")
+        print("  not yet measured. Check the first day's 429 against them.")
     minutes = max(groq / 30, groq_tokens / 8000) + len(samples) / 15
     print(f"\n  Groq tokens: ~{groq_tokens:,}  ({per_call}/extraction: "
           f"{TOKENS_PER_EXTRACTION} measured 1 Sep on Cognitive windows, "
@@ -247,13 +280,17 @@ def main() -> int:
     parser.add_argument("--window-turns", type=int, default=12)
     parser.add_argument("--days-per-window", type=float, default=1.0,
                         help="how fast to age older windows; 7.0 pruned most notes")
-    parser.add_argument("--select", choices=["carry", "similar", "llm", "hybrid"],
+    parser.add_argument("--select", choices=["carry", *SELECT_MODES, "oracle_window"],
                         default="carry",
                         help="carry everything, retrieve by similarity, let a model "
-                             "choose, or a model with similarity filling empty slots")
+                             "choose, or a model with similarity filling empty slots. "
+                             "Grid (24 Oct): 'bm25' and 'pool' are Yuan et al.'s BM25 "
+                             "and Hybrid+Rerank; 'oracle_window' is a MEASUREMENT -- "
+                             "it answers from every note written from the cue's "
+                             "window, which prices the write stage alone.")
     parser.add_argument("--top-k", type=int, default=3,
                         help="notes to retrieve when --select similar/llm/hybrid")
-    parser.add_argument("--extract", choices=sorted(EXTRACT_PROMPTS), default="v1",
+    parser.add_argument("--extract", choices=sorted(WRITE_POLICIES), default="v1",
                         help="extraction wording. 'v1' discards one-off events, which "
                              "is every gold cue in this benchmark; 'events' asks for the "
                              "event AND the change it caused. Switching invalidates the "
@@ -269,6 +306,9 @@ def main() -> int:
                         help="remove the query from the end of the conversation before "
                              "segmenting, so extraction cannot write a note that merely "
                              "restates the question (see pipeline.strip_trigger)")
+    parser.add_argument("--no-merge", action="store_true",
+                        help="never merge near-duplicate notes in the store (cosine > 0.85). "
+                             "Sensitivity check for summaries, 3 Nov; HANDOFF 20.8.")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--category", default="Cognitive",
                         help="which LoCoMo-Plus split to evaluate. The loader "
@@ -286,6 +326,7 @@ def main() -> int:
     args = parser.parse_args()
 
     config = SystemConfig(window_turns=args.window_turns, carry=args.carry,
+                          merge=not args.no_merge,
                           days_per_window=args.days_per_window)
     data = LocomoPlus()
     samples = data.subset(args.n, seed=args.seed, category=args.category)
@@ -308,6 +349,8 @@ def main() -> int:
         tag += f"_{args.extract}"
     if args.rerank != "v1":
         tag += f"_{args.rerank}"       # bug 12: every configuration, its own file
+    if args.no_merge:
+        tag += "_nomerge"
     if args.category != "Cognitive":
         # bug 12 again: a different split is a different experiment and must
         # never share a results file with the Cognitive run.
@@ -343,13 +386,25 @@ def main() -> int:
     for i, sample in enumerate(samples, 1):
         if sample.index in finished:
             continue
+        reduced0 = getattr(jdg, "budget_reductions", 0)
+        truncated0 = getattr(jdg, "truncated_calls", 0)
+        split0, kept0 = FACTS_STATS["split_windows"], FACTS_STATS["truncated_kept"]
+        capped0 = FACTS_STATS["capped_windows"]
         try:
             windows = segment(_source(sample, args.strip_trigger), config.window_turns)
-            notes = extract_notes(jdg, windows,  # the judge provider: small prompts
-                                  prompt=EXTRACT_PROMPTS[args.extract])
+            notes = write_notes(jdg, windows, args.extract)  # judge provider
             store = build_store(notes, embedder, config)
-            chosen = select_notes(store, sample, embedder, mode=args.select,
-                                  top_k=args.top_k, llm=jdg, rerank=args.rerank)
+            if args.select == "oracle_window":
+                # Measurement, not the system: the gold evidence locates the
+                # window, and every surviving note written from it is shown.
+                from datetime import datetime as _dt
+                query = embedder.encode_one(sample.trigger)
+                survivors = store.retrieve(query, _dt(2026, 1, 1)).standing_hits
+                chosen = notes_from_window(
+                    survivors, locate_evidence_window(windows, sample.evidence))
+            else:
+                chosen = select_notes(store, sample, embedder, mode=args.select,
+                                      top_k=args.top_k, llm=jdg, rerank=args.rerank)
         except DailyQuotaExhausted as exc:
             # Bug 16: a cold extraction pass costs ~3x the Groq daily TOKEN
             # budget, so stopping partway through is the normal case, not a
@@ -425,7 +480,31 @@ def main() -> int:
                          carried=carried, evidence_found=bool(found),
                          strip_trigger=bool(args.strip_trigger),
                          extract=args.extract, rerank=args.rerank,
-                         all_notes=[f"[{n.mem_type.value}] {n.text}" for n in notes]))
+                         # Recorded per row since 24 Oct: a grid run spans
+                         # days and the model is re-probed each day, so a
+                         # silent switch must be visible in the data.
+                         generator=gen.model, judge=jdg.model,
+                         # facts/summary output cap; run_grid refuses to
+                         # resume a file written under a different one.
+                         write_budget=WRITE_BUDGETS.get(args.extract),
+                         merge=not args.no_merge,
+                         # Groq calls made FOR THIS ITEM (cached ones cost
+                         # nothing and are not counted): retried at a smaller
+                         # max_tokens under the OTPM cap, and stopped on
+                         # max_tokens. Summed over a cell, these say how many
+                         # write calls were shortened. (5 Nov)
+                         groq_calls_budget_reduced=getattr(jdg, "budget_reductions", 0) - reduced0,
+                         groq_calls_truncated=getattr(jdg, "truncated_calls", 0) - truncated0,
+                         # facts only (8 Nov, rule v3): extraction rule version;
+                         # windows Groq refused at 2048 and re-asked whole at
+                         # 936; windows split because the list did not fit;
+                         # parts kept although still cut off (should stay 0).
+                         facts_protocol=FACTS_PROTOCOL if args.extract == "facts" else None,
+                         facts_split_windows=FACTS_STATS["split_windows"] - split0,
+                         facts_truncated_kept=FACTS_STATS["truncated_kept"] - kept0,
+                         facts_capped_windows=FACTS_STATS["capped_windows"] - capped0,
+                         all_notes=[f"[{n.mem_type.value}] {n.text}" if n.typed
+                                    else n.text for n in notes]))
         out.write_text(json.dumps(rows, indent=1), encoding="utf-8")
 
         print(f"  [{i:>3}/{len(samples)}] #{sample.index:<5} {verdict.label:<9} "

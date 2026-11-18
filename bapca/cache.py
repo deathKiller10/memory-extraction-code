@@ -60,10 +60,23 @@ class DiskCache:
         blob = json.dumps(parts, sort_keys=True, default=str, ensure_ascii=False)
         return hashlib.sha256(blob.encode("utf-8")).hexdigest()
 
-    def _path(self, key: str) -> Path:
+    def _path(self, key: str, create: bool = False) -> Path:
+        # 8 Nov: mkdir on every READ cost a Drive round trip (~0.3 s over the
+        # FUSE mount) on top of exists() and open(): ~12 min per facts item
+        # just to read ~800 cached embeddings. Folders are made only on write.
         shard = self.root / key[:2]
-        shard.mkdir(parents=True, exist_ok=True)
+        if create:
+            shard.mkdir(parents=True, exist_ok=True)
         return shard / f"{key}.json"
+
+    @staticmethod
+    def _read(path: Path):
+        """(found, value). A missing or torn file is (False, None)."""
+        try:
+            with path.open("r", encoding="utf-8") as fh:
+                return True, json.load(fh)["value"]
+        except (FileNotFoundError, json.JSONDecodeError, KeyError, OSError):
+            return False, None
 
     def _memo_key(self, key: str) -> tuple[str, str]:
         return (str(self.root), key)
@@ -77,22 +90,42 @@ class DiskCache:
             self.memo_hits += 1
             return _MEMO[memo_key]
 
-        path = self._path(key)
-        if not path.exists():
+        # One open() -- no exists(), no mkdir. A truncated file (Colab runtime
+        # killed mid-write) is a miss, never a crash.
+        found, value = self._read(self._path(key))
+        if not found:
             self.misses += 1
             return None
-        try:
-            with path.open("r", encoding="utf-8") as fh:
-                value = json.load(fh)["value"]
-        except (json.JSONDecodeError, KeyError, OSError):
-            # A truncated file (Colab runtime killed mid-write) is a miss,
-            # never a crash.
-            self.misses += 1
-            return None
-
         _MEMO[memo_key] = value
         self.hits += 1
         return value
+
+    def get_many(self, keys: list, workers: int = 16) -> list:
+        """get() for a batch, reading uncached files in parallel: over Drive the
+        time is all round-trip latency, so 16 at once is ~16x faster. Same
+        values, same hit/miss counts as calling get() in a loop."""
+        out = [None] * len(keys)
+        todo = []
+        for i, key in enumerate(keys):
+            memo_key = self._memo_key(key)
+            if memo_key in _MEMO:
+                self.hits += 1
+                self.memo_hits += 1
+                out[i] = _MEMO[memo_key]
+            else:
+                todo.append(i)
+        if todo:
+            from concurrent.futures import ThreadPoolExecutor
+            with ThreadPoolExecutor(max_workers=min(workers, len(todo))) as pool:
+                found = list(pool.map(lambda i: self._read(self._path(keys[i])), todo))
+            for i, (ok, value) in zip(todo, found):
+                if ok:
+                    _MEMO[self._memo_key(keys[i])] = value
+                    self.hits += 1
+                    out[i] = value
+                else:
+                    self.misses += 1
+        return out
 
     def _write_file(self, path: Path, payload: dict) -> None:
         """Atomic rename where possible; plain write where the FS refuses it."""
@@ -114,7 +147,7 @@ class DiskCache:
         _MEMO[self._memo_key(key)] = value
 
         payload = {"value": value, "meta": meta or {}}
-        path = self._path(key)
+        path = self._path(key, create=True)
         with _LOCK:
             try:
                 self._write_file(path, payload)

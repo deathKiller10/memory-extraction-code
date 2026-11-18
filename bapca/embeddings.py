@@ -58,8 +58,8 @@ class Embedder:
         vectors: list[Optional[np.ndarray]] = []
         missing_idx: list[int] = []
 
-        for i, text in enumerate(texts):
-            cached = self.cache.get(self._key(text))
+        found = self.cache.get_many([self._key(t) for t in texts])
+        for i, cached in enumerate(found):
             if cached is None:
                 vectors.append(None)
                 missing_idx.append(i)

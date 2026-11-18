@@ -477,3 +477,85 @@ def test_run_system_skips_a_stalled_item_and_stops_after_three():
     assert "MAX_CONSECUTIVE_STALLS = 3" in source
     assert "stalled = 0" in source          # reset after a good item
     assert "stalled >= MAX_CONSECUTIVE_STALLS" in source
+
+
+# ---------------------------------------------------------------------------
+# 5 Nov: Groq's per-request output cap (OTPM) refused two facts extractions
+# ---------------------------------------------------------------------------
+
+GROQ_OTPM_413 = (
+    "Error code: 429 - {'error': {'message': \"Request too large for model "
+    "`qwen/qwen3.8-27b` in organization `org_x` service tier `on_demand` on output "
+    "tokens per minute (OTPM): Limit 1000, Requested 1544. The request's expected "
+    "output tokens exceed the enforced limit; reduce max_tokens (or the request's "
+    "expected output) and try again.\", 'type': 'tokens', 'code': 'rate_limit_exceeded'}}"
+)
+
+
+def _otpm_client(responses):
+    """responses: list of exceptions-or-(text, finish_reason) consumed in order."""
+    from types import SimpleNamespace
+    from bapca.llm import LLM
+
+    class Stub(LLM):
+        def __init__(self):
+            pass
+        def _create(self, messages, temperature, max_tokens):
+            Stub.budgets.append(max_tokens)
+            item = responses.pop(0)
+            if isinstance(item, Exception):
+                raise item
+            text, finish = item
+            return SimpleNamespace(choices=[SimpleNamespace(
+                finish_reason=finish, message=SimpleNamespace(content=text))])
+
+    Stub.budgets = []
+    c = Stub()
+    c.provider, c.model = ROLES["judge"][0], "qwen/qwen3.8-27b"
+    c.limits = ROLES["judge"][2]
+    c.throttle = Throttle(c.limits)
+    c.max_retries = 7
+    c.calls_made = c.tokens_sent = 0
+    c.budget_reductions = c.truncated_calls = 0      # as LLM.__init__ sets them
+    c.verbose = False
+    c._reasoning_ok = True
+    return c, Stub
+
+
+def test_an_otpm_refusal_is_retried_at_once_with_a_smaller_budget(monkeypatch):
+    import time as _time
+    monkeypatch.setattr(_time, "sleep", lambda *_: (_ for _ in ()).throw(
+        AssertionError("an OTPM refusal must not sleep")))
+    client, stub = _otpm_client([RuntimeError(GROQ_OTPM_413), ('{"facts": []}', "stop")])
+    rpm_before = client.throttle.effective_rpm
+    out = client._call_with_backoff([{"role": "user", "content": "hi"}], 0.0, 2048)
+    assert out == '{"facts": []}'
+    assert stub.budgets == [2048, 1000 - 64]       # one step, straight under the cap
+    assert client.budget_reductions == 1 and client.truncated_calls == 0
+    assert client.throttle.effective_rpm == rpm_before      # no rate-limit penalty
+
+
+def test_an_otpm_refusal_that_never_clears_gives_up_after_three_shrinks(monkeypatch):
+    import time as _time
+    from bapca.llm import OTPM_MAX_SHRINKS, TransientProviderError
+    monkeypatch.setattr(_time, "sleep", lambda *_: None)
+    client, stub = _otpm_client([RuntimeError(GROQ_OTPM_413)] * 10)
+    with pytest.raises(TransientProviderError):
+        client._call_with_backoff([{"role": "user", "content": "hi"}], 0.0, 4096)
+    assert len(stub.budgets) == OTPM_MAX_SHRINKS + 1
+    assert stub.budgets == sorted(stub.budgets, reverse=True)
+
+
+def test_raise_mode_hands_an_otpm_refusal_to_the_caller():
+    from bapca.llm import OutputCapExceeded
+    client, stub = _otpm_client([RuntimeError(GROQ_OTPM_413)])
+    with pytest.raises(OutputCapExceeded) as info:
+        client._call_with_backoff([{"role": "user", "content": "hi"}], 0.0, 2048, "raise")
+    assert (info.value.limit, info.value.requested, info.value.budget) == (1000, 1544, 2048)
+    assert stub.budgets == [2048] and client.budget_reductions == 0
+
+
+def test_a_reply_cut_off_by_max_tokens_is_counted(monkeypatch):
+    client, _ = _otpm_client([('{"facts": [{"fact": "a"', "length")])
+    client._call_with_backoff([{"role": "user", "content": "hi"}], 0.0, 2048)
+    assert client.truncated_calls == 1
