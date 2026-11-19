@@ -437,6 +437,14 @@ def main():
     macro("LiCogMax", "26.06")
     macro("LiKappaLo", "0.80")
     macro("LiKappaHi", "0.82")
+    # Later systems scored on the same 401 Cognitive items under the benchmark's
+    # protocol, but with their own answer models and judges (19 Nov re-check):
+    # T-Mem (Guo et al., arXiv 2606.15405, Table 3; GPT-4o answers,
+    # Gemini-2.5-Flash judge) and JustMem (Chen et al., arXiv 2609.19877,
+    # Table 6; GPT-4.1-mini builds, answers and judges). THEIR published
+    # numbers, kept here so the prose types none of them.
+    macro("TMemCog", "74.81")
+    macro("JustMemCog", "62.59")
     rec_file = Path("results/reconcile_judge.json")
     if rec_file.exists():
         rec = json.loads(rec_file.read_text(encoding="utf-8"))["conditions"]
