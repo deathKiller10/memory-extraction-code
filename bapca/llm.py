@@ -45,6 +45,7 @@ except ImportError:  # pragma: no cover - import guard for a clearer message
 
 GROQ_BASE = "https://api.groq.com/openai/v1"
 GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/openai/"
+COHERE_BASE = "https://api.cohere.ai/compatibility/v1"
 
 CHARS_PER_TOKEN = 4  # rough, but we only need it to pace requests and warn early
 
@@ -62,6 +63,7 @@ class Provider:
                 f"No API key found. Set the {self.api_key_env} environment variable.\n"
                 f"  Groq   -> https://console.groq.com/keys      (key starts 'gsk_')\n"
                 f"  Gemini -> https://aistudio.google.com/apikey (key starts 'AIza')\n"
+                f"  Cohere -> https://dashboard.cohere.com/api-keys (free trial key)\n"
                 f"In Colab: use the key icon in the left sidebar to add it as a secret."
             )
         return key
@@ -69,6 +71,7 @@ class Provider:
 
 GROQ = Provider("groq", GROQ_BASE, "GROQ_API_KEY")
 GEMINI = Provider("gemini", GEMINI_BASE, "GEMINI_API_KEY")
+COHERE = Provider("cohere", COHERE_BASE, "COHERE_API_KEY")
 
 
 @dataclass
@@ -121,10 +124,25 @@ ROLES: dict[str, tuple[Provider, list[tuple[str, tuple[str, ...]]], Limits]] = {
         [("gpt-oss-120b", ()), ("gpt-oss-20b", ()), ("kimi", ()), ("llama", ())],
         Limits(rpm=30, tpm=8_000, rpd=1_000, tpd=200_000),
     ),
+    # 19 Nov: a SECOND ANSWERING MODEL, for the robustness check a reviewer
+    # will ask for (one generator, one judge). Cohere: a third vendor and a
+    # third family (the generator is Gemini, the judge Qwen on Groq). Its free
+    # TRIAL key allows 20 requests/minute and 1,000 calls a MONTH -- the run
+    # needs ~700 -- and Command A takes 256k tokens, enough for the 21k-token
+    # full-context prompts that Groq's 8k/minute cannot take. (Mistral was the
+    # first choice; it withdrew its free API tier in Nov 2026.) Only the
+    # answering changes: notes, selection and judging stay on the judge
+    # provider and come from the cache. The model is PINNED (COHERE_MODEL):
+    # no list/probe calls out of a 1,000-call month, and no drift mid-run.
+    "generator2": (
+        COHERE,
+        [("command-a", ("plus", "reasoning", "vision", "translate", "arabic"))],
+        Limits(rpm=18, tpm=1_000_000, rpd=1_000, tpd=None),
+    ),
 }
 
 AVOID = ("whisper", "tts", "embed", "guard", "moderation", "image", "audio",
-         "video", "orpheus", "compound")
+         "video", "orpheus", "compound", "ocr", "transcribe")
 
 PROBE_PROMPT = "Reply with exactly one word: ready"
 PROBE_MAX_TOKENS = 512  # generous, so a reasoning model still reaches its answer
@@ -197,6 +215,32 @@ class DailyQuotaExhausted(RuntimeError):
 
 def estimate_tokens(text: str) -> int:
     return len(text) // CHARS_PER_TOKEN
+
+
+def content_text(content) -> str:
+    """
+    The answer text of a chat message. Most providers return a string; Mistral's
+    reasoning-capable models can return a LIST of chunks, e.g.
+    [{"type": "thinking", ...}, {"type": "text", "text": "..."}]. Keep only the
+    text chunks -- thinking is never the answer. (19 Nov)
+    """
+    if content is None:
+        return ""
+    if isinstance(content, str):
+        return content
+    parts = []
+    for chunk in content:
+        kind = chunk.get("type") if isinstance(chunk, dict) else getattr(chunk, "type", None)
+        text = chunk.get("text") if isinstance(chunk, dict) else getattr(chunk, "text", None)
+        if kind == "text" and isinstance(text, str):
+            parts.append(text)
+    return "".join(parts)
+
+
+def _date_suffix(model_id: str) -> int:
+    """mistral-small-2603 -> 2603 (YYMM); 0 when the id carries no date."""
+    m = re.search(r"-(\d{4})$", model_id)
+    return int(m.group(1)) if m else 0
 
 
 def strip_reasoning(text: str) -> str:
@@ -368,9 +412,9 @@ class LLM:
                 if want in lowered and not any(bad in lowered for bad in forbid):
                     rank = i
                     break
-            ranked.append((rank, -_version_of(model_id), model_id))
+            ranked.append((rank, -_version_of(model_id), -_date_suffix(model_id), model_id))
         ranked.sort()
-        return [model_id for _, _, model_id in ranked]
+        return [model_id for _, _, _, model_id in ranked]
 
     def probe(self, model_id: str) -> bool:
         """Does this model return a real, non-reasoning answer? Costs one call."""
@@ -384,7 +428,7 @@ class LLM:
                 extra_body=reasoning_kwargs(self.provider.name, model_id) or None,
             )
             self.calls_made += 1
-            text = strip_reasoning(response.choices[0].message.content or "")
+            text = strip_reasoning(content_text(response.choices[0].message.content))
             if not text and self.verbose:
                 print(f"    {model_id}: no answer outside its reasoning -- skipping")
             return bool(text)
@@ -447,12 +491,38 @@ class LLM:
         if cached:  # an empty cached string is a miss, not a hit
             return cached
 
+        # 19 Nov: remember Groq's output-cap REFUSALS too. A refused request
+        # returns no text, so nothing was cached and every re-run paid for the
+        # refusal again: ~140 capped facts windows x ~7 repeats per 100 items
+        # is ~1,000 refused requests, Groq's whole daily request limit. The
+        # caller's fallback (whole window at the capped budget) is unchanged,
+        # so results are identical; only the wasted requests go.
+        cap_key = None
+        if on_output_cap == "raise":
+            cap_key = DiskCache.make_key(
+                refused="otpm", provider=self.provider.name, model=self.model,
+                system=system, prompt=prompt, temperature=temp, max_tokens=max_tokens,
+            )
+            refused = self.cache.get(cap_key)
+            if refused:
+                raise OutputCapExceeded(refused["limit"], refused["requested"], max_tokens)
+
         messages = []
         if system:
-            messages.append({"role": "system", "content": system})
+            # Cohere's compatibility API takes the system prompt in the
+            # "developer" role (its docs, 19 Nov); everyone else, "system".
+            role = "developer" if self.provider.name == "cohere" else "system"
+            messages.append({"role": role, "content": system})
         messages.append({"role": "user", "content": prompt})
 
-        text = self._call_with_backoff(messages, temp, max_tokens, on_output_cap)
+        try:
+            text = self._call_with_backoff(messages, temp, max_tokens, on_output_cap)
+        except OutputCapExceeded as exc:
+            if cap_key:
+                self.cache.put(cap_key, {"limit": exc.limit, "requested": exc.requested},
+                               meta={"model": self.model, "provider": self.provider.name,
+                                     "refused": "otpm"})
+            raise
 
         # If the whole budget went on thinking, give it room once more, then
         # fail loudly. Caching an empty answer would corrupt every downstream
@@ -518,7 +588,7 @@ class LLM:
                 choice = response.choices[0]
                 if getattr(choice, "finish_reason", None) == "length":
                     self.truncated_calls = getattr(self, "truncated_calls", 0) + 1
-                return strip_reasoning(choice.message.content or "")
+                return strip_reasoning(content_text(choice.message.content))
             except Exception as exc:  # noqa: BLE001 - providers raise varied types
                 last_error = exc
                 message = str(exc).lower()
@@ -616,6 +686,15 @@ class LLM:
 def generator(model: Optional[str] = None, verbose: bool = True) -> LLM:
     """The system under test. On Gemini because it must swallow 21k-token prompts."""
     return LLM("generator", model, verbose=verbose)
+
+
+COHERE_MODEL = "command-a-03-2025"
+
+
+def generator2(model: Optional[str] = None, verbose: bool = True) -> LLM:
+    """The second answering model (Cohere Command A, pinned), for the
+    robustness check (19 Nov)."""
+    return LLM("generator2", model or COHERE_MODEL, verbose=verbose)
 
 
 def judge(model: Optional[str] = None, verbose: bool = True) -> LLM:

@@ -1,0 +1,2702 @@
+[
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 1989,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction discusses general personal growth and shifting priorities, but does not reference or reflect the specific evidence about cutting sugary drinks due to a cousin's diabetes diagnosis.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 1998,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference the evidence about the bike theft and resulting protective behavior; it merely comments on the travel choice without linking to the prior memory.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 1999,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses inspection praise and double-checking plugs, which does not relate to the evidence about switching to flameless candles after a fire risk.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2001,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction talks about not worrying about contacts at the beach, but it does not reference or incorporate the evidence about Audrey breaking glasses and getting laser eye surgery.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2002,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about walking and routes, which does not reflect or use the evidence about switching to biking after a parking ticket.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2008,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about travel anxiety does not relate to the evidence concerning a cat being microchipped after disappearing.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2009,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses insurance forms and minor injuries unrelated to the provided evidence about Joanna's oven burn and Nate's comment, showing no link to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2014,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about the passport incident or the red folder; it merely asks a generic question unrelated to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2021,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction reflects the idea that experiencing a negative incident (like the bike accident) changes one's perception of risk, which aligns with the evidence about safety becoming non-negotiable after the accident.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2022,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses travel anxiety and knowing hotel layouts, which does not reflect or relate to the evidence about installing security cameras after a break-in.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2026,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the prior incident of lost luggage ('what happened last time'), linking the user's concern about being separated from equipment to the evidence about suitcase loss.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2030,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction acknowledges and asks about the memory technique mentioned in the evidence, showing a clear link.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2033,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses paying extra for private transfer and personal preference, which does not relate to the evidence about Deborah's backpack incident or becoming street\u2011smart.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2035,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction expands on the evidence's theme of removing toxic influences and setting boundaries, showing an implicit link to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2037,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references feeling brain mush after staring at a glowing screen, which aligns with the evidence about getting a migraine from screen use and needing eye protection.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2038,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about adding cheese does not reflect or use the evidence about switching to plant-based meals.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2043,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's decision to set a boundary to avoid ending up like the old supervisor, which directly ties to the evidence about the supervisor's burnout influencing boundary changes.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2049,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or build upon the evidence about volunteering at the shelter; it addresses personal wellbeing without linking to the provided context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2057,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's fear based on seeing a loved one's heart attack, which directly ties to the evidence about Jon's dad's heart attack motivating his cardio routine.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2065,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references fainting from hunger and the importance of eating before events, which directly relates to the evidence about Calvin fainting and changing behavior.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2067,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references how an old object (the boots) triggers intense feelings and reflection on past experiences, directly linking to the evidence about Jon's rejection and gap year in construction.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2069,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references the user's tense reaction to boat imagery and recalls feeling miserable on a boat, which aligns with the evidence about Joanna's seasick ferry experience.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2073,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction addresses the user's worry about returning to negativity after a break from social media, directly relating to the evidence about taking a break due to mood impact.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2084,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction discusses checking health ratings for new food spots, which does not reflect or use the evidence about Evan's food poisoning experience and resulting cooking habit.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2087,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses airline seat upgrades and travel feelings, which have no connection to the evidence about sciatic pain and standing during meetings.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2093,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about panic attacks, shopping at quiet times, or managing anxiety; it offers a generic congratulatory response without linking to the provided context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2096,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses weekend plans and conversation health, which does not reflect or use the evidence about a minor car accident.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2097,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction discusses watching a movie and attention, which does not relate to the evidence about back pain and using a standing desk.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2098,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the shift in reliance on a person, echoing the evidence about stopping contact with the dad and protecting peace, thus linking to the memory.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2100,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction discusses seedling care unrelated to the evidence about basil on a balcony, showing no link to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2102,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses skipping a company retreat and self-care, which does not reflect or use the evidence about James's promotion and motivation.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2103,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses enjoying one's own company and not needing others, but it does not reference or relate to the evidence about missing family or distance.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2105,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction discusses concerns about changing medication dosage and speaking with a doctor, which does not reflect or use the provided evidence about Calvin's relief from antidepressants and Dave's comment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2111,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about biking and traffic safety but does not reference or reflect the evidence about Audrey's anxiety after a driving accident or the trauma discussion.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2121,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction addresses the user's doubt about upgrading their setup, which directly relates to the evidence about switching to ergonomic tools due to wrist soreness.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2122,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's follow\u2011up about revamping a workflow after the earlier mistake and feeling, showing it is linked to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2123,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses panic about phone battery, which does not reflect or relate to the evidence about fear of getting lost while hiking.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2124,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction acknowledges the difficulty of social gatherings due to anxiety (as mentioned in the evidence) and offers low-key, supportive advice, directly linking to the prior discussion.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2126,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction mirrors the evidence's theme of working on Sundays and the resulting burnout, showing an implicit connection to the memory about studying every day, including Sundays.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2128,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses crowded restaurants and exhaustion, which does not reflect or use the evidence about hearing loss and lip-reading in meetings.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2134,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about being cautious after an asthma attack; it gives a generic response without linking to that memory.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2136,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses leaving a family drama due to boredom and asks about a breaking point, but it does not reference or relate to the evidence about Caroline's emotional response to father\u2013child scenes and her dad's dementia.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2147,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or reflect the evidence about the pet loss and emotional impact; it speaks generally about life changes without linking to the given context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2152,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction praises stamina and progress but does not reference or reflect the evidence about knee pain and route planning.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2158,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about personal endurance and dinner plans, which does not reflect or use the evidence about pregnancy fatigue and tiredness.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2160,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about chronic pain and irritability; it merely responds to the user statement without linking to the provided context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2162,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's financial worries and suggests not stressing about money, which directly relates to the evidence about rent increase and constant money concerns.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2167,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or build upon the evidence about Jon's germ awareness and avoidance of shared dishes; it merely comments on hosting without linking to the prior memory.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2169,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references navigating dietary quirks, which aligns with the evidence about Joanna's severe lactose intolerance and the discussion of strict dairy avoidance.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2171,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or relate to the evidence about Audrey's grief and holiday traditions; it addresses a different topic.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2172,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about fear of heights or avoiding lookout excursions; it offers a generic response unrelated to the provided memory.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2175,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction builds on the theme from the evidence\u2014transitioning from stable employment to a less certain freelance situation\u2014and addresses the user's feelings about stability, showing an implicit connection to the prior conversation.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2179,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses feeling drained and protection mode generally, but does not explicitly or implicitly reference Joanna's heart scare, her quiet/withdrawn behavior, or the specific context of chest pain from the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2180,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses general skincare routines and product choices, which does not reflect or use the specific evidence about Tim's sunburn and aloe application.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2191,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction discusses the contrast between focusing on visual design and dealing with backend complexities, which directly relates to the evidence about switching from front-end to back-end development.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2200,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction discusses how memories are tied to photos and camera rolls, directly relating to the evidence about taking daily photos as a visual diary.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2202,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction congratulates the user on the baby news but does not reference or incorporate the evidence about the camper van and road trip plans.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2215,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction discusses the difficulty of keeping kids away from screens, which aligns with the evidence about limiting screen time and supporting reading habits, showing an implicit connection.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2218,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction addresses personal guilt about takeout and suggests taking a break, but it does not reference or relate to the evidence about reducing carbon footprints.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2221,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses pour-over coffee praise and asks about brewing details, which does not reflect or use the provided evidence about Audrey saving for an espresso machine.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2222,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses slow Sunday walks and chatting, which does not reflect or use the evidence about physiotherapy and training for a 5K race.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2244,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about traveling to Lisbon and markets does not reflect or use the evidence about learning furniture restoration and opening a vintage shop.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2259,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references spending time with kids on a Sunday building a fort, which aligns with the evidence about choosing family time over work shifts.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2260,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction addresses medication dose and side effects, which does not reflect or use the evidence about tracking meals for PCOS.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2265,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references the user's situation of studying and its impact on relationships, which aligns with the evidence about Calvin studying for his CPA exam.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2268,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the shift in priorities from a flashy feature (the apartment John fell in love with) to practical considerations like commute, directly relating to the evidence about choosing an apartment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2271,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses a quiet family moment and personal pride, which does not reflect or reference the evidence about practicing piano due to a personal promise.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2273,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about a doctor's scan and personal relief, which does not reflect or use the evidence about Deborah's 10,000-steps-a-day challenge and Jolene's comment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2281,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the procedure and the sacrifices made (like limiting takeout) to achieve the surgery, which aligns with the evidence about saving for laser eye surgery.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2287,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about handling a noisy neighbor does not reference or relate to the evidence about confronting a bully.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2288,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses delivering bad news about a promotion, which has no connection to the evidence about offering compliments and encouragement.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2294,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about leadership role hesitation does not reference or relate to the evidence about Evan dyeing hair bright pink.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2295,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about news overload and suggesting a movie break does not reflect or use the evidence about Calvin's philosophical interests.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2297,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses fining people for littering but does not explicitly or implicitly reference the provided evidence about Jon picking up litter and Gina's comment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2302,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction acknowledges the difficulty of balancing work and personal time and suggests meeting up for coffee to spend time together, which aligns with the evidence emphasizing the importance of family and loved\u2011one moments.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2307,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction echoes the theme of integrity and choosing the high road, which aligns with the evidence about Jon's strong principles and Gina's praise.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2309,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses feeling indifferent and overwhelmed by news, which does not reflect or use the evidence about respecting justice and courage.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2311,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or build upon the evidence about acknowledging team contributions; it offers generic advice unrelated to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2313,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or relate to the evidence about buying books locally or loyalty to local culture.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2314,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about laughter being the best medicine; it merely asks about feeling out of place without linking to the laughter discussion.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2318,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses community involvement and does not reflect or reference the evidence about turning down an overseas job for family reasons.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2329,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references the emotional value of time spent with children, aligning with the evidence about prioritizing family and appreciating moments with kids.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2332,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses a personal volunteering situation and partner's request, which does not reflect or use the evidence about community safety and neighborhood watch.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2340,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses volunteering at an animal shelter and corporate jobs, which does not reflect or use the evidence about Tim's positive outlook after a layoff and John's comment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2343,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references respecting someone who has been around longer and earned perspective, which aligns with the evidence about showing respect to seniors.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2345,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses self-awareness and compromise in relationships but does not reference or build upon the evidence about Calvin's choice to wear comfortable clothing or Dave's compliment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2346,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references the concern about sharing a story without permission and feeling exposed, which aligns with the evidence emphasizing privacy, consent, and respect for private conversations.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2352,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reflect or use the evidence about resilience; it offers empathy without linking to the concept of resilience discussed in the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2355,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses language learning and casual practice, which does not reflect or use the evidence about Calvin's discipline and study habits.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2360,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references feeling drained from trying to bridge gaps, which aligns with the evidence about Tim engaging in discussions with people of different political views and the effort to understand other perspectives.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2363,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or reflect the evidence about accepting constructive criticism; it provides a generic empathetic response unrelated to the given evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2365,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses time with a daughter and money, which does not relate to the evidence about visiting a grandmother and valuing elders.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2366,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses the 'pleaser' role and encouraging self-care, but does not reference or reflect the evidence about empathy and seeing things from another's perspective.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2368,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the idea of a peaceful route from the evidence, showing an implicit connection to the prior discussion about conflict resolution.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2370,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction addresses a different scenario (a meme about a tragedy) and does not reflect or use the evidence about respecting victims and avoiding true crime content.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2371,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction discusses the drawbacks of fast-track shortcuts and emphasizes staying on one's own path, which aligns with the evidence where Audrey declined a quick-money scheme in favor of sustainable success.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2374,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses standing ground and rocking the boat, which does not reflect or relate to the evidence about mediating conflicts peacefully.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2377,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction echoes the evidence's theme of choosing openness and trust over surveillance, reflecting the idea of feeling calmer when not constantly checking.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2381,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses the user's dilemma about speaking up and its consequences, but it does not reference or relate to the evidence about Audrey admitting a mistake and Andrew commenting on courage.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "no_memory",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2383,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses personal boundaries and therapist conversation, which does not reflect or use the evidence about Deborah's confidentiality stance or Jolene's comment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 1989,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction speaks generally about habit changes and personal growth, but it does not explicitly or implicitly reference the specific evidence about cutting sugary drinks due to a cousin's diabetes diagnosis.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 1998,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction explicitly references the bike theft from the evidence as the reason for the user's increased caution, linking the response to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 1999,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction mentions a close call and flipping a switch, but it does not explicitly or implicitly reference the candle fire incident or the switch to flameless candles from the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2001,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references not having to worry about glasses or contacts, which ties directly to the evidence about breaking glasses and getting laser eye surgery.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2002,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references James's switch to biking, which is directly drawn from the evidence about his change in transportation.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2008,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about feeling uneasy about traveling does not reflect or use the evidence about microchipping a cat after it disappeared.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2009,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references skipping details about minor kitchen injuries, which aligns with the evidence about Joanna's kitchen burn, showing an implicit link to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2014,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or relate to the evidence about the passport incident and the red folder; it only comments on the workshop and using mistakes as a cautionary tale.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2021,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references increased importance of safety and peace of mind after a scary incident, which aligns with the evidence about the bike accident leading to helmet use and safety becoming non-negotiable.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2022,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references break\u2011ins and the need for peace of mind, directly relating to the evidence about installing security cameras after a nearby break\u2011in.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2026,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction explicitly references the evidence about luggage being lost in Istanbul, linking it to the user's concern about equipment checks.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2030,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction acknowledges applying a memory/organization technique learned in one context to other areas, which aligns with the evidence about using a jewelry box system for organization.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2033,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about Deborah's backpack incident or becoming street\u2011smart; it only gives a generic response about needing comfort.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2035,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction builds on the evidence's theme of removing toxic influences and protecting one's energy, extending it to setting boundaries with family.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2037,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses printing and stress, which does not reflect or use the evidence about migraines and blue\u2011light glasses.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2038,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the plant-based eating mentioned in the evidence, linking the user's cheese craving to the prior plant-based diet.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2043,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the old supervisor's burnout and the decision to set boundaries, directly linking to the evidence about the boss's burnout influencing the user's boundary changes.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2049,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Joanna's volunteering and how focusing on others can lead to neglecting self, directly linking to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2057,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about Jon's cardio routine and his father's heart attack; it only offers a generic supportive response.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2065,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the fainting incident and the need for snacks, directly linking to the evidence about fainting and eating before events.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2067,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Jon's construction site experience and the steel-toe boots, linking them to his past rejection and gap year, thus reflecting the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2069,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction reflects the user's recollection of past misery triggered by travel images, which aligns with the evidence about a past unpleasant ferry experience.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2073,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Deborah's break from social media and her worry about negativity, directly reflecting the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2084,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or build upon the evidence about Evan's food poisoning experience; it merely comments on the user's habit without linking to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2087,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about a flight and seat upgrade does not relate to the evidence concerning sciatic pain and standing.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2093,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction praises Deb for going to a crowded event but does not reference or incorporate the evidence about her panic attack and preference for shopping late at night.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2096,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about weekend outings does not reflect or use the evidence about the car accident and its aftermath.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2097,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Jon's improvement in being able to sit comfortably, directly relating to his back pain and standing desk mentioned in the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2098,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references John\u2019s emotional state and hesitation, which ties back to the evidence about his conflict with his dad and the boundary he set.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2100,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction gives general gardening advice but does not reference or build upon the specific evidence about Tim's basil and balcony herbs.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2102,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reflect or use the content of the evidence about James's motivation and promotion; it only mentions the name James without linking to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2103,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about enjoying one's own company does not reflect or relate to the evidence about missing family and distance.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2105,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction discusses concerns about lowering medication dose and anxiety, which does not reflect or reference the provided evidence about Calvin's relief from antidepressants.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2111,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction praises biking but does not reference or incorporate the evidence about Audrey's anxiety about driving after an accident.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2121,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses puppies and personal doubt, which does not reflect or use the evidence about ergonomic keyboard and mouse.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2122,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references James and his action to improve after the mistake, showing it is linked to the evidence provided.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2123,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses feeling secure and overwhelmed, which does not relate to the evidence about fear of getting lost while hiking and the buddy system.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2124,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about anxiety and avoidance of social gatherings; it merely offers a generic supportive response.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2126,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction echoes the evidence's theme of overworking (studying even on Sundays) and the need for self\u2011kindness, linking the user's reflection to the earlier memory about relentless study habits.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2128,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about noisy restaurants draining social battery, which does not reflect or use the evidence about John\u2019s hearing loss and lip\u2011reading.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2134,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's lingering caution from a past asthma scare and suggests trying more adventure, which aligns with the evidence about being cautious after a health incident.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2136,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about family gatherings being overwhelming and stepping away, but it does not reference or reflect the specific evidence about Caroline's father's dementia and her emotional reaction to father\u2013child scenes.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2147,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Jon's experience and emphasizes cherishing moments and making the most of life, which aligns with the evidence about heartbreak over a pet loss.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2152,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references James and his progress in leg strength, directly relating to the evidence about his knee pain and how it affected his movement.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2158,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references John and discusses his stamina improvement, directly relating to the evidence about John's fatigue and Maria's comment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2160,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Tim and his chronic pain, linking to the evidence about his irritability and pain.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2162,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's cautious attitude toward expenses and guilt about not double\u2011checking costs, which aligns with the evidence describing James's heightened financial worry and cautious routine after a rent increase.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2167,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Jon's previous avoidance of shared food due to germ concerns and acknowledges his turnaround, directly linking to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2169,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references safety and menu choices, implicitly linking to the evidence about food intolerance influencing personal decisions.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2171,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or relate to the evidence about Audrey's grief and holiday traditions; it introduces unrelated advice.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2172,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction acknowledges the need to set boundaries to avoid stressful situations like lookout excursions, which aligns with the evidence about a fear of heights and avoiding high places.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2175,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction addresses the user's transition from stable employment to freelancing, echoing the evidence about quitting a job and feeling a change, thus linking to the prior context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2179,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference Joanna's heart scare, her withdrawal, or any aspect of the provided evidence; it offers a generic response unrelated to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2180,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about finding a simple skincare routine, but it does not explicitly or implicitly reference the earlier evidence about nursing a sunburn and applying aloe.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2191,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references transitioning to back-end development and the contrast with front-end concerns, which aligns with the evidence about switching from front-end to back-end.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2200,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction discusses how photos capture moments better than memory, which directly relates to the evidence about taking daily photos to create a visual diary.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2202,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references James and the road trip plan from the evidence, comparing the baby news to the earlier travel intention, thus linking to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2215,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the challenge of screens and headphones competing with reading, which aligns with the evidence about limiting screen time to encourage reading.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2218,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references John and his environmental efforts from the evidence, linking his guilt about takeout to his commitment to reduce carbon footprint.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2221,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about the nephew's comment on pour-overs does not reflect or use the provided evidence about Audrey saving for an espresso machine.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2222,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about Sunday walks and quiet moments, which does not reflect or use the evidence about physiotherapy and the goal of running a 5K after knee surgery.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2244,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Evan and his vintage shop, directly connecting to the evidence about his furniture restoration plans.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2259,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references enjoying time with kids on a Sunday, which aligns with the evidence that Joanna is prioritizing more time with her children by refusing weekend shifts.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2260,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not incorporate or reflect the evidence about Tim tracking meals for PCOS; it only addresses the user's statement without linking to that context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2265,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the CPA exam study context from the evidence and addresses the trade-off between studying and friendships, showing a clear link.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2268,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction addresses the user's comment about balancing price and commute, but it does not reflect or use the earlier evidence about John saving for a down payment on a tiny apartment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2271,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about a family memory, which does not relate to the evidence about practicing piano for a sister's wedding.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2273,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction addresses Deborah (using \"Deb\"), linking the response to the evidence that mentions her health context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2281,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Audrey's sacrifices (limiting takeout) from the evidence, showing a clear link.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2287,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about handling a noisy neighbor does not reflect or use the evidence about Jon confronting a bully.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2288,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses honest conversations and management challenges, which does not relate to the evidence about John offering sincere compliments and positive reinforcement.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2294,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about leadership hesitation does not reference or relate to the evidence about Evan dyeing hair bright pink and expressing oneself.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2295,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reflect or use the evidence about Calvin's philosophical interests; it introduces unrelated topics like music or cars.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2297,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reflect or use the evidence about Jon picking up litter and caring for the environment; it merely makes a generic comment and addresses Jon without referencing the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2302,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references James and addresses his difficulty balancing work and home, aligning with the evidence that James values time with loved ones, thus reflecting the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2307,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Jon and personal integrity, directly tying to the evidence about Jon's stance on integrity.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2309,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about feeling indifferent to news protests does not reflect or use the evidence about Joanna's respect for justice and Nate's comment on courage.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2311,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or build upon the evidence about acknowledging contributions and fostering a positive environment; it merely comments on the flat atmosphere without linking to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2313,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about Deb's yoga classes and community work, which does not relate to the evidence about buying books from a local shop.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2314,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or build upon the evidence about laughter being the best medicine; it merely comments on feeling out of place at a comedy show without connecting to the prior statements.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2318,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction talks about John immersing in local initiatives, which is not mentioned or related to the provided evidence about him turning down an overseas job for his parents.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2329,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Joanna's sacrifice of declining the overseas assignment to be present for her children, directly linking to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2332,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses balancing volunteering and family time, which does not reflect or use the evidence about community safety and neighborhood watch.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2340,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reflect or use the evidence about Tim's layoff and positive outlook; it merely addresses Tim generically without linking to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2343,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction addresses Deborah and respect, but does not relate to the provided evidence about offering seats to seniors; it fails to reflect or use the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2345,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses personal reflection and balancing relationships with music/career, which does not relate to the evidence about Calvin's clothing choice and Dave's compliment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2346,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Caroline's consideration of consent and respecting boundaries, which aligns with the evidence that she values consent and privacy.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2352,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction addresses James directly and references his ability to tackle tough challenges and become stronger, which aligns with the evidence about resilience.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2355,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or reflect the evidence about Calvin's discipline, alarm setting, or chart; it merely comments on language learning without linking to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2360,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not explicitly or implicitly reference the provided evidence about Tim and John's conversation; it offers a generic response unrelated to that specific memory.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2363,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or reflect the evidence about accepting constructive criticism; it addresses a different scenario without linking to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2365,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Calvin and his choice to prioritize time with his grandmother, directly reflecting the evidence about his commitment to spending Sundays with her.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2366,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Caroline's empathy and tendency to prioritize others, directly linking to the evidence about her perspective.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2368,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reflect or use the evidence; it contradicts John's peaceful approach and introduces a different viewpoint.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2370,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction mirrors the evidence's theme of respecting victims' trauma and setting personal boundaries around sensitive content, showing an implicit link to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2371,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the theme of avoiding shortcuts and endorses the slow-and-steady approach, which aligns with the evidence about preferring sustainable success over quick-money schemes.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2374,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reflect or use the evidence about Evan's diplomatic skill; it merely addresses courage without linking to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2377,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction reflects the evidence's theme of choosing openness and trust over surveillance, showing a link to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2381,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction echoes the evidence's theme of speaking up and taking responsibility, aligning with Audrey's admission and Andrew's comment on courage.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "full_context",
+  "file": "pilot_n100_seed42.json",
+  "sample_index": 2383,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses personal boundaries and self-care, which does not reflect or use the evidence about confidentiality and trust in client work.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 1989,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references a health scare influencing behavior change, which aligns with the evidence about cutting sugary drinks after a cousin's diabetes diagnosis.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 1998,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the bike theft from the evidence, linking the user's behavior to that past event.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 1999,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction explicitly references the roommate's candle scare, which is the content of the evidence, showing a clear link.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2001,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction talks about not worrying about contacts or glasses while swimming, but it does not reference or incorporate the evidence about Audrey breaking glasses and getting laser eye surgery.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2002,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the parking ticket and switching to biking, directly linking to the evidence about James's change in transportation leading to health benefits.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2008,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses hesitation about a weekend trip and references Maria, but does not reflect or use the evidence about John microchipping his cat.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2009,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the specific kitchen mishap of burning a hand on an oven rack, directly linking to the evidence provided.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2014,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the passport hotel safe incident and the bright red folder, directly linking to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2021,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references having a real scare and being unable to brush off risks, which aligns with the evidence about the bike accident leading to heightened safety awareness.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2022,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the new security setup, which directly ties to the evidence about installing security cameras after a break\u2011in, showing a clear link.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2026,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction directly references the evidence about luggage being lost in Istanbul, linking it to the user's concern about checked equipment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2030,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reflect or reference the evidence about Tim's jewelry box system or memory technique; it merely gives a generic compliment and asks about a reading list, showing no link to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2033,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction explicitly references Deborah's backpack incident from the evidence to explain the user's preference for avoiding crowded transport.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2035,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references cutting out toxic energy and its positive impact, directly echoing Calvin's statement in the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2037,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references eye strain from screen use ('eyes from melting after staring at screens all day'), which aligns with the evidence about getting a migraine from staring at screens and the need to protect eyes.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2038,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the plant-based eating context introduced in the evidence, linking the user's cheese craving to the earlier discussion about switching to plant-based meals.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2043,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the burnout example from the evidence as the reason for the user's decision, showing a clear link.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2049,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses personal wellbeing and self-care, which does not reflect or reference the evidence about volunteering at a shelter and making a difference in the community.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2057,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's concern about their dad's heart attack and the cardio routine mentioned in the evidence, showing an implicit link to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2065,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the lesson about eating to avoid fainting, which directly ties to the evidence about Calvin's experience.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2067,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reflect or use the evidence about Jon's rejection from architecture school and gap year construction; it introduces unrelated details about a job loss and dance studio.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2069,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the ferry disaster and the habit of packing motion sickness tablets, directly linking to the evidence provided.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2073,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's previous break from social media and feeling better, directly linking to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2084,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction discusses being cautious about food hall health ratings, which does not reflect or use the evidence about Evan's food poisoning and changed cooking routine.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2087,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses airline seat comfort and stress relief, which does not relate to the evidence about sciatic pain and standing.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2093,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction praises the user for staying at a crowded festival but does not reference or reflect the evidence about Deborah's panic attack, late-night shopping, or Jolene's advice about quieter hours.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2096,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the recent scary accident ('scary moment') and ties it to the decision to have smaller, grounding weekend outings, showing a link to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2097,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction directly references Jon's standing desk and its positive impact, linking back to the evidence about his back pain and the desk purchase.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2098,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction talks about general emotional impact but does not explicitly or implicitly reference the specific evidence about the 9\u202fp.m. call boundary or the protective peace context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2100,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or build upon the evidence about Tim's herbs or basil; it discusses starter beds and consistency without linking to the given evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2102,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about James's motivation or John's comment; it is unrelated to the provided conversation.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2103,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses mindfulness and personal enjoyment, which does not reflect or reference the evidence about missing family and distance.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2105,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the 'heavy weight off your chest' phrase, directly tying to Calvin's statement in the evidence about relief from feeling like a brick on his chest.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2111,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses biking and routes but does not reference or relate to the evidence about anxiety from driving after an accident.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2121,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses cooking and recipes, which are unrelated to the evidence about ergonomic tools and wrist soreness.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2122,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references James taking the advice to move on and improve the process, directly relating to the earlier evidence about his mistake and the suggestion to give credit and move forward.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2123,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses fear of being disconnected and overwhelm, which does not relate to the evidence about fear of getting lost while hiking.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2124,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Evan's anxiety and avoidance of social gatherings from the evidence, acknowledging his step to host a small get-together.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2126,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction echoes the evidence's theme of working on Sundays and the need for self\u2011kindness, linking the user's realization to the earlier memory about studying every day, including Sundays.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2128,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the difficulty of following conversations due to hearing issues, which directly ties to the evidence about John\u2019s hearing loss and lip\u2011reading.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2134,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about Evan's asthma experience and cautious trail choices; it introduces unrelated content about a pulmonologist and numbers.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2136,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references media hitting close to home and needing to step away, which aligns with the evidence about emotional reactions to family scenes due to personal experiences.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2147,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses job loss and business ventures, which does not relate to the evidence about Jon and Gina's pet loss.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2152,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's relief from having to plan each step, which aligns with the evidence about knee pain causing route planning to avoid hills.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2158,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about kundalini yoga and increased energy does not reflect or relate to the evidence concerning pregnancy fatigue and picking battles.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2160,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the chronic pain and how small talk usually drags the person down, directly tying back to the evidence provided.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2162,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's financial anxiety and guilt about expenses, which directly ties to the evidence about James's money worries and cautious behavior after a rent increase.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2167,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the past aversion to passing food around and germs, directly reflecting the evidence about hyperawareness of germs and avoiding shared dishes.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2169,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the prior incident of lactose intolerance from last month, directly tying to the evidence about Joanna's severe reaction to milk.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2171,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction explicitly references the loss of the mother and how holidays and gatherings feel heavy, directly linking to the evidence about Audrey's grief affecting holiday traditions.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2172,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction explicitly references the glass-bridge incident from the evidence, linking the user's boundary setting to the fear of heights mentioned in the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2175,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the contrast between stable employment and freelance work, echoing the evidence's theme of leaving a job for change and the resulting feelings.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2179,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction mirrors the evidence by acknowledging the person's tendency to withdraw and seek safety after a health scare, reflecting the same theme of being quiet, withdrawn, and looking for exits as described in the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2180,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references slathering aloe on a sunburn, directly echoing the evidence about Tim applying aloe to his sunburn, thus showing a clear link.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2191,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the transition from front-end (making things look pretty) to back-end (databases and servers), which directly reflects the evidence about switching from front-end to back-end development.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2200,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction discusses how photo libraries act as a visual diary and shape memories, directly reflecting the evidence about taking daily photos to create a visual diary.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2202,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the summer road trip plans mentioned in the evidence, showing a link between the baby news and the earlier intention to drive around all 50 states.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2215,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references competing with digital devices and supports the idea of limiting screen time to encourage reading, which aligns with the evidence about setting boundaries for kids' habits.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2218,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's overall effort this year, which aligns with the evidence about a commitment to reducing carbon footprint, showing an implicit connection to the provided context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2221,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about saving up for an espresso machine or becoming a master barista; it only responds to the compliment about pour-overs.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2222,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references knee recovery and the benefit of walking, which ties back to the evidence about daily physiotherapy and the goal of running with the daughter.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2244,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about Lisbon and creative energy does not reflect or use the evidence about learning to restore old furniture and opening a vintage shop.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2259,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references spending weekend time with kids and enjoying downtime, which aligns with the evidence about refusing weekend shifts to have more time with children.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2260,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or relate to the evidence about Tim tracking meals for PCOS; it addresses a different situation.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2265,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Dave from the evidence and discusses the impact of studying on social life, linking back to the evidence about studying for the CPA exam.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2268,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction references moving away from the 'flashy' feature and focusing on practical balance, which directly ties to the evidence where John was initially attracted to a flashy aspect of the apartment but later considered price and commute.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2271,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses a personal, nature-based memory and does not reflect or reference the piano practice promise from the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2273,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Deborah's 10,000-steps-a-day challenge, directly tying to the evidence provided.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2281,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Audrey's sacrifice of limiting takeout, directly linking to the evidence about her saving for laser eye surgery.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2287,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction about sending an anonymous note does not reflect or use the evidence about confronting a bully; there is no link between them.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2288,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses honesty in a difficult conversation, which does not relate to the evidence about offering sincere compliments and encouragement.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2294,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses leadership role hesitation and personal stress, which does not relate to the evidence about Evan dyeing hair bright pink and Sam's comment.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2295,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references diving into existential philosophy, which aligns with the evidence about Calvin's interest in philosophical concepts, showing a link to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2297,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Jon's behavior from the evidence, linking the response to the provided context.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2302,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction suggests a movie night with friends and does not reflect or use the evidence about valuing time with loved ones or family moments.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2307,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction explicitly references Jon's refusal to participate in deceptive marketing, directly linking to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2309,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the user's usual care for people standing up for what's right, which directly ties to the evidence about respect for justice.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2311,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the idea that success is a group effort, directly echoing the evidence provided.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2313,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or relate to the evidence about buying books locally or valuing local culture; it addresses a different topic.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2314,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about laughter being the best medicine; it merely responds to the user's statement without linking to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2318,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or reflect the evidence about John turning down an overseas job to stay with his aging parents; it talks about teamwork and fulfillment unrelated to the given evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2329,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the sacrifice of turning down an overseas assignment to be present for the children, directly linking to Joanna's stated reason in the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2332,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction discusses balancing volunteering and family time, which does not reflect or use the evidence about community safety and neighborhood watch.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2340,
+  "label": "correct",
+  "label2": "wrong",
+  "reason2": "The prediction talks about volunteering and positive momentum but does not reference or reflect the evidence about Tim's outlook after a layoff.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2343,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction explicitly references Deborah's behavior from the evidence, linking the user's statement to the evidence about respecting seniors.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2345,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction explicitly references Calvin's example from the evidence, linking the idea of staying true to oneself to the user's concern.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2346,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses apologizing for sharing a story, but does not reference or reflect the evidence about Caroline's stance on sharing private chats and respecting trust.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2352,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about resilience being key to overcoming challenges; it offers generic advice without linking to that concept.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2355,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses language learning progress, which is unrelated to the evidence about Calvin's discipline and study habits.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2360,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction addresses feeling drained from trying to bridge gaps with others, which aligns with the evidence discussing Tim's effort to engage with differing political views and the challenges of such discussions.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2363,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction does not reference or incorporate the evidence about Deborah's openness to criticism or the notion of wisdom; it provides generic advice unrelated to the given evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2365,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references the grandmother and the importance of spending time with her, which aligns with the evidence about valuing elders' time over money.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2366,
+  "label": "wrong",
+  "label2": "correct",
+  "reason2": "The prediction echoes the evidence's theme of considering others' perspectives and the importance of balancing empathy with one's own needs, showing a clear link to the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2368,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references John\u2019s preference for peaceful conflict resolution and walking away, directly reflecting the evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2370,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction echoes the evidence's theme of respecting victims' trauma and rejecting entertainment derived from real suffering, showing a clear link to the provided evidence.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2371,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction echoes the evidence's theme of favoring steady, sustainable success over quick shortcuts, showing an implicit link to the provided statements.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2374,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Evan's tendency to keep the peace, directly linking to the evidence about his diplomatic skill.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2377,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction references Jon's decision to trust his teen and links it to positive outcomes, directly reflecting the evidence about refusing tracking software and valuing autonomy.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2381,
+  "label": "correct",
+  "label2": "correct",
+  "reason2": "The prediction advises owning up to mistakes, echoing the evidence where Audrey emphasizes the importance of admitting mistakes promptly.",
+  "judge2": "openai/gpt-oss-120b"
+ },
+ {
+  "condition": "ours",
+  "file": "system_n100_seed42_llm3_d1_notrig_events.json",
+  "sample_index": 2383,
+  "label": "wrong",
+  "label2": "wrong",
+  "reason2": "The prediction discusses self-compassion and therapist questioning, which does not reflect or use the evidence about confidentiality and trust in client work.",
+  "judge2": "openai/gpt-oss-120b"
+ }
+]

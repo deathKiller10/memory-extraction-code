@@ -28,7 +28,8 @@ from bapca.dataset import LocomoPlus
 from bapca.evaluation import (ASSISTANT_SYSTEM, CONDITIONS, CONDITIONS_BY_KEY,
                               extract_constraint,
                               judge_response)
-from bapca.llm import DailyQuotaExhausted, PromptTooLarge, estimate_tokens, generator, judge
+from bapca.llm import (DailyQuotaExhausted, PromptTooLarge, estimate_tokens, generator,
+                       generator2, judge)
 from bapca.stats import McNemar, Proportion, mcnemar, min_detectable_gap
 
 RESULTS_DIR = Path("results")
@@ -189,7 +190,8 @@ def run(samples, gen, jdg, out_path: Path) -> list[dict]:
             results.append(dict(
                 condition=condition.key, sample_index=sample.index,
                 prompt_tokens=estimate_tokens(prompt), prediction=prediction,
-                label=verdict.label, reason=verdict.reason, constraint=constraint))
+                label=verdict.label, reason=verdict.reason, constraint=constraint,
+                generator=gen.model, judge=jdg.model))   # 19 Nov: which models, per row
 
             elapsed = time.time() - started
             print(f"  [{done:>3}/{total}] {condition.key:<18} #{sample.index:<5} "
@@ -309,6 +311,10 @@ def main() -> int:
                              "four times as much and over a week of quota.")
     parser.add_argument("--seed", type=int, default=42, help="subset seed (report this)")
     parser.add_argument("--dry-run", action="store_true", help="estimate cost, spend nothing")
+    parser.add_argument("--generator", choices=["gemini", "cohere"], default="gemini",
+                        help="the ANSWERING model only (19 Nov robustness check). "
+                             "cohere = llm.generator2 (Command A); the oracle extraction and judging "
+                             "are unchanged and come from the cache. Its own results file.")
     args = parser.parse_args()
 
     if args.conditions:
@@ -329,10 +335,12 @@ def main() -> int:
 
     from bapca.llm import ROLES
     if args.dry_run:
-        dry_run(samples, ROLES["generator"][2], ROLES["judge"][2])
+        gen_role = "generator2" if args.generator == "cohere" else "generator"
+        dry_run(samples, ROLES[gen_role][2], ROLES["judge"][2])
         return 0
 
-    gen, jdg = generator(verbose=True), judge(verbose=True)
+    gen = generator2(verbose=True) if args.generator == "cohere" else generator(verbose=True)
+    jdg = judge(verbose=True)
     print(f"\n  generator: {gen.model} ({gen.provider.name})")
     print(f"  judge:     {jdg.model} ({jdg.provider.name})")
 
@@ -340,6 +348,8 @@ def main() -> int:
     tag = ""
     if args.conditions and len(args.conditions) < 4:
         tag = "_" + "+".join(sorted(args.conditions))
+    if args.generator != "gemini":
+        tag += f"_gen{args.generator}"     # never resume from the paper's file
     out_path = RESULTS_DIR / f"pilot_n{len(samples)}_seed{args.seed}{tag}.json"
 
     banner(f"Running -- progress saved to {out_path} after every item")

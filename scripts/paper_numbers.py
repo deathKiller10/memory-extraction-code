@@ -754,6 +754,19 @@ def main():
     macro("GridFactsCappedBudget", "%d" % _pl.FACTS_CAPPED_BUDGET)
     macro("GridGroqOutputCap", "%d" % (_pl.FACTS_CAPPED_BUDGET + _llm.OTPM_MARGIN))
     macro("GridPolicies", "%d" % len(_pl.WRITE_POLICIES))
+    # Word forms for the abstract ("five write policies ... four selectors"),
+    # counted from grid_table's own lists: the rows, and the selectors that
+    # choose notes (Yuan et al.'s three + ours; the oracle window is a
+    # measurement, named separately as the ceiling).
+    _gt_spec = _ilu.spec_from_file_location(
+        "grid_table", Path(__file__).resolve().parent / "grid_table.py")
+    _gt = _ilu.module_from_spec(_gt_spec)
+    _gt_spec.loader.exec_module(_gt)
+    _words = ("zero one two three four five six seven eight nine ten").split()
+    _n_sel = len(_gt.SHARED) + len([s for s in _gt.EXTRA if s != "oracle_window"])
+    assert len(_gt.POLICIES) == len(_pl.WRITE_POLICIES)
+    macro("GridPoliciesWord", _words[len(_gt.POLICIES)])
+    macro("GridSelectorsWord", _words[_n_sel])
     from bapca.store import RetrievalConfig as _RC
     macro("StoreMergeThreshold", "%.2f" % _RC().dedup_threshold)
     # Yuan et al.'s top-k (their configs/settings.py, TOP_K = 5) -- a
@@ -767,6 +780,94 @@ def main():
                   pct(sum(r["label"] == "correct" for r in rows.values()) / len(rows)))
         else:
             todo(f"GridSummaryNoMerge{sn}", "nomerge cell missing")
+
+    # ---- a second answering model and a second judge (HANDOFF 20.31-20.35) ---
+    #
+    # Second answering model: Cohere command-a-03-2025, same 100 items, same
+    # notes, selections and judge (run_second_model.py; files *_gencohere).
+    # Its own baselines come from its own pilot file. Facts x hybrid: Groq
+    # accepted 25 window requests it had refused for the paper's run, so the
+    # answering prompt differs on a few items -- reported on the matched items
+    # too. Second judge: GPT-OSS over the paper's own 300 answers (rejudge.py).
+    sec_pilot = RESULTS / "pilot_n100_seed42_full_context+no_memory_gencohere.json"
+    SEC_CELLS = {"Ours": "llm3_d1_notrig_events", "EventsHybrid": "pool3_d1_notrig_events",
+                 "Raw": "pool3_d1_notrig_raw", "Facts": "pool3_d1_notrig_facts",
+                 "Summary": "pool3_d1_notrig_summary"}
+    sec_rows = {k: load(f"system_n100_seed42_{v}_gencohere.json") for k, v in SEC_CELLS.items()}
+    if sec_pilot.exists() and all(len(r) == 100 for r in sec_rows.values()):
+        prow = json.loads(sec_pilot.read_text(encoding="utf-8"))
+        s_nomem = {r["sample_index"]: r["label"] == "correct" for r in prow
+                   if r["condition"] == "no_memory" and r.get("label") in SCORED}
+        s_full = {r["sample_index"]: r["label"] == "correct" for r in prow
+                  if r["condition"] == "full_context" and r.get("label") in SCORED}
+        sec = {k: {i: r["label"] == "correct" for i, r in v.items()} for k, v in sec_rows.items()}
+        models = {r.get("generator") for v in sec_rows.values() for r in v.values()}
+        models |= {r.get("generator") for r in prow}
+        assert models == {"command-a-03-2025"}, models
+        def rate(d):
+            return pct(sum(d.values()) / len(d))
+        macro("SecNoMem", rate(s_nomem))
+        macro("SecFull", rate(s_full))
+        macro("SecOurs", rate(sec["Ours"]))
+        macro("SecEventsHybrid", rate(sec["EventsHybrid"]))
+        yuan = ("Raw", "Facts", "Summary")
+        yr = [sum(sec[c].values()) / len(sec[c]) for c in yuan]
+        macro("SecYuanMin", pct(min(yr)))
+        macro("SecYuanMax", pct(max(yr)))
+        vs_a = [paired(sec[c], s_nomem) for c in yuan]
+        vs_b = [paired(sec[c], s_full) for c in yuan]
+        macro("SecYuanBeatNoMem", "%d" % sum(t.p_value < 0.05 and t.only_a > t.only_b for t in vs_a))
+        macro("SecYuanWorseThanFull", "%d" % sum(t.p_value < 0.05 and t.only_b > t.only_a for t in vs_b))
+        macro("SecYuanFullPMax", tex_pvalue(max(t.p_value for t in vs_b)))
+        macro("SecYuanNoMemPMin", tex_pvalue(min(t.p_value for t in vs_a)))
+        t = paired(sec["Ours"], s_nomem)
+        macro("SecOursNoMemP", tex_pvalue(t.p_value))
+        t = paired(sec["Ours"], s_full)
+        macro("SecOursFullP", tex_pvalue(t.p_value))
+        macro("SecOursFullWin", "%d" % t.only_a)
+        macro("SecOursFullLose", "%d" % t.only_b)
+        macro("SecOursHybridP", tex_pvalue(paired(sec["Ours"], sec["EventsHybrid"]).p_value))
+        macro("SecHybridFullP", tex_pvalue(paired(sec["EventsHybrid"], s_full).p_value))
+        macro("SecHybridNoMemP", tex_pvalue(paired(sec["EventsHybrid"], s_nomem).p_value))
+        paper_facts = load("system_n100_seed42_pool3_d1_notrig_facts.json")
+        same = {i for i, r in sec_rows["Facts"].items()
+                if i in paper_facts and paper_facts[i]["carried"] == r["carried"]}
+        macro("SecFactsPromptDiffN", "%d" % (len(sec_rows["Facts"]) - len(same)))
+        macro("SecFactsMatchedN", "%d" % len(same))
+        fm = {i: v for i, v in sec["Facts"].items() if i in same}
+        macro("SecFactsMatchedFullP", tex_pvalue(paired(fm, s_full).p_value))
+        gh = g.get(("Events", "Hybrid"))
+        if gh and have_base:
+            macro("GridEventsHybridFullP", tex_pvalue(paired(gh, g_full).p_value))
+    else:
+        for name in ("SecNoMem", "SecFull", "SecOurs", "SecEventsHybrid", "SecYuanMin",
+                     "SecYuanMax", "SecYuanBeatNoMem", "SecYuanWorseThanFull",
+                     "SecYuanFullPMax", "SecYuanNoMemPMin", "SecOursNoMemP", "SecOursFullP",
+                     "SecOursFullWin", "SecOursFullLose", "SecOursHybridP", "SecHybridFullP",
+                     "SecHybridNoMemP", "SecFactsPromptDiffN", "SecFactsMatchedN",
+                     "SecFactsMatchedFullP", "GridEventsHybridFullP"):
+            todo(name, "second-model run incomplete (run_second_model.py)")
+    j2_path = RESULTS / "judge2_n100.json"
+    j2 = json.loads(j2_path.read_text(encoding="utf-8")) if j2_path.exists() else []
+    j2 = [r for r in j2 if r.get("label2") in SCORED]
+    if len(j2) == 300:
+        assert {r["judge2"] for r in j2} == {"openai/gpt-oss-120b"}
+        from bapca.stats import cohens_kappa as _kappa
+        k = _kappa([r["label"] == "correct" for r in j2], [r["label2"] == "correct" for r in j2])
+        macro("JudgeTwoN", "%d" % len(j2))
+        macro("JudgeTwoKappa", "%.3f" % k.kappa)
+        macro("JudgeTwoAgree", pct(k.raw))
+        by = {c: {r["sample_index"]: r["label2"] == "correct" for r in j2 if r["condition"] == c}
+              for c in ("no_memory", "full_context", "ours")}
+        macro("JudgeTwoNoMem", pct(sum(by["no_memory"].values()) / len(by["no_memory"])))
+        macro("JudgeTwoFull", pct(sum(by["full_context"].values()) / len(by["full_context"])))
+        macro("JudgeTwoOurs", pct(sum(by["ours"].values()) / len(by["ours"])))
+        macro("JudgeTwoOursNoMemP", tex_pvalue(paired(by["ours"], by["no_memory"]).p_value))
+        macro("JudgeTwoOursFullP", tex_pvalue(paired(by["ours"], by["full_context"]).p_value))
+    else:
+        for name in ("JudgeTwoN", "JudgeTwoKappa", "JudgeTwoAgree", "JudgeTwoNoMem",
+                     "JudgeTwoFull", "JudgeTwoOurs", "JudgeTwoOursNoMemP", "JudgeTwoOursFullP"):
+            todo(name, "second judge incomplete (rejudge.py)")
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text("\n".join(lines) + "\n", encoding="utf-8")

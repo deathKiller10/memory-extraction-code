@@ -23,3 +23,17 @@ def test_published_constants_emitted_without_results(tmp_path, monkeypatch):
     tex = (tmp_path / "paper" / "numbers.tex").read_text()
     for name, value in (("LiCogMax", "26.06"), ("TMemCog", "74.81"), ("JustMemCog", "62.59")):
         assert "\\newcommand{\\%s}{%s}\n" % (name, value) in tex
+
+
+def test_abstract_count_words_come_from_the_grid_lists(tmp_path, monkeypatch):
+    """19 Nov: the abstract read '5 write policies ... four selectors'."""
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "paper").mkdir()
+    with contextlib.redirect_stdout(io.StringIO()):
+        try:
+            runpy.run_path(str(SCRIPTS / "paper_numbers.py"), run_name="__main__")
+        except SystemExit:
+            pass
+    tex = (tmp_path / "paper" / "numbers.tex").read_text()
+    assert "\\newcommand{\\GridPoliciesWord}{five}\n" in tex
+    assert "\\newcommand{\\GridSelectorsWord}{four}\n" in tex

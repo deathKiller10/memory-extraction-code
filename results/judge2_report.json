@@ -1,0 +1,54 @@
+{
+ "n_rows": 300,
+ "n_scored": 300,
+ "conditions": {
+  "no_memory": {
+   "n": 100,
+   "judge1": 37.0,
+   "judge2": 35.0,
+   "kappa": 0.566
+  },
+  "full_context": {
+   "n": 100,
+   "judge1": 52.0,
+   "judge2": 51.0,
+   "kappa": 0.62
+  },
+  "ours": {
+   "n": 100,
+   "judge1": 65.0,
+   "judge2": 64.0,
+   "kappa": 0.76
+  }
+ },
+ "paired": {
+  "ours_vs_no_memory_judge1": {
+   "n": 100,
+   "only_a": 35,
+   "only_b": 7,
+   "p": 1.5097200957825407e-05
+  },
+  "ours_vs_no_memory_judge2": {
+   "n": 100,
+   "only_a": 35,
+   "only_b": 6,
+   "p": 4.873598300036974e-06
+  },
+  "ours_vs_full_context_judge1": {
+   "n": 100,
+   "only_a": 23,
+   "only_b": 10,
+   "p": 0.03508203336969018
+  },
+  "ours_vs_full_context_judge2": {
+   "n": 100,
+   "only_a": 25,
+   "only_b": 12,
+   "p": 0.04703102743951604
+  }
+ },
+ "judge2": [
+  "openai/gpt-oss-120b"
+ ],
+ "kappa_all": 0.667
+}

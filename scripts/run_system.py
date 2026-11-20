@@ -36,7 +36,7 @@ from bapca.dataset import LocomoPlus
 from bapca.embeddings import Embedder
 from bapca.evaluation import ASSISTANT_SYSTEM, judge_response
 from bapca.llm import (DailyQuotaExhausted, PromptTooLarge,
-                       TransientProviderError, generator, judge)
+                       TransientProviderError, generator, generator2, judge)
 from bapca.pipeline import (EXTRACT_PROMPTS, FACTS_PROTOCOL, FACTS_STATS,
                             RERANK_PROMPTS, SELECT_MODES,
                             WRITE_BUDGETS, WRITE_POLICIES, SystemConfig, build_store,
@@ -119,6 +119,8 @@ def resume_command(args) -> str:
         flags += " --no-merge"
     if args.category != "Cognitive":
         flags += f" --category {args.category}"
+    if getattr(args, "generator", "gemini") != "gemini":
+        flags += f" --generator {args.generator}"
     return f"!python scripts/run_system.py {flags}"
 
 # One overloaded model should cost one item, not the session. Several in a
@@ -321,6 +323,10 @@ def main() -> int:
                              "another split is NOT comparable to the headline "
                              "-- what transfers is the v1-vs-events DIFFERENCE, "
                              "not the level.")
+    parser.add_argument("--generator", choices=["gemini", "cohere"], default="gemini",
+                        help="the ANSWERING model only (19 Nov robustness check). "
+                             "cohere = llm.generator2 (Command A); notes, selection and judging "
+                             "are unchanged and come from the cache. Its own results file.")
     parser.add_argument("--fresh", action="store_true",
                         help="ignore any partial results and start over")
     args = parser.parse_args()
@@ -355,6 +361,10 @@ def main() -> int:
         # bug 12 again: a different split is a different experiment and must
         # never share a results file with the Cognitive run.
         tag += "_" + args.category.replace(" ", "").replace("-", "")
+    if args.generator != "gemini":
+        # bug 12 once more: a different answering model is a different
+        # experiment and must never resume from, or overwrite, the paper's file.
+        tag += f"_gen{args.generator}"
     out = RESULTS_DIR / f"system_n{len(samples)}_seed{args.seed}_{tag}.json"
 
     if args.dry_run:
@@ -366,7 +376,8 @@ def main() -> int:
     RESULTS_DIR.mkdir(exist_ok=True)
 
     embedder = Embedder()
-    gen, jdg = generator(verbose=True), judge(verbose=True)
+    gen = generator2(verbose=True) if args.generator == "cohere" else generator(verbose=True)
+    jdg = judge(verbose=True)
     print(f"  generator: {gen.model}\n  judge:     {jdg.model}")
 
 
