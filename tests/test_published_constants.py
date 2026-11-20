@@ -21,7 +21,8 @@ def test_published_constants_emitted_without_results(tmp_path, monkeypatch):
         except SystemExit:
             pass
     tex = (tmp_path / "paper" / "numbers.tex").read_text()
-    for name, value in (("LiCogMax", "26.06"), ("TMemCog", "74.81"), ("JustMemCog", "62.59")):
+    for name, value in (("LiCogMax", "26.06"), ("TMemCog", "74.81"), ("JustMemCog", "62.59"),
+                        ("MadeleineCog", "52.4"), ("MadeleineUntrained", "41.6")):
         assert "\\newcommand{\\%s}{%s}\n" % (name, value) in tex
 
 

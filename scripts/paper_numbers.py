@@ -445,6 +445,12 @@ def main():
     # numbers, kept here so the prose types none of them.
     macro("TMemCog", "74.81")
     macro("JustMemCog", "62.59")
+    # Madeleine (Shi, arXiv 2610.01118, Table 1 "All", 401 items; gpt-4.1-mini
+    # reader, gemini-2.5-flash judge): a query-side adapter trained on simulated
+    # cue-trigger pairs, three-seed mean, against the best UNTRAINED embedder
+    # (gemini-embedding). Published numbers, not ours (20 Nov).
+    macro("MadeleineCog", "52.4")
+    macro("MadeleineUntrained", "41.6")
     rec_file = Path("results/reconcile_judge.json")
     if rec_file.exists():
         rec = json.loads(rec_file.read_text(encoding="utf-8"))["conditions"]
