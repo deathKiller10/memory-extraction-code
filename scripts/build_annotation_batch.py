@@ -58,6 +58,22 @@ WEIGHTS = {"system_llm": 40, "no_memory": 15, "full_context": 15,
            "oracle_cue": 15, "oracle_constraint": 15}
 SEED = 11
 
+# Batch 3 (20 Nov, HANDOFF 20.37): the headline's two conditions on items
+# OUTSIDE the n=100 subset, each item under BOTH conditions (paired), so that
+#   * the human-equivalent calibration, applied to all 401 items, is no longer
+#     estimated only from the 100-item subset (a caveat the paper states), and
+#   * the human paired comparison of ours vs full context grows past 26 items.
+# Drawn at random within the pool, independently of the judge's verdict, as
+# reconcile_judge.py's calibration requires. Plus more no-memory items (that
+# condition exists only on the n=100 subset). The 401 files' rows for the 100
+# shared items are identical to the n=100 files' (prediction and label, checked
+# 20 Nov), so their keys mean the same thing.
+BATCH3_PAIRED = (RESULTS / "pilot_n401_seed42_full_context.json",
+                 RESULTS / "system_n401_seed42_llm3_d1_notrig_events.json")
+BATCH3_N_PAIRED = 60
+BATCH3_N_NOMEM = 20
+SEED3 = 31
+
 
 def already_annotated() -> set:
     seen = set()
@@ -116,8 +132,37 @@ def matched_queue(grouped, done) -> list:
     return queue
 
 
+def batch3_queue(done) -> list:
+    """60 items x {full context, ours} from outside the n=100 subset + 20 no memory."""
+    rng = random.Random(SEED3)
+    fc = {r["sample_index"]: r for r in json.loads(BATCH3_PAIRED[0].read_text(encoding="utf-8"))
+          if r.get("label") in ("correct", "wrong")}
+    ours = {r["sample_index"]: r for r in json.loads(BATCH3_PAIRED[1].read_text(encoding="utf-8"))
+            if r.get("label") in ("correct", "wrong")}
+    subset = {r["sample_index"] for r in json.loads(SOURCES[1][0].read_text(encoding="utf-8"))}
+    pool = sorted(i for i in set(fc) & set(ours) if i not in subset
+                  and f"full_context:{i}" not in done and f"system_llm:{i}" not in done)
+    picked = sorted(rng.sample(pool, BATCH3_N_PAIRED))
+    queue = [fc[i] for i in picked] + [ours[i] for i in picked]
+    nomem = [r for r in json.loads(SOURCES[0][0].read_text(encoding="utf-8"))
+             if r.get("condition") == "no_memory" and r.get("label") in ("correct", "wrong")
+             and f"no_memory:{r['sample_index']}" not in done]
+    queue += rng.sample(nomem, BATCH3_N_NOMEM)
+    print(f"  paired items outside the n=100 subset: {len(picked)} of {len(pool)} available")
+    print(f"  no memory: {BATCH3_N_NOMEM} of {len(nomem)} unannotated")
+    rng.shuffle(queue)
+    return queue
+
+
 def main() -> int:
     matched = "--matched" in sys.argv
+    if "--batch3" in sys.argv:
+        print("Batch 3 -- files read:")
+        for path in (*BATCH3_PAIRED, SOURCES[0][0], SOURCES[1][0]):
+            print(f"  {path}")
+        done = already_annotated()
+        print(f"  already annotated by someone: {len(done)} keys (excluded)")
+        return write_page(batch3_queue(done), Path("paper/annotation_batch3.html"))
     print("Files actually read (check these are the ones you meant):")
     grouped = collect()
     done = already_annotated()
@@ -147,7 +192,8 @@ def write_page(queue, out_path) -> int:
     if not queue:
         print("\n  Nothing to annotate -- every item is already labelled.")
         return 0
-    samples = {s.index: s for s in LocomoPlus()}
+    data_arg = sys.argv[sys.argv.index("--data") + 1] if "--data" in sys.argv else None
+    samples = {s.index: s for s in (LocomoPlus(path=data_arg) if data_arg else LocomoPlus())}
     items = []
     for row in queue:
         s = samples.get(row["sample_index"])

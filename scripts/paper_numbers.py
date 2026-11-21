@@ -551,11 +551,17 @@ def main():
                  if people[raters[0]][f"system_llm:{i}"] == people[raters[1]][f"system_llm:{i}"]
                  and people[raters[0]][f"full_context:{i}"] == people[raters[1]][f"full_context:{i}"]]
         judge_all = {}
-        for path in (RESULTS / PILOT, RESULTS / RUNS["Events"]):
+        # 20 Nov: + the 401-item files (annotation batch 3 lies outside the
+        # n=100 subset); shared items carry identical labels -- asserted.
+        for path in (RESULTS / PILOT, RESULTS / RUNS["Events"],
+                     RESULTS / "pilot_n401_seed42_full_context.json",
+                     RESULTS / "system_n401_seed42_llm3_d1_notrig_events.json"):
             if path.exists():
                 for r in json.loads(path.read_text(encoding="utf-8")):
                     if r.get("label") in SCORED:
-                        judge_all[f"{r['condition']}:{r['sample_index']}"] = r["label"]
+                        key = f"{r['condition']}:{r['sample_index']}"
+                        assert judge_all.get(key, r["label"]) == r["label"], key
+                        judge_all[key] = r["label"]
 
         def emit_pair(prefix, ids, table):
             e = [table[f"system_llm:{i}"] == "correct" for i in ids]

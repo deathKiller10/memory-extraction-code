@@ -1,14 +1,14 @@
 {
- "human_n": 155,
- "human_agreement": 0.896774193548387,
- "human_kappa": 0.7940199335548171,
+ "human_n": 288,
+ "human_agreement": 0.8784722222222222,
+ "human_kappa": 0.7439804937519049,
  "human_band": "substantial",
- "judge_vs_annotator1_kappa": 0.5963880722385554,
- "judge_vs_annotator1_agreement": 0.8,
- "judge_vs_annotator2_kappa": 0.5571067025879664,
- "judge_vs_annotator2_agreement": 0.7741935483870968,
- "judge_kappa_lo": 0.5571067025879664,
- "judge_kappa_hi": 0.5963880722385554,
+ "judge_vs_annotator1_kappa": 0.5276668568168853,
+ "judge_vs_annotator1_agreement": 0.7604166666666666,
+ "judge_vs_annotator2_kappa": 0.5389830508474576,
+ "judge_vs_annotator2_agreement": 0.7638888888888888,
+ "judge_kappa_lo": 0.5276668568168853,
+ "judge_kappa_hi": 0.5389830508474576,
  "joint_n": 60,
  "human_rate": 0.5,
  "judge_rate": 0.55,
@@ -16,38 +16,38 @@
  "per_condition": {
   "no_memory": {
    "annotator1": {
-    "n": 24,
-    "human": 0.25,
-    "judge": 0.4583333333333333
+    "n": 44,
+    "human": 0.22727272727272727,
+    "judge": 0.36363636363636365
    },
    "annotator2": {
-    "n": 24,
-    "human": 0.16666666666666666,
-    "judge": 0.4166666666666667
+    "n": 44,
+    "human": 0.13636363636363635,
+    "judge": 0.3409090909090909
    }
   },
   "full_context": {
    "annotator1": {
-    "n": 52,
-    "human": 0.38461538461538464,
-    "judge": 0.5769230769230769
+    "n": 112,
+    "human": 0.2857142857142857,
+    "judge": 0.48214285714285715
    },
    "annotator2": {
-    "n": 48,
-    "human": 0.3541666666666667,
-    "judge": 0.5833333333333334
+    "n": 106,
+    "human": 0.24528301886792453,
+    "judge": 0.4811320754716981
    }
   },
   "system_llm": {
    "annotator1": {
-    "n": 40,
-    "human": 0.525,
-    "judge": 0.6
+    "n": 100,
+    "human": 0.47,
+    "judge": 0.57
    },
    "annotator2": {
-    "n": 38,
-    "human": 0.47368421052631576,
-    "judge": 0.631578947368421
+    "n": 93,
+    "human": 0.3978494623655914,
+    "judge": 0.5698924731182796
    }
   },
   "oracle_cue": {
@@ -81,20 +81,20 @@
  },
  "spread": {
   "annotator1": {
-   "human": 0.55,
-   "judge": 0.34166666666666673
+   "human": 0.5727272727272728,
+   "judge": 0.4363636363636364
   },
   "annotator2": {
-   "human": 0.5606060606060607,
-   "judge": 0.40151515151515155
+   "human": 0.5909090909090909,
+   "judge": 0.47727272727272735
   }
  },
- "E_annotator1_rate": 0.525,
- "E_annotator1_n": 40,
- "E_judge_rate_on_annotator1_items": 0.6,
- "E_annotator1_p": 0.548828125,
- "E_annotator2_rate": 0.47368421052631576,
- "E_annotator2_n": 38,
- "E_judge_rate_on_annotator2_items": 0.631578947368421,
- "E_annotator2_p": 0.0703125
+ "E_annotator1_rate": 0.47,
+ "E_annotator1_n": 100,
+ "E_judge_rate_on_annotator1_items": 0.57,
+ "E_annotator1_p": 0.08715855330228806,
+ "E_annotator2_rate": 0.3978494623655914,
+ "E_annotator2_n": 93,
+ "E_judge_rate_on_annotator2_items": 0.5698924731182796,
+ "E_annotator2_p": 0.0004024505615234375
 }

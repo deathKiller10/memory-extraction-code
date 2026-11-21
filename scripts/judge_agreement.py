@@ -54,13 +54,18 @@ SYSTEM_RUN = RESULTS / "system_n100_seed42_llm3_d1_notrig_events.json"
 
 def judge_labels() -> dict:
     out = {}
-    for path in (PILOT, SYSTEM_RUN):
+    # 20 Nov: + the 401-item files, for annotation batch 3 (items outside the
+    # n=100 subset); identical labels on shared items, asserted below.
+    for path in (PILOT, SYSTEM_RUN, RESULTS / "pilot_n401_seed42_full_context.json",
+                 RESULTS / "system_n401_seed42_llm3_d1_notrig_events.json"):
         if not path.exists():
             print(f"  MISSING: {path}")
             continue
         for r in json.loads(path.read_text(encoding="utf-8")):
             if r.get("label") in SCORED:
-                out[f"{r['condition']}:{r['sample_index']}"] = r["label"]
+                key = f"{r['condition']}:{r['sample_index']}"
+                assert out.get(key, r["label"]) == r["label"], f"{key}: judge labels disagree"
+                out[key] = r["label"]
     return out
 
 

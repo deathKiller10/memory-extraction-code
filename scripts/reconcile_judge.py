@@ -48,7 +48,12 @@ SCORED = ("correct", "wrong")
 
 # Where the annotated predictions came from (their judge labels).
 CALIBRATION_FILES = (RESULTS / "pilot_n100_seed42.json",
-                     RESULTS / "system_n100_seed42_llm3_d1_notrig_events.json")
+                     RESULTS / "system_n100_seed42_llm3_d1_notrig_events.json",
+                     # 20 Nov: batch 3 annotates items outside the n=100 subset;
+                     # their judge labels are in the 401-item files (identical
+                     # to the n=100 files on the 100 shared items -- asserted).
+                     RESULTS / "pilot_n401_seed42_full_context.json",
+                     RESULTS / "system_n401_seed42_llm3_d1_notrig_events.json")
 # Where to apply the calibration: the headline files where they exist.
 TARGETS = {
     "no_memory":         (RESULTS / "pilot_n100_seed42.json", "no_memory"),
@@ -66,7 +71,9 @@ def judge_labels(paths) -> dict:
     for path in paths:
         for r in json.loads(Path(path).read_text(encoding="utf-8")):
             if r.get("label") in SCORED:
-                out[f"{r['condition']}:{r['sample_index']}"] = r["label"] == "correct"
+                key, value = f"{r['condition']}:{r['sample_index']}", r["label"] == "correct"
+                assert out.get(key, value) == value, f"{key}: judge labels disagree across files"
+                out[key] = value
     return out
 
 
